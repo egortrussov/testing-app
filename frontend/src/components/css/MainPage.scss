@@ -1,0 +1,55 @@
+@import '_config';
+
+.app-container {
+    background-color: $primary-color;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    display: flex;
+    font-family: 'Nunito', sans-serif;
+
+    nav {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2rem 0;
+        width: 300px;
+
+        .nav-item {
+
+            .logo {
+                color: #fff;
+                font-weight: 800;
+                margin-left: 10px;;
+                letter-spacing: 1px;
+            }
+
+            .nav-link {
+                display: inline-block;
+                font-size: 1.1rem;
+                width: 100%;
+                text-decoration: none !important;
+                color: #fff;
+                padding: 10px;
+                font-weight: 700;
+
+                &.active {
+                    background-color: $dark-color !important;
+                }
+
+                &:hover {
+                    background-color: #47D36D;
+                }
+            }
+        }
+    }
+
+    main {
+        background-color: #fff;
+        width: 100%;
+        border-top-left-radius: 40px;;
+        border-bottom-left-radius: 40px;
+        padding: 40px;
+    }
+}

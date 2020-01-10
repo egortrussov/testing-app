@@ -1,0 +1,79 @@
+.test-card {
+  margin: 1rem 0;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  color: #000;
+  padding: .5rem .2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.test-card .test-title {
+  font-size: 1.3rem;
+}
+
+.test-card .test-date {
+  margin-top: .6rem;
+  color: #777;
+}
+
+.test-card .test-card-right {
+  text-align: right;
+  font-size: .9rem;
+}
+
+.test-card .test-card-right .test-subject {
+  margin-bottom: .7rem;
+}
+
+.test-card .test-card-right .test-subject .subject {
+  padding: .2rem .6rem;
+  background-color: #ddd;
+  color: #666;
+  border-radius: .6rem;
+}
+
+.results {
+  margin-top: 1.3rem;
+}
+
+.results table {
+  width: 100%;
+  text-align: left;
+}
+
+.results table .resultTr:hover {
+  background-color: rgba(74, 219, 113, 0.1);
+}
+
+.results table td, .results table th {
+  padding: 10px;
+}
+
+.results table th {
+  font-size: 1.2rem;
+  position: relative;
+  text-align: center;
+}
+
+.results table th:hover {
+  background-color: none !important;
+}
+
+.results table th::after {
+  content: '';
+  position: absolute;
+  background-color: #ddd;
+  height: 1.5px;
+  width: 92%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: calc(100% + 2px);
+}
+/*# sourceMappingURL=style.css.map */
