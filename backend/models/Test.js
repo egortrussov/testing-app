@@ -14,6 +14,7 @@ const TestSchema = new Schema({
         }],
         correctAnswerId: String
     }],
+    subject: String,
     results: [{
         userId: String,
         points: String,
