@@ -28,7 +28,7 @@ export default class MainPage extends Component {
                             { <Route path='/app/allTests' component={ Tests } /> }
                             { <Route path='/app/testInfo/:testId' component={ TestInfo } /> }
                             { <Route path='/app/createTests' component={ CreateTest } /> }
-                            { <Route path='/app/passTest' component={ PassTest } /> }
+                            { <Route path='/app/passTest/:testId' component={ PassTest } /> }
                             { <Route path='/app/login' component={ Login } /> }
                             { <Route path='/app/register' component={ Register } /> }
                         </Switch>

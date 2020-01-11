@@ -19,9 +19,9 @@ class Navbar extends Component {
                     <h2 className="logo">EasyTest</h2>
                 </div>
                 <div className="nav-item nav-middle">
-                    <NavLink exact className="nav-link" to="/app/">Home</NavLink>
-                    <NavLink className="nav-link" to="/app/allTests">Tests</NavLink>
-                    <NavLink className="nav-link" to="/app/createTest">Create Test</NavLink>
+                    <NavLink exact className="nav-link" to="/app/"><i className="fas fa-home"></i> Home</NavLink>
+                    <NavLink className="nav-link" to="/app/allTests"><i className="fas fa-align-left"></i> Tests</NavLink>
+                    <NavLink className="nav-link" to="/app/createTest"><i className="fas fa-pen-alt"></i> Create Test</NavLink>
                 </div>
                 <div className="nav-item nav-bottom">
                     <NavLink className="nav-link" to="/app/login">Login</NavLink>

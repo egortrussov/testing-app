@@ -51,8 +51,28 @@
   background-color: rgba(74, 219, 113, 0.1);
 }
 
+.results table .points {
+  width: 150px !important;
+}
+
 .results table td, .results table th {
   padding: 10px;
+}
+
+.results table td.points, .results table th.points {
+  position: relative;
+}
+
+.results table td.points::before, .results table th.points::before {
+  position: absolute;
+  height: 80%;
+  background-color: #ddd;
+  content: '';
+  width: 1.5px;
+  left: -2px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .results table th {
@@ -70,7 +90,7 @@
   position: absolute;
   background-color: #ddd;
   height: 1.5px;
-  width: 92%;
+  width: calc(100% - 40px);
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);

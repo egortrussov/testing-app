@@ -54,13 +54,18 @@ export default class TestInfo extends Component {
                 </div>
                 <h1>{ test.title }</h1>
                 <p>{ test.description }</p>
+                <Link class="btn btn-cta" to={ `/app/passTest/${ test._id }` }>
+                    Pass test!
+                </Link>
                 
                 <div className="results">
                     <h3>Results: </h3>
                     <table>
+                        <col className="username" />
+                        <col className="points" />
                         <tr>
                             <th>User</th>
-                            <th>Points</th>
+                            <th className="points">Points</th>
                         </tr>
                         { testResults === null ? () => {
                             return (
@@ -70,7 +75,7 @@ export default class TestInfo extends Component {
                             return (
                                 <tr className='resultTr' key={ res.userId + res.points }>
                                     <td>{ res.username }</td>
-                                    <td className="points">{ res.points }</td>
+                                    <td className="points">{ res.points }/{ res.answers.length }</td>
                                 </tr>
                             )
                         }) }

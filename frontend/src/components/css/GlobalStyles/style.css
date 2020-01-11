@@ -16,4 +16,16 @@
   color: #42C465 !important;
   font-size: 1.3rem;
 }
+
+.btn {
+  position: relative;
+  padding: .6rem 1.8rem;
+  background-color: #4ADB71;
+  display: inline-block;
+  margin-top: 1.3rem;
+  margin-bottom: .1rem;
+  color: #fff;
+  border-radius: .5rem;
+  font-weight: 700;
+}
 /*# sourceMappingURL=style.css.map */

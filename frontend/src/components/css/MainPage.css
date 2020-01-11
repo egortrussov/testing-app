@@ -34,7 +34,7 @@
 
 .app-container nav .nav-item .nav-link {
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   width: 100%;
   text-decoration: none !important;
   color: #fff;
@@ -48,6 +48,10 @@
 
 .app-container nav .nav-item .nav-link:hover {
   background-color: #47D36D;
+}
+
+.app-container nav .nav-item .nav-link i {
+  margin-right: .3rem;
 }
 
 .app-container main {

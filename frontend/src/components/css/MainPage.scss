@@ -27,12 +27,13 @@
 
             .nav-link {
                 display: inline-block;
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 width: 100%;
                 text-decoration: none !important;
                 color: #fff;
                 padding: 10px;
                 font-weight: 700;
+                
 
                 &.active {
                     background-color: $dark-color !important;
@@ -40,6 +41,10 @@
 
                 &:hover {
                     background-color: #47D36D;
+                }
+
+                i {
+                    margin-right: .3rem;
                 }
             }
         }

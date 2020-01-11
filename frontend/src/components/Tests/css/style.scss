@@ -46,9 +46,29 @@
         .resultTr:hover {
             background-color: rgba($primary-color, .1);
         }
+
+        .points {
+            width: 150px !important;
+        }
         
         td, th {
             padding: 10px;
+        }
+
+        td.points, th.points {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                height: 80%;
+                background-color: #ddd;
+                content: '';
+                
+                width: 1.5px;
+                left: -2px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
         }
 
         th {
@@ -65,7 +85,7 @@
                 position: absolute;
                 background-color: #ddd;
                 height: 1.5px;
-                width: 92%;
+                width: calc(100% - 40px);
                 left: 50%;
                 transform: translateX(-50%);
                 top: calc(100% + 2px);
