@@ -9,10 +9,33 @@ const User = require('../models/User')
 // GET ROUTES
 
 router.get('/testResults/:testId', (req, res) => {
+    let users = [];
+    let usernames = [];
+    
     Test
         .findOne({ _id: req.params.testId })
         .then(test => {
-            res.status(200).json(test.results);
+            test.results.forEach(res => {
+                users.push(res.userId);
+            })
+            
+            User.find({ _id: { $in: users } })
+                .then(foundUsers => {
+                    foundUsers.forEach(user => {
+                        usernames[user._id] = user.name;
+                    })
+                    
+                }).then(() => {
+                    let testResults = test.results;
+                    testResults.forEach(res => {
+                        res.username = usernames[res.userId];
+                    })
+                    res.status(200).json({
+                        usernames,
+                        testResults
+                    })
+                })
+             
         })
 })
 

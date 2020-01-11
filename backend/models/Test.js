@@ -18,7 +18,11 @@ const TestSchema = new Schema({
     results: [{
         userId: String,
         points: String,
-        answers: [ Boolean ]
+        answers: [ Boolean ],
+        username: {
+            type: String,
+            default: ''
+        }
     }],
     accessKey: String,
     createdAt: {

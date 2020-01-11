@@ -53,7 +53,7 @@ router.post('/addUser', (req, res) => {
                         .save()
                         .then(createdUser => {
                             jwt.sign(
-                                { id: user._id },
+                                { id: newUser._id },
                                 JWT_SECRET,
                                 { expiresIn: 3600 },
                                 (err, token) => {

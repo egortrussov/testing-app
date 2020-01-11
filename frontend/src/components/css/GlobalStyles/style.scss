@@ -1,3 +1,5 @@
+@import '../config';
+
 .heading {
     font-size: 2.1rem;
     margin-bottom: 1.1rem;
@@ -6,4 +8,13 @@
 .subheading {
     font-size: 1.6rem;
     margin-bottom: .8rem;
+}
+
+.page-top {
+    margin-bottom: 1.3rem;
+
+    a {
+        color: $dark-color !important;
+        font-size: 1.3rem;
+    }
 }
