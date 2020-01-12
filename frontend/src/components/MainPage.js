@@ -7,6 +7,7 @@ import Profile from './Profile/Profile'
 import Tests from './Tests/Tests'
 import TestInfo from './Tests/TestInfo'
 import CreateTest from './CreateTest/CreateTest'
+import CreateTestForm from './CreateTest/CreateTestForm'
 import PassTest from './PassTest/PassTest'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
@@ -24,13 +25,14 @@ export default class MainPage extends Component {
                     <Navbar />
                     <main>
                         <Switch>
-                            { <Route exact path='/app/' component={ Profile } /> }
-                            { <Route path='/app/allTests' component={ Tests } /> }
-                            { <Route path='/app/testInfo/:testId' component={ TestInfo } /> }
-                            { <Route path='/app/createTests' component={ CreateTest } /> }
-                            { <Route path='/app/passTest/:testId' component={ PassTest } /> }
-                            { <Route path='/app/login' component={ Login } /> }
-                            { <Route path='/app/register' component={ Register } /> }
+                            <Route exact path='/app/' component={ Profile } /> 
+                            <Route path='/app/allTests' component={ Tests } /> 
+                            <Route path='/app/testInfo/:testId' component={ TestInfo } /> 
+                            <Route path='/app/createTest' component={ CreateTest } /> 
+                            <Route path='/app/createTestForm' component={ CreateTestForm } /> 
+                            <Route path='/app/passTest/:testId' component={ PassTest } /> 
+                            <Route path='/app/login' component={ Login } /> 
+                            <Route path='/app/register' component={ Register } /> 
                         </Switch>
                     </main>
                 </div>

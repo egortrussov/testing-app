@@ -4,25 +4,25 @@
 [x] React js
 [x] Babel
 [ ] React Context API (for data management)
-[ ] SCSS preprocessor
+[x] SCSS preprocessor
 
 ### Todo:
 [x] Pick a color schema
 
-[ ] Menu bar
-    [ ] Bars
-        [ ] Home
-        [ ] Search tests
-        [ ] Create Tests
+[x] Menu bar
+    [x] Bars
+        [x] Home
+        [x] Search tests
+        [x] Create Tests
     [ ] Responsize
     [ ] Foldable
-    [ ] Icons
-    [ ] On the background
-[ ] Main content block
+    [x] Icons
+    [x] On the background
+[x] Main content block
     [ ] Greeting page (home  page) (includes profile)
         [ ] Passed tests
         [ ] User info
-    [ ] All tests page
+    [x] All tests page
         [ ] All tests List
 
     [ ] Create test page

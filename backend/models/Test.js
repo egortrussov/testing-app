@@ -6,6 +6,7 @@ const TestSchema = new Schema({
     creator: String,
     title: String,
     description: String,
+    isProtected: Boolean,
     questions: [{
         title: String,
         answers: [{
