@@ -102,6 +102,7 @@ router.post('/createTest', auth, (req, res) => {
 })
 
 router.post('/saveResult/:testId', (req, res) => {
+    console.log(req.body);
     User 
         .findOne({ _id: req.body.userId })
         .then(user => {

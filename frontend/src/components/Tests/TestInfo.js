@@ -29,6 +29,9 @@ export default class TestInfo extends Component {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
+                res.testResults.sort((res1, res2) => {
+                    return res2.points - res1.points;
+                })
                 this.setState({
                     isLoading: false,
                     testResults: res.testResults,
