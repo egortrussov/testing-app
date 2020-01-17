@@ -2,17 +2,16 @@ import React, { Component } from 'react'
 
 export default class CreateTestForm extends Component {
     state = {
-        questionNumber: 1,
         questions: [{
             title: '',
             answers: [{
                 text: '',
-                answerId: ''
+                answerId: '1'
             }, {
                 text: '',
-                answerId: ''
+                answerId: '2'
             }],
-            currectAnswerId: '1'
+            correctAnswerId: '1'
         }],
         title: '',
         description: '',
@@ -23,11 +22,16 @@ export default class CreateTestForm extends Component {
 
     handleAddAnswer(quesId) {
         const { questions } = this.state;        
+        let len = questions[quesId].answers.length;
+        console.log(len.toString());
+        
         if (questions[quesId].answers.length === 6) return;
         questions[quesId].answers.push({
             text: '',
-            answerId: ''
+            answerId: (len + 1).toString()
         })
+        console.log(questions[quesId].answers);
+        
         this.setState({
             ...this.state,
             questions
@@ -41,10 +45,10 @@ export default class CreateTestForm extends Component {
             title: '',
             answers: [{
                 text: '',
-                answerId: ''
+                answerId: '1'
             }, {
                 text: '',
-                answerId: ''
+                answerId: '2'
             }],
             currectAnswerId: '1'
         }) 
@@ -63,8 +67,9 @@ export default class CreateTestForm extends Component {
         });
     }
 
-    setQuestionTitle(e, index, inx) {
+    setAnswerText(e, index, inx) {
         let { questions } = this.state;
+        console.log(questions[index].answers, inx);
         questions[index].answers[inx].text = e.target.value;
         this.setState({
             ...this.state,
@@ -82,7 +87,7 @@ export default class CreateTestForm extends Component {
     setTestDescription(e) {
         this.setState({
             ...this.state,
-            desctiption: e.target.value
+            description: e.target.value
         })
     }
 
@@ -90,7 +95,7 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             subject: e.target.value
-        })
+        }, () => console.log(this.state.subject))
     }
 
     setProtectedState(e) {
@@ -98,6 +103,27 @@ export default class CreateTestForm extends Component {
             ...this.state,
             isProtected: !this.state.isProtected,
             accessKey: ''
+        })
+    }
+
+    setCorrectAnswerId(quesIndex, ansId) {
+        let { questions } = this.state;
+        questions[quesIndex].correctAnswerId = ansId;
+        console.log(ansId);
+        
+        this.setState({
+            ...this.state,
+            questions
+        })
+    }
+
+    handleAddTest() {
+        fetch('http://localhost:5000/api/tests/createTest', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
         })
     }
 
@@ -146,6 +172,7 @@ export default class CreateTestForm extends Component {
                                     { ques.answers.map((ans, inx) => {
                                         return (
                                             <div className="ans-card">
+                                                <input type="radio" name={ index } title="Mark as correct" onChange={ () => this.setCorrectAnswerId(index, ans.answerId) } checked={ ques.correctAnswerId === ans.answerId } />
                                                 <span className="ans-letter">{ letters[inx] }) </span>
                                                 <input onChange={ (e) => this.setAnswerText(e, index, inx) } type="text" value={ ans.text } />
                                             </div>
@@ -160,6 +187,7 @@ export default class CreateTestForm extends Component {
                         New question
                     </button>
                 </div>
+                <button onClick={ this.handleAddTest.bind(this) } className="btn btn-cta">Create test!</button>
             </div>
         )
     }

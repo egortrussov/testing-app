@@ -41,7 +41,7 @@ export default class Tests extends Component {
                                     <h4 className="test-date">Date: { test.createdAt }</h4>
                                 </div>
                                 <div className="test-card-right">
-                                    <h3 className="test-subject">Subject: <span className="subject">{ test.subject }Mathematics</span></h3>
+                                    <h3 className="test-subject">Subject: <span className="subject">{ test.subject }</span></h3>
                                     <h3>Times passed: { test.results.length }</h3>
                                 </div>
                             </div>
