@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import './css/style.css'
+
 export default class CreateTestForm extends Component {
     state = {
         questions: [{
@@ -50,7 +52,7 @@ export default class CreateTestForm extends Component {
                 text: '',
                 answerId: '2'
             }],
-            currectAnswerId: '1'
+            correctAnswerId: '1'
         }) 
         this.setState({
             ...this.state,
@@ -60,7 +62,7 @@ export default class CreateTestForm extends Component {
 
     setQuestionTitle(e, index) {
         let { questions } = this.state;
-        questions[index].title = e.target.value;
+        questions[index].title = e.target.innerText;
         this.setState({
             ...this.state,
             questions
@@ -68,9 +70,11 @@ export default class CreateTestForm extends Component {
     }
 
     setAnswerText(e, index, inx) {
+        console.log(e.target.innerText);
+        
         let { questions } = this.state;
         console.log(questions[index].answers, inx);
-        questions[index].answers[inx].text = e.target.value;
+        questions[index].answers[inx].text = e.target.innerText;
         this.setState({
             ...this.state,
             questions
@@ -106,6 +110,13 @@ export default class CreateTestForm extends Component {
         })
     }
 
+    setAccessKey(e) {
+        this.setState({
+            ...this.state,
+            accessKey: e.target.innerText
+        })
+    }
+
     setCorrectAnswerId(quesIndex, ansId) {
         let { questions } = this.state;
         questions[quesIndex].correctAnswerId = ansId;
@@ -127,6 +138,48 @@ export default class CreateTestForm extends Component {
         })
     }
 
+    deleteAnswer(quesId, ansId) {
+        let { questions } = this.state;
+        if (questions[quesId].answers.length <= 2) return;
+
+        let inx = parseInt(ansId);
+        let corrAnswer = questions[quesId].correctAnswerId;
+        if (corrAnswer == (ansId + 1).toString()) {
+            if (ansId == 0) {
+                questions[quesId].correctAnswerId = '1';
+            } else {
+                console.log('fff');
+                
+                questions[quesId].correctAnswerId = (ansId).toString();
+            }
+        } 
+        for (let i = inx; i < questions[quesId].answers.length; i++) {
+            questions[quesId].answers[i].answerId = (parseInt(questions[quesId].answers[i].answerId) - 1).toString();
+        }  
+        console.log(ansId);
+        
+        questions[quesId].answers.splice(ansId, 1);
+
+        console.log(questions[quesId].answers);
+        
+
+        this.setState({
+            ...this.state,
+            questions
+        })
+    }
+
+    deleteQuestion(quesId) {
+        let { questions } = this.state;
+        if (questions.length == 1) return;
+        
+        questions.splice(quesId, 1);
+        this.setState({
+            ...this.state,
+            questions
+        })
+    }
+
     render() {
         const { questions, isProtected } = this.state;
 
@@ -140,24 +193,24 @@ export default class CreateTestForm extends Component {
                 <div className="test-basic-info">
                     <div className="info-group">
                         <label htmlFor="title">Test name: </label>
-                        <input onChange={ (e) => this.setTestTitle(e) } type="text" name="title" />
+                        <span className="field" contenteditable="true" onInput={ (e) => this.setTestTitle(e) } type="text" name="title"> </span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="subject">Subject: </label>
-                        <input onChange={ (e) => this.setTestSubject(e) } type="text" name="subject" />
+                        <span className="field" contenteditable="true" onInput={ (e) => this.setTestSubject(e) } type="text" name="subject"> </span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="description">Description: </label>
-                        <textarea onChange={ (e) => this.setTestDescription(e) } name="description" name="" id="" cols="30" rows="10"></textarea>
+                        <textarea className="" onChange={ (e) => this.setTestDescription(e) } name="description" name="" id="" cols="30" rows="10"></textarea>
                     </div>
-                    <div className="info-group">
+                    <div className="info-group-checkbox">
                         <input onChange={ this.setProtectedState.bind(this) } type="checkbox" name="isProtected" />
                         <label htmlFor="isProtected" name="isProtected">Protected</label>
                     </div>
                     { isProtected && (
                         <div className="info-group">
                             <label htmlFor="key">Secret key: </label>
-                            <input type="text" name="key" />
+                            <span class="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } name="key" > </span>
                         </div>
                     ) }
                     
@@ -166,24 +219,29 @@ export default class CreateTestForm extends Component {
                     { questions.map((ques, index) => {
                         return (
                             <div className="question-card">
-                                <label className="title"><span>{ index + 1 }.</span> Title: </label>
-                                <input type="text" onChange={ (e) => this.setQuestionTitle(e, index) } />
+                                <button onClick={ () => this.deleteQuestion(index) } className="btn-delete">&times;</button>
+                                <label className="title"><span>{ index + 1 }.</span> </label>
+                                <span className="input" contenteditable="true" type="text" onInput={ (e) => this.setQuestionTitle(e, index) } >Title</span>
                                 <div className="answers">
                                     { ques.answers.map((ans, inx) => {
                                         return (
                                             <div className="ans-card">
-                                                <input type="radio" name={ index } title="Mark as correct" onChange={ () => this.setCorrectAnswerId(index, ans.answerId) } checked={ ques.correctAnswerId === ans.answerId } />
+                                                <button onClick={ () => this.deleteAnswer(index, inx) } className="btn-delete">&times;</button>
+                                                <input type="radio" id={ `${index}-${inx}` } name={ index } title="Mark as correct" onChange={ () => this.setCorrectAnswerId(index, ans.answerId) } checked={ ques.correctAnswerId === ans.answerId } />
+                                                <label htmlFor={ `${index}-${inx}` }></label>
                                                 <span className="ans-letter">{ letters[inx] }) </span>
-                                                <input onChange={ (e) => this.setAnswerText(e, index, inx) } type="text" value={ ans.text } />
+                                                <span className="input" contenteditable="true" onInput={ (e) => this.setAnswerText(e, index, inx) } type="text">{ ans.text }</span>
+                                                
+                                                
                                             </div>
                                         )
                                     }) }
-                                    <button onClick={ this.handleAddAnswer.bind(this, index) } className="btn-secondary">+</button>
+                                    <button onClick={ this.handleAddAnswer.bind(this, index) } className="add-question">+</button>
                                 </div>
                             </div>
                         )
                     }) }
-                    <button onClick={ this.handleAddQuestion.bind(this) } className="btn-secondary">
+                    <button onClick={ this.handleAddQuestion.bind(this) } className="new-question btn-secondary">
                         New question
                     </button>
                 </div>

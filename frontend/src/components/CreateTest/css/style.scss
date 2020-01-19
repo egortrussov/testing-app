@@ -1,0 +1,260 @@
+@import '../../css/config';
+
+.test-basic-info {
+    
+    label {
+        display: block;
+        margin-top: .7rem;
+        color: #000;
+        font-size: 1.1rem;
+    }
+
+    textarea {
+        position: relative;
+        display: block;
+        width: 100%;
+        max-width: 450px;
+        caret-color: $dark-color;
+        font-family: inherit;
+        // height: auto;
+        height: 140px;
+        border: none;
+        transition: all .2s;
+        border-bottom: 2px solid #ddd;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 100%;
+            background-color: #ddd;
+            transition: all .2s;
+            top: calc(100% + 2px);
+            z-index: 2;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 0;
+            z-index: 3;
+            background-color: $dark-color;
+            transition: all .2s;
+            top: calc(100% + 2px);
+        }
+
+        &:focus {
+            outline: none;
+            border-bottom: 2px solid $dark-color;
+
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+
+    .info-group-checkbox {
+        display: flex;
+        align-items: center;
+        margin-top: 1.2rem;
+
+        label {
+            margin-top: 0;
+            margin-left: .5rem;
+        }
+    }
+
+    .field {
+        position: relative;
+        display: inline-block;
+        min-width: 200px;
+        width: auto;
+        padding: .3rem;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 100%;
+            background-color: #ddd;
+            transition: all .2s;
+            top: calc(100% + 2px);
+            z-index: 2;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 0;
+            z-index: 3;
+            background-color: $dark-color;
+            transition: all .2s;
+            top: calc(100% + 2px);
+        }
+
+        &:focus {
+            outline: none;
+
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+
+    .ans-card {
+
+        label {
+            display: block;
+            margin-left: 1.3rem;
+        }
+
+        .ans-letter {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.questions {
+    margin-top: 2rem;
+
+    .input {
+        display: inline-block;
+        min-width: 80px !important;
+        padding: .2rem;
+        position: relative;
+        caret-color: $dark-color;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 2px;
+            width: 0;
+            background-color: $dark-color;
+            transition: all .2s;
+            top: calc(100% + 2px);
+        }
+
+        &:focus {
+            outline: none;
+
+            &:before {
+                width: 90%;
+            }
+        }
+    }
+
+    .question-card {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 30px;
+            left: -30px;
+        }
+        
+        & > .btn-delete {
+            position: absolute;
+            left: -25px;
+            top: 3px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            background-color: red;
+            transition: .2s;
+            transform: scale(0);
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &:hover {
+
+            & > .btn-delete {
+                transform: scale(1);
+            }
+        }
+
+        .answers {
+            margin-top: .6rem;
+        }
+
+        .ans-card {
+            position: relative;
+            margin: .3rem 0 .3rem 0rem;
+            padding-left: 1.8rem;
+            display: flex;
+            align-items: center;
+            
+            .ans-letter {
+                margin-left: 1rem;
+            }
+
+            .btn-delete {
+                position: absolute;
+                left: 0px;
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                font-size: 1.2rem;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                background-color: red;
+                transition: .2s;
+                transform: scale(0);
+            }
+
+            &:hover {
+
+                .btn-delete {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+
+    .add-question {
+        margin-left: 3.6rem;
+        height: 25px;
+        width: 25px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 0 !important;
+        border: 1.5px solid $dark-color;
+        border-radius: 5px;
+        background-color: #fff;
+        color: darken($dark-color, 30);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .new-question {
+        border: 1.5px solid $dark-color;
+        padding: .4rem 1.2rem;
+        margin-top: 1.2rem;
+        background-color: #fff;
+        border-radius: .5rem;
+        font-size: .9rem;
+    }
+}

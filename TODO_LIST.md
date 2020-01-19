@@ -23,9 +23,9 @@
         [ ] Passed tests
         [ ] User info
     [x] All tests page
-        [ ] All tests List
+        [x] All tests List 
 
-    [ ] Create test page
+    [x] Create test page
     [ ] My tests page
 [ ] Landing page --- Extra styling optional
 

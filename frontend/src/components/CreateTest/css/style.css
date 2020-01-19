@@ -1,0 +1,271 @@
+.test-basic-info label {
+  display: block;
+  margin-top: .7rem;
+  color: #000;
+  font-size: 1.1rem;
+}
+
+.test-basic-info textarea {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  caret-color: #42C465;
+  font-family: inherit;
+  height: 140px;
+  border: none;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  border-bottom: 2px solid #ddd;
+}
+
+.test-basic-info textarea::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 3px;
+  width: 100%;
+  background-color: #ddd;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: calc(100% + 2px);
+  z-index: 2;
+}
+
+.test-basic-info textarea::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 3px;
+  width: 0;
+  z-index: 3;
+  background-color: #42C465;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: calc(100% + 2px);
+}
+
+.test-basic-info textarea:focus {
+  outline: none;
+  border-bottom: 2px solid #42C465;
+}
+
+.test-basic-info textarea:focus:before {
+  width: 100%;
+}
+
+.test-basic-info .info-group-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1.2rem;
+}
+
+.test-basic-info .info-group-checkbox label {
+  margin-top: 0;
+  margin-left: .5rem;
+}
+
+.test-basic-info .field {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+  width: auto;
+  padding: .3rem;
+}
+
+.test-basic-info .field::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 3px;
+  width: 100%;
+  background-color: #ddd;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: calc(100% + 2px);
+  z-index: 2;
+}
+
+.test-basic-info .field::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 3px;
+  width: 0;
+  z-index: 3;
+  background-color: #42C465;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: calc(100% + 2px);
+}
+
+.test-basic-info .field:focus {
+  outline: none;
+}
+
+.test-basic-info .field:focus:before {
+  width: 100%;
+}
+
+.test-basic-info .ans-card label {
+  display: block;
+  margin-left: 1.3rem;
+}
+
+.test-basic-info .ans-card .ans-letter {
+  margin-left: 1rem;
+}
+
+.questions {
+  margin-top: 2rem;
+}
+
+.questions .input {
+  display: inline-block;
+  min-width: 80px !important;
+  padding: .2rem;
+  position: relative;
+  caret-color: #42C465;
+}
+
+.questions .input::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 2px;
+  width: 0;
+  background-color: #42C465;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: calc(100% + 2px);
+}
+
+.questions .input:focus {
+  outline: none;
+}
+
+.questions .input:focus:before {
+  width: 90%;
+}
+
+.questions .question-card {
+  position: relative;
+}
+
+.questions .question-card::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 30px;
+  left: -30px;
+}
+
+.questions .question-card > .btn-delete {
+  position: absolute;
+  left: -25px;
+  top: 3px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-size: 1.2rem;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  background-color: red;
+  -webkit-transition: .2s;
+  transition: .2s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.questions .question-card > .btn-delete:focus {
+  outline: none;
+}
+
+.questions .question-card:hover > .btn-delete {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.questions .question-card .answers {
+  margin-top: .6rem;
+}
+
+.questions .question-card .ans-card {
+  position: relative;
+  margin: .3rem 0 .3rem 0rem;
+  padding-left: 1.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.questions .question-card .ans-card .ans-letter {
+  margin-left: 1rem;
+}
+
+.questions .question-card .ans-card .btn-delete {
+  position: absolute;
+  left: 0px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  font-size: 1.2rem;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  background-color: red;
+  -webkit-transition: .2s;
+  transition: .2s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.questions .question-card .ans-card:hover .btn-delete {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.questions .add-question {
+  margin-left: 3.6rem;
+  height: 25px;
+  width: 25px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0 !important;
+  border: 1.5px solid #42C465;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #1a5329;
+}
+
+.questions .add-question:focus {
+  outline: none;
+}
+
+.questions .new-question {
+  border: 1.5px solid #42C465;
+  padding: .4rem 1.2rem;
+  margin-top: 1.2rem;
+  background-color: #fff;
+  border-radius: .5rem;
+  font-size: .9rem;
+}
+/*# sourceMappingURL=style.css.map */
