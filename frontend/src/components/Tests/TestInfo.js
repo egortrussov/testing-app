@@ -39,7 +39,25 @@ export default class TestInfo extends Component {
                 })
             })
     }
-    
+
+    setAccessKey(e) {
+        this.setState({
+            ...this.state,
+            currentAccessKey: e.target.innerText
+        })
+    }
+
+    goToTest() {
+        console.log(this.state.test);
+        
+        const { currentAccessKey } = this.state;
+        const { accessKey, _id, isProtected } = this.state.test;
+        if (accessKey === currentAccessKey || !isProtected) {
+            window.location.href = `/app/passTest/${ _id }`
+        } else {
+            alert('Incorrect key!')
+        }
+    }    
 
     render() {
         const { isLoading, test, testResults, usernames } = this.state;
@@ -57,9 +75,22 @@ export default class TestInfo extends Component {
                 </div>
                 <h1>{ test.title }</h1>
                 <p>{ test.description }</p>
-                <Link class="btn btn-cta" to={ `/app/passTest/${ test._id }` }>
+                { test.isProtected && (
+                    //return (
+                        <>
+                            <br/>
+                            <label htmlFor="title">To start the test, you need to type in the secret key!</label> <br/>
+                            <span className="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } type="text" name="title"></span>
+                        </>
+                    //)
+                    
+                 ) }
+                <br/>
+                {/* <Link class="btn btn-cta" to={ `/app/passTest/${ test._id }` }>
                     Pass test!
-                </Link>
+                </Link> */}
+                <button onClick={ () => this.goToTest() } className="btn btn-cta">Pass test!</button>
+                
                 
                 <div className="results">
                     <h3>Results: </h3>

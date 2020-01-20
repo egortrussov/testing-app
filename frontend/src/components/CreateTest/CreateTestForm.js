@@ -84,21 +84,21 @@ export default class CreateTestForm extends Component {
     setTestTitle(e) {
         this.setState({
             ...this.state,
-            title: e.target.value
+            title: e.target.innerText
         })
     }
 
     setTestDescription(e) {
         this.setState({
             ...this.state,
-            description: e.target.value
+            description: e.target.innerText
         })
     }
 
     setTestSubject(e) {
         this.setState({
             ...this.state,
-            subject: e.target.value
+            subject: e.target.innerText
         }, () => console.log(this.state.subject))
     }
 
@@ -129,6 +129,8 @@ export default class CreateTestForm extends Component {
     }
 
     handleAddTest() {
+        console.log(this.state);
+        
         fetch('http://localhost:5000/api/tests/createTest', {
             method: 'POST',
             headers: {
@@ -155,6 +157,8 @@ export default class CreateTestForm extends Component {
         } 
         for (let i = inx; i < questions[quesId].answers.length; i++) {
             questions[quesId].answers[i].answerId = (parseInt(questions[quesId].answers[i].answerId) - 1).toString();
+            if (i != inx)
+                document.getElementById(`_${ quesId }-${ i - 1 }`).innerText = questions[quesId].answers[i].text;
         }  
         console.log(ansId);
         
@@ -230,7 +234,7 @@ export default class CreateTestForm extends Component {
                                                 <input type="radio" id={ `${index}-${inx}` } name={ index } title="Mark as correct" onChange={ () => this.setCorrectAnswerId(index, ans.answerId) } checked={ ques.correctAnswerId === ans.answerId } />
                                                 <label htmlFor={ `${index}-${inx}` }></label>
                                                 <span className="ans-letter">{ letters[inx] }) </span>
-                                                <span className="input" contenteditable="true" onInput={ (e) => this.setAnswerText(e, index, inx) } type="text">{ ans.text }</span>
+                                                <span id={ `_${ index }-${ inx }` } className="input" contenteditable="true" onInput={ (e) => this.setAnswerText(e, index, inx) } type="text"></span>
                                                 
                                                 
                                             </div>

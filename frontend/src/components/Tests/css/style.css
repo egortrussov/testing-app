@@ -38,6 +38,56 @@
   border-radius: .6rem;
 }
 
+.field {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+  width: auto;
+  padding: .3rem;
+}
+
+.field::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 3px;
+  width: 100%;
+  background-color: #ddd;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: calc(100% + 2px);
+  z-index: 2;
+}
+
+.field::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 3px;
+  width: 0;
+  z-index: 3;
+  background-color: #42C465;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  top: calc(100% + 2px);
+}
+
+.field:focus {
+  outline: none;
+}
+
+.field:focus:before {
+  width: 100%;
+}
+
+.btn {
+  display: block;
+}
+
 .results {
   margin-top: 1.3rem;
 }
