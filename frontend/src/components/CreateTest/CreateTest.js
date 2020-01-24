@@ -7,7 +7,7 @@ export default class CreateTest extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/tests/createdTests/${ '5e1950da3847642ac073510c' }`)
+        fetch(`/api/tests/createdTests/${ '5e1950da3847642ac073510c' }`)
             .then(res => res.json())
             .then(res => {
                 this.setState({

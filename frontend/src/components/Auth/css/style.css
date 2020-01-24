@@ -1,0 +1,39 @@
+#psw, #confirmPassword, #password {
+  -webkit-text-security: disc;
+  -webkit-appearance: textfield;
+  background-color: white;
+  -webkit-user-select: text;
+  cursor: auto;
+}
+
+form {
+  margin-top: 2rem;
+}
+
+form .form-group {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+form .form-group label {
+  display: block;
+  margin-top: 0;
+}
+
+form .form-group .field {
+  width: 100%;
+  max-width: 400px;
+}
+
+form .form-group .field.with-input {
+  padding: none !important;
+}
+
+form .form-group .field input {
+  width: 100%;
+  height: 100%;
+  font-size: inherit;
+  border: none;
+  padding: inherit;
+}
+/*# sourceMappingURL=style.css.map */

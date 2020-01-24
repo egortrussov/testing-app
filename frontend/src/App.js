@@ -10,12 +10,32 @@ import MainPage from './components/MainPage';
 import './App.css'
 
 class App extends Component {
+    state = {
+        userId: '',
+        token: ''
+    }
+
+    setToken = (token, userId) => {
+        this.setState({
+            token: token,
+            userId: userId
+        })
+    }
+
+    logout = () => {
+        this.setState({
+            token: '',
+            userId: ''
+        })
+    }
 
     render() {
+        const { token, userId } = this.state;
+
         return (
             <BrowserRouter>
                 <React.Fragment>
-                    <TestsContext.Provider value={{ tests: 11 }}>
+                    <TestsContext.Provider value={{ token, userId, setToken: this.setToken, logout: this.logout  }}>
                         <Switch>
                             <Route exact path="/" component={ LandingPage } />
                             <Route path="/app" component={ MainPage } />

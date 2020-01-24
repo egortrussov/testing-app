@@ -42,7 +42,7 @@ router.post('/addUser', (req, res) => {
         .findOne({ email: req.body.email })
         .then(foundUser => {
             if (foundUser) {
-                res.status(400).json({ message: 'User already exists' });
+                res.status(400).json({ success: false, message: 'User already exists' });
                 return;
             }
             bcrypt.genSalt(12, (err, salt) => {
@@ -59,6 +59,7 @@ router.post('/addUser', (req, res) => {
                                 (err, token) => {
                                     if(err) throw err;
                                     res.json({
+                                        success: true,
                                         token,
                                         user: createdUser
                                     });
@@ -72,21 +73,25 @@ router.post('/addUser', (req, res) => {
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
+    
+    
   
     // Simple validation
     if(!email || !password) {
-      return res.status(400).json({ msg: 'Please enter all fields' });
+      return res.status(400).json({ success: false, msg: 'Please enter all fields' });
     }
   
     // Check for existing user
     User.findOne({ email })
         .then(user => {
-            if(!user) return res.status(400).json({ msg: 'User Does not exist' });
+            console.log(req.body);
+            if(!user) return res.status(400).json({ success: false, msg: 'User Does not exist' });
 
             // Validate password
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
-                    if(!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
+                    console.log(req.body);
+                    if(!isMatch) return res.status(400).json({ success: false, msg: 'Invalid password' });
 
                     jwt.sign(
                         { id: user.id },
@@ -95,6 +100,7 @@ router.post('/login', (req, res) => {
                         (err, token) => {
                             if(err) throw err;
                             res.json({
+                                success: true,
                                 token: token,
                                 user: user
                             });

@@ -59,3 +59,45 @@
         overflow-y: scroll;
     }
 }
+
+.field {
+    position: relative;
+    display: inline-block;
+    min-width: 200px;
+    width: auto;
+    padding: .3rem;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 3px;
+        width: 100%;
+        background-color: #ddd;
+        transition: all .2s;
+        top: calc(100% + 2px);
+        z-index: 2;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 3px;
+        width: 0;
+        z-index: 3;
+        background-color: $dark-color;
+        transition: all .2s;
+        top: calc(100% + 2px);
+    }
+
+    &:focus {
+        outline: none;
+
+        &:before {
+            width: 100%;
+        }
+    }
+}

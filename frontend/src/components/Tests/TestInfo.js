@@ -16,7 +16,7 @@ export default class TestInfo extends Component {
     componentDidMount() {
         const testId = this.props.match.params.testId;
         
-        fetch(`http://localhost:5000/api/tests/testInfo/${ testId }`)
+        fetch(`/api/tests/testInfo/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
@@ -25,7 +25,7 @@ export default class TestInfo extends Component {
                     test: res
                 })
             })
-        fetch(`http://localhost:5000/api/tests/testResults/${ testId }`)
+        fetch(`/api/tests/testResults/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);

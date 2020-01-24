@@ -10,7 +10,7 @@ export default class Tests extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:5000/api/tests/allTests')
+        fetch('/api/tests/allTests')
             .then(res => res.json())
             .then(res => {
                 this.setState({

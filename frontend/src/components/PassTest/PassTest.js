@@ -15,7 +15,7 @@ export default class PassTest extends Component {
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
-        fetch(`http://localhost:5000/api/tests/testInfo/${ testId }`)
+        fetch(`/api/tests/testInfo/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
@@ -57,7 +57,7 @@ export default class PassTest extends Component {
             "points": points,
             "answers": results
         }
-        fetch(`http://localhost:5000/api/tests/saveResult/${ test._id }`, {
+        fetch(`/api/tests/saveResult/${ test._id }`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
