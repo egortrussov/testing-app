@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
+import ls from 'local-storage'
 
 import TestsContext from './context/TestsContext'
 
@@ -20,13 +21,17 @@ class App extends Component {
             token: token,
             userId: userId
         })
+        ls.set('token', token);
+        ls.set('userId', userId);
     }
 
     logout = () => {
         this.setState({
             token: '',
             userId: ''
-        })
+        });
+        ls.set('token', '');
+        ls.set('userId', '');
     }
 
     render() {

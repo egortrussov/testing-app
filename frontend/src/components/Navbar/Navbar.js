@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import ls from 'local-storage'
 
 import TestsContext from '../../context/TestsContext'
 
@@ -27,7 +28,10 @@ class Navbar extends Component {
     }
 
     render() {
-        const { isLoggedIn } = this.state;
+        const token = ls.get('token');
+        console.log(token);
+        
+        let isLoggedIn = token !== ''
 
         return (
             <nav>
@@ -47,7 +51,7 @@ class Navbar extends Component {
                         </>
                     ) }
                     { isLoggedIn && (
-                        <a className="nav-link" onClick={ this.logout.bind(this) } href="" >Logout</a>
+                        <a className="nav-link" onClick={ this.logout.bind(this) } >Logout</a>
                     ) }                    
                 </div>
             </nav>

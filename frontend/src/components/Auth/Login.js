@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 import './css/style.css'
 
 import AuthContext from '../../context/TestsContext'
@@ -7,15 +8,24 @@ import AuthContext from '../../context/TestsContext'
 export default class Login extends Component {
     state = {
         email: '',
-        password: ''
+        password: '' 
     }
 
     static contextType = AuthContext;
 
     componentDidMount() {
         const psw = document.querySelector('#psw');
+        const email = document.querySelector('#email');
         psw.addEventListener('focus',function(e){ /*yourcode*/ },false);
         psw.addEventListener('keyup',function(e){ console.log(e.keyCode) },false);
+        email.addEventListener('keypress',function(e){ 
+            if (e.which === 13) 
+                e.preventDefault();
+         },false);
+        psw.addEventListener('keypress',function(e){ 
+            if (e.which === 13) 
+                e.preventDefault();
+         },false);
     }
 
     setCredential(e) {
@@ -44,7 +54,7 @@ export default class Login extends Component {
             .then(res => {
                 if (res.success) {
                     this.context.setToken(res.token, res.user._id);
-                    // window.location.href = '/app/';
+                    window.location.href = '/app/'
                 } 
             })
     }
@@ -56,7 +66,7 @@ export default class Login extends Component {
                 <form onSubmit={ (e) => this.handleSubmit(e) }>
                     <div className="form-group">
                         <label htmlFor="">E-mail: </label>
-                        <span data-name="email" onInput={ (e) => this.setCredential(e) } className="field" contentEditable="true"></span>
+                        <span data-name="email" onInput={ (e) => this.setCredential(e) } className="field" contentEditable="true" id="email"></span>
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Password: </label>
