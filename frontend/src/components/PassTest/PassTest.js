@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { useHistory } from 'react-router-dom'
+import ls from 'local-storage'
+import TestsContext from '../../context/TestsContext'
 
 import Spinner from '../Spinner/Spinner'
 
@@ -12,6 +13,8 @@ export default class PassTest extends Component {
         answers: [],
         answeredQuestions: 0
     }
+
+    static contextType = TestsContext;
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
@@ -53,7 +56,7 @@ export default class PassTest extends Component {
             }
         })
         const query = {
-            "userId": '5e1950da3847642ac073510c',
+            "userId": this.context.userId,
             "points": points,
             "answers": results
         }

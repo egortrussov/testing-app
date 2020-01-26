@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import TestsContext from '../../context/TestsContext'
+
 export default class CreateTest extends Component {
     state = {
         createdTests: [],
     }
 
+    static contextType = TestsContext;
+
     componentDidMount() {
-        fetch(`/api/tests/createdTests/${ '5e1950da3847642ac073510c' }`)
+        if (!this.context.userId) 
+            window.location.href = '/app/login';
+        fetch(`/api/tests/createdTests/${ this.context.userId }`)
             .then(res => res.json())
             .then(res => {
                 this.setState({

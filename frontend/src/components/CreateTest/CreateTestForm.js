@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import TestsContext from '../../context/TestsContext'
+
 import './css/style.css'
 
 export default class CreateTestForm extends Component {
@@ -19,8 +21,11 @@ export default class CreateTestForm extends Component {
         description: '',
         subject: '',
         isProtected: false,
-        accessKey: ''
+        accessKey: '',
+        creator: this.context.userId
     }
+
+    static contextType = TestsContext;
 
     handleAddAnswer(quesId) {
         const { questions } = this.state;        
@@ -129,7 +134,8 @@ export default class CreateTestForm extends Component {
     }
 
     handleAddTest() {
-        console.log(this.state);
+        if (!this.context.userId) 
+            window.location.href = '/app/login'
         
         fetch('/api/tests/createTest', {
             method: 'POST',

@@ -7,7 +7,7 @@ function auth(req, res, next) {
 
     // Check for token
     if (!token)
-        return res.status(401).json({ message: 'No token, authorizaton denied' });
+        return res.status(401).json({ isTokenError: true, message: 'No token, authorizaton denied' });
 
     try {
         // Verify token
@@ -16,7 +16,7 @@ function auth(req, res, next) {
         req.user = decoded;
         next();
     } catch (e) {
-        res.status(400).json({ message: 'Token is not valid' });
+        res.status(400).json({ isTokenError: true, message: 'Token is not valid' });
     }
 }
 

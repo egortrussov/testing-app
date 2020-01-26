@@ -15,9 +15,13 @@ router.get('/testResults/:testId', (req, res) => {
     Test
         .findOne({ _id: req.params.testId })
         .then(test => {
+            console.log(test);
+            
             test.results.forEach(res => {
                 users.push(res.userId);
             })
+            console.log(users);
+            
             
             User.find({ _id: { $in: users } })
                 .then(foundUsers => {
@@ -55,7 +59,7 @@ router.get('/createdTests/:userId', (req, res) => {
         })
 })
 
-router.get('/allTests', (req, res) => {
+router.get('/allTests', auth, (req, res) => {
     Test.find()
         .sort({ createdAt: -1 })
         .then(tests => {

@@ -12,8 +12,8 @@ import './App.css'
 
 class App extends Component {
     state = {
-        userId: '',
-        token: ''
+        userId: ls.get('userId'),
+        token: ls.get('token')
     }
 
     setToken = (token, userId) => {

@@ -11,16 +11,16 @@ class Navbar extends Component {
 
     static contextType = TestsContext;
 
-    componentDidMount() {
-        let value = this.context;
-        console.log(value.token !== '');
+    // componentDidMount() {
+    //     let value = this.context;
+    //     console.log(value.token !== '');
         
-        if (value.token !== '') {
-            this.setState({
-                isLoggedIn: true
-            })
-        }
-    }
+    //     if (value.token !== '') {
+    //         this.setState({
+    //             isLoggedIn: true
+    //         })
+    //     }
+    // }
 
     logout() {
         this.context.logout();

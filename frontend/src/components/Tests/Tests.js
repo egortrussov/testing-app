@@ -1,30 +1,50 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import TestsContext from '../../context/TestsContext'
+import Spinner from '../Spinner/Spinner'
+
+import { getHeaders } from '../../middleware/authMiddleware'
 
 import './css/style.css'
 
 export default class Tests extends Component {
     state = {
         isLoading: true,
-        tests: null
+        tests: [],
+        isRedirectToLogin: false
     }
 
+    static contextType = TestsContext;
+
     componentDidMount() {
-        fetch('/api/tests/allTests')
+        fetch('/api/tests/allTests', {
+            headers: getHeaders()
+        })
             .then(res => res.json())
             .then(res => {
-                this.setState({
-                    isLoading: false,
-                    tests: res
-                })
+                console.log(res);
+                if (res.isTokenError) {
+                    this.context.logout();
+                    window.location.href = '/app/login'
+                } else {
+                    this.setState({
+                        isLoading: false,
+                        tests: res
+                    })
+                }
+                
             })
     }
 
     render() {
-        const { isLoading, tests } = this.state;
+        const { isLoading, tests, isRedirectToLogin } = this.state;
+
+        if (isRedirectToLogin) return (
+            <Redirect to="/app/login" />
+        )
 
         if (isLoading) return (
-            <h1>Loading...</h1>
+            <Spinner />
         )
 
         return (
