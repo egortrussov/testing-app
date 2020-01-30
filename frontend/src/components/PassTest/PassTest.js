@@ -11,7 +11,7 @@ export default class PassTest extends Component {
         isLoading: true,
         test: [],
         answers: [],
-        answeredQuestions: 0
+        answeredQuestions: 0,
     }
 
     static contextType = TestsContext;
@@ -58,7 +58,10 @@ export default class PassTest extends Component {
         const query = {
             "userId": this.context.userId,
             "points": points,
-            "answers": results
+            "answers": results,
+            "title": test.title,
+            "maxPoints": test.questions.length,
+            "date": Date.now()
         }
         fetch(`/api/tests/saveResult/${ test._id }`, {
             method: 'POST',

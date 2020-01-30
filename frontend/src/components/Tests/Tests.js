@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import TestsContext from '../../context/TestsContext'
 import Spinner from '../Spinner/Spinner'
 
+import { formatDate } from '../../middleware/dateFormat'
 import { getHeaders } from '../../middleware/authMiddleware'
 
 import './css/style.css'
@@ -58,7 +59,7 @@ export default class Tests extends Component {
                             <div key={ test._id } className="test-card">
                                 <div className="text-card-left">
                                     <h3 className="test-title">{ test.title }</h3>
-                                    <h4 className="test-date">Date: { test.createdAt }</h4>
+                                    <h4 className="test-date">Date: { formatDate(test.createdAt) }</h4>
                                 </div>
                                 <div className="test-card-right">
                                     <h3 className="test-subject">Subject: <span className="subject">{ test.subject }</span></h3>

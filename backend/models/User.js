@@ -8,7 +8,10 @@ const UserSchema = new Schema({
     }],
     passedTests: [{
         points: Number,
-        testId: String
+        maxPoints: Number,
+        testId: String,
+        title: String,
+        date: Date
     }],
     name: String,
     email: String,

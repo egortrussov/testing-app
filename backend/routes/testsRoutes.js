@@ -47,7 +47,7 @@ router.get('/passedTests/:userId', (req, res) => {
     User
         .findOne({ _id: req.params.userId })
         .then(user => {
-            res.status(200).json(user.passedTests);
+            res.status(200).json(user.passedTests)
         })
 })
 
@@ -55,7 +55,18 @@ router.get('/createdTests/:userId', (req, res) => {
     User
         .findOne({ _id: req.params.userId })
         .then(user => {
-            res.status(200).json(user.createdTests);
+            let createdTests = [];
+            user.createdTests.map(test => {
+                createdTests.push(test.testId);
+            })
+            
+            Test
+                .find({ _id: { $in: createdTests } })
+                .then(tests => {
+                    console.log(tests);
+                    
+                    res.status(200).json(tests);
+                })
         })
 })
 
@@ -112,7 +123,10 @@ router.post('/saveResult/:testId', (req, res) => {
         .then(user => {
             user.passedTests.push({
                 testId: req.params.testId,
-                points: req.body.points
+                points: req.body.points,
+                date: req.body.date,
+                maxPoints: req.body.maxPoints,
+                title: req.body.title
             });
 
             user.save();          

@@ -3,7 +3,7 @@
 ### Technologies
 [x] React js
 [x] Babel
-[ ] React Context API (for data management)
+[x] React Context API (for data management)
 [x] SCSS preprocessor
 
 ### Todo:
@@ -24,10 +24,9 @@
         [ ] User info
     [x] All tests page
         [x] All tests List 
-
     [x] Create test page
-    [ ] My tests page
-[ ] Landing page --- Extra styling optional
+    [x] My tests page
+[x] Landing page --- Extra styling optional
 
 
 ## Create backend
@@ -53,7 +52,14 @@
 [x] Create user route
     [x] Assign with DB
 
+## Extra features
 
+[ ] Create your own results view 
+    [ ] On the test info page
+    [ ] Able to see each answer and question
+        [ ] New page
+[ ] Create results view
+    [ ] if creator of the test, show results of everyone
 
 ## Database collection structure
 test:
