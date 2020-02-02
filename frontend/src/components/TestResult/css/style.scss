@@ -1,0 +1,93 @@
+@import '../../css/config';
+
+.result-table {
+    max-width: 100%;
+    overflow: auto;
+
+    table {
+        width: auto;
+        text-align: left;
+
+        .resultTr:hover {
+            background-color: rgba($primary-color, .1);
+        }
+        
+        td, th {
+            padding: 2px;
+        }
+
+        
+
+        th.ans {
+            position: relative;
+            height: 50px;
+            width: 50px !important;
+            min-width: 50px !important;
+
+            &::before {
+                position: absolute;
+                height: 80%;
+                background-color: #ddd;
+                content: '';
+                
+                width: 1.5px;
+                left: -2px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .answerr {
+
+            &.correct {
+                background-color: rgba($primary-color, .1);
+                color: $primary-color;
+            }
+            &.wrong {
+                background-color: rgba($danger-color, .1);
+                color: $danger-color;
+            }
+        }
+
+        th {
+            position: relative;
+            text-align: center;
+
+            &:hover {
+                background-color: none !important;
+            }
+
+            &.first::after {
+                content: '';
+                position: absolute;
+                background-color: #ddd;
+                height: 1.5px;
+                width: calc(100% - 10px);
+                left: 50%;
+                transform: translateX(-50%);
+                top: calc(100% + 2px);
+            }
+        }
+
+        .main {
+            width: 120px !important;
+            max-width: 120px !important;
+            min-width: 120px !important;
+            text-align: left;
+            padding: .3rem .1rem;
+        }
+    }
+}
+
+.question-ans {
+    margin-top: 1.3rem;
+
+    span {
+        display: block;
+        color: rgb(27, 175, 67);
+
+        &.wrong {
+            color: #fc393e;
+        }
+    }
+}

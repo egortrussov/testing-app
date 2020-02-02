@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import Spinner from '../Spinner/Spinner'
 
+import PointsCard from '../reusableComponents/PointsCard'
+
 import './css/style.css'
 
 export default class TestInfo extends Component {
@@ -109,7 +111,9 @@ export default class TestInfo extends Component {
                             return (
                                 <tr className='resultTr' key={ res.userId + res.points }>
                                     <td>{ res.username }</td>
-                                    <td className="points">{ res.points }/{ res.answers.length }</td>
+                                    <td className="points">
+                                        <PointsCard points={ res.points } maxPoints={ res.answers.length } />
+                                    </td>
                                 </tr>
                             )
                         }) }

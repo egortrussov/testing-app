@@ -43,6 +43,33 @@ router.get('/testResults/:testId', (req, res) => {
         })
 })
 
+router.get('/testResult/:userId/:resultId', (req, res) => {
+    User
+        .findOne({ _id: req.params.userId })
+        .then(user => {
+            let currTest = null;
+            
+            user.passedTests.map(test => {
+                if (test._id == req.params.resultId)
+                    currTest = test;
+            })
+            if (!currTest) 
+                res.status(400).json({ success: false, msg: 'Could not find result' })
+            else {
+                Test
+                    .findOne({ _id: currTest.testId })
+                    .then(test => {
+                         res.status(200).json({
+                            success: true,
+                            test: test,
+                            answers: currTest.answers
+                        })
+                    })
+               
+            }
+        })
+})
+
 router.get('/passedTests/:userId', (req, res) => {
     User
         .findOne({ _id: req.params.userId })
@@ -79,6 +106,8 @@ router.get('/allTests', auth, (req, res) => {
 })
 
 router.get('/testInfo/:testId', (req, res) => {
+    console.log(req.params.testId);
+    
     Test.findOne({ _id: req.params.testId })
         .then(test => {
             res.status(200).json(test);
@@ -117,7 +146,7 @@ router.post('/createTest', (req, res) => {
 })
 
 router.post('/saveResult/:testId', (req, res) => {
-    console.log(req.body);
+    console.log(req.body, '----------------------------');
     User 
         .findOne({ _id: req.body.userId })
         .then(user => {
@@ -126,7 +155,8 @@ router.post('/saveResult/:testId', (req, res) => {
                 points: req.body.points,
                 date: req.body.date,
                 maxPoints: req.body.maxPoints,
-                title: req.body.title
+                title: req.body.title,
+                answers: req.body.answersLetters
             });
 
             user.save();          

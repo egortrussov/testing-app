@@ -7,6 +7,7 @@ import Profile from './Profile/Profile'
 import Tests from './Tests/Tests'
 import TestInfo from './Tests/TestInfo'
 import CreateTest from './CreateTest/CreateTest'
+import TestResult from './TestResult/TestResult'
 import CreateTestForm from './CreateTest/CreateTestForm'
 import PassTest from './PassTest/PassTest'
 import Login from './Auth/Login'
@@ -28,6 +29,7 @@ export default class MainPage extends Component {
                             <Route exact path='/app/' component={ Profile } /> 
                             <Route path='/app/allTests' component={ Tests } /> 
                             <Route path='/app/testInfo/:testId' component={ TestInfo } /> 
+                            <Route path='/app/testResult/:userId/:resultId' component={ TestResult } /> 
                             <Route path='/app/createTest' component={ CreateTest } /> 
                             <Route path='/app/createTestForm' component={ CreateTestForm } /> 
                             <Route path='/app/passTest/:testId' component={ PassTest } /> 

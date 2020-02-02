@@ -11,7 +11,8 @@ const UserSchema = new Schema({
         maxPoints: Number,
         testId: String,
         title: String,
-        date: Date
+        date: Date,
+        answers: [Number]
     }],
     name: String,
     email: String,

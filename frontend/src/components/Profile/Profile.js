@@ -4,6 +4,8 @@ import { getHeaders } from '../../middleware/authMiddleware'
 import { formatDate } from '../../middleware/dateFormat'
 import { Link } from 'react-router-dom'
 
+import PointsCard from '../reusableComponents/PointsCard'
+
 import TestsContext from '../../context/TestsContext'
 
 export default class Profile extends Component {
@@ -25,10 +27,9 @@ export default class Profile extends Component {
                     this.context.logout();
                     window.location.href = '/app/login';
                 }
+                console.log(res.passedTests);
                 
-                res.passedTests.sort((test1, test2) => {
-                    return test2.date - test1.date;
-                });
+                res.passedTests.reverse();
 
                 this.setState({
                     user: res,
@@ -52,6 +53,7 @@ export default class Profile extends Component {
                 </h1>
                 <h2>Your recent tests: </h2>
                 { user.passedTests.map(test => {
+                    console.log(test);
                     const linkToTest = `/app/testInfo/${ test.testId }`
 
                     return (
@@ -61,7 +63,10 @@ export default class Profile extends Component {
                                 <h4>{ formatDate(test.date) }</h4>
                             </div>
                             <div className="test-card-right">
-                                <h3>Result: { test.points }/{ test.maxPoints }</h3>
+                                <PointsCard points={ test.points } maxPoints={ test.maxPoints } />
+                                <Link className="result-link" to={ `/app/testResult/${ user._id }/${ test._id }` }>
+                                    View result
+                                </Link>
                             </div>
                         </Link>
                     )

@@ -61,7 +61,8 @@ export default class PassTest extends Component {
             "answers": results,
             "title": test.title,
             "maxPoints": test.questions.length,
-            "date": Date.now()
+            "date": Date.now(),
+            "answersLetters": answers
         }
         fetch(`/api/tests/saveResult/${ test._id }`, {
             method: 'POST',
