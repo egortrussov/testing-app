@@ -54,6 +54,12 @@
   margin-right: .3rem;
 }
 
+.app-container nav button {
+  background: none !important;
+  border: none;
+  text-align: left;
+}
+
 .app-container main {
   background-color: #fff;
   width: 100%;
@@ -107,5 +113,15 @@
 
 .field:focus:before {
   width: 100%;
+}
+
+.error-input {
+  margin-top: .3rem;
+  font-size: 16px;
+  color: #fc393e;
+  height: 10px !important;
+  display: block;
+  min-height: 16px !important;
+  min-width: 10px !important;
 }
 /*# sourceMappingURL=MainPage.css.map */

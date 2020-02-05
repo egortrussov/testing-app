@@ -12,11 +12,21 @@ export default class TestInfo extends Component {
         isLoading: true,
         test: null,
         testResults: null,
-        usernames: null
-    }
+        usernames: null,
+        errors: []
+    };
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
+
+        let field = document.querySelector('span.field');
+        console.log(field);
+        
+        if (field) field.addEventListener('keypress',function(e){ 
+            if (e.which === 13) {
+                e.preventDefault();
+            }
+        });
         
         fetch(`/api/tests/testInfo/${ testId }`)
             .then(res => res.json())
@@ -57,12 +67,28 @@ export default class TestInfo extends Component {
         if (accessKey === currentAccessKey || !isProtected) {
             window.location.href = `/app/passTest/${ _id }`
         } else {
-            alert('Incorrect key!')
+            let { errors } = this.state;
+            errors['keyError'] = 'Incorrect access key!';
+            this.setState({
+                ...this.state,
+                errors
+            })
         }
-    }    
+    }   
+    
+    componentDidUpdate() {
+        let field = document.querySelector('span.field');
+        console.log(field);
+        
+        field.addEventListener('keypress',function(e){ 
+            if (e.which === 13) {
+                e.preventDefault();
+            }
+        });
+    }
 
     render() {
-        const { isLoading, test, testResults, usernames } = this.state;
+        const { isLoading, test, testResults, errors } = this.state;
 
         if (isLoading || test === null) return (
             <Spinner />
@@ -82,7 +108,8 @@ export default class TestInfo extends Component {
                         <>
                             <br/>
                             <label htmlFor="title">To start the test, you need to type in the secret key!</label> <br/>
-                            <span className="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } type="text" name="title"></span>
+                            <span id="field" className="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } type="text" name="title"></span>
+                            <span className="error-input">{ errors['keyError'] }</span>
                         </>
                     //)
                     

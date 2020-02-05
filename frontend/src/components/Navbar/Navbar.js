@@ -51,7 +51,7 @@ class Navbar extends Component {
                         </>
                     ) }
                     { isLoggedIn && (
-                        <a className="nav-link" onClick={ this.logout.bind(this) } >Logout</a>
+                        <button className="nav-link" onClick={ this.logout.bind(this) } >Logout</button>
                     ) }                    
                 </div>
             </nav>

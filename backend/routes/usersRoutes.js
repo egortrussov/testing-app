@@ -42,7 +42,7 @@ router.post('/addUser', (req, res) => {
         .findOne({ email: req.body.email })
         .then(foundUser => {
             if (foundUser) {
-                res.status(400).json({ success: false, message: 'User already exists' });
+                res.status(400).json({ notSuccess: true, message: 'User already exists' });
                 return;
             }
             bcrypt.genSalt(12, (err, salt) => {
@@ -91,7 +91,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     console.log(req.body);
-                    if(!isMatch) return res.status(400).json({ success: false, msg: 'Invalid password' });
+                    if(!isMatch) return res.status(400).json({ success: false, doesUserExist: true, msg: 'Invalid password' });
 
                     jwt.sign(
                         { id: user.id },

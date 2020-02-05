@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ls from 'local-storage'
 import TestsContext from '../../context/TestsContext'
 
 import Spinner from '../Spinner/Spinner'
@@ -43,17 +42,19 @@ export default class PassTest extends Component {
         }, () => console.log(this.state) )
     }
 
-    finishTest() {
+    finishTest(e) {
+        e.preventDefault();
         let points = 0;
         let results = [];
         const { answers, test } = this.state;
         test.questions.map((ques, index) => {
-            if (ques.correctAnswerId == answers[index]) {
+            if (ques.correctAnswerId === answers[index]) {
                 points++;
                 results.push(true);
             } else {
                 results.push(false);
             }
+            return ques;
         })
         const query = {
             "userId": this.context.userId,
@@ -75,8 +76,6 @@ export default class PassTest extends Component {
                 console.log('result saved!');
                 window.location.href = `/app/testInfo/${ test._id }`
             })
-        console.log(results, points);
-        
     }
 
     render() {
@@ -88,7 +87,7 @@ export default class PassTest extends Component {
         )
 
         return (
-            <div>
+            <form className="test-form" onSubmit={ e => this.finishTest(e) }>
                 <h1 className="heading">
                     Pass test '{ test.title }'
                 </h1>
@@ -113,8 +112,8 @@ export default class PassTest extends Component {
                         )
                     }) }
                 </div>
-                <a onClick={ this.finishTest.bind(this) } className="btn btn-cta">Finish!</a>
-            </div>
+                <input type="submit" className="btn btn-cta" value="Finish" />
+            </form>
         )
     }
 }

@@ -40,7 +40,7 @@ export default class Profile extends Component {
     
 
     render() {
-        const { user, isLoading, passedTests } = this.state;
+        const { user, isLoading } = this.state;
 
         if (isLoading) return (
             <Spinner />

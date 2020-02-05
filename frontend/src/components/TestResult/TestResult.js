@@ -75,7 +75,7 @@ export default class TestResult extends Component {
                                 
                                 let isCorrect = ans.toString() === test.questions[inx].correctAnswerId;
                                 
-                                if (ans.toString() == test.questions[inx].correctAnswerId) 
+                                if (parseInt(ans) === parseInt(test.questions[inx].correctAnswerId)) 
                                     extraClassName = 'correct';
                                 else 
                                     extraClassName = 'wrong'

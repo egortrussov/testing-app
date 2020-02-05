@@ -152,8 +152,8 @@ export default class CreateTestForm extends Component {
 
         let inx = parseInt(ansId);
         let corrAnswer = questions[quesId].correctAnswerId;
-        if (corrAnswer == (ansId + 1).toString()) {
-            if (ansId == 0) {
+        if (corrAnswer.toString() === (ansId + 1).toString()) {
+            if (ansId === 0) {
                 questions[quesId].correctAnswerId = '1';
             } else {
                 console.log('fff');
@@ -163,7 +163,7 @@ export default class CreateTestForm extends Component {
         } 
         for (let i = inx; i < questions[quesId].answers.length; i++) {
             questions[quesId].answers[i].answerId = (parseInt(questions[quesId].answers[i].answerId) - 1).toString();
-            if (i != inx)
+            if (i !== inx)
                 document.getElementById(`_${ quesId }-${ i - 1 }`).innerText = questions[quesId].answers[i].text;
         }  
         console.log(ansId);
@@ -181,7 +181,7 @@ export default class CreateTestForm extends Component {
 
     deleteQuestion(quesId) {
         let { questions } = this.state;
-        if (questions.length == 1) return;
+        if (questions.length === 1) return;
         
         questions.splice(quesId, 1);
         this.setState({
@@ -211,7 +211,7 @@ export default class CreateTestForm extends Component {
                     </div>
                     <div className="info-group">
                         <label htmlFor="description">Description: </label>
-                        <textarea className="" onChange={ (e) => this.setTestDescription(e) } name="description" name="" id="" cols="30" rows="10"></textarea>
+                        <textarea className="" onChange={ (e) => this.setTestDescription(e) } name="description" id="" cols="30" rows="10"></textarea>
                     </div>
                     <div className="info-group-checkbox">
                         <input onChange={ this.setProtectedState.bind(this) } type="checkbox" name="isProtected" />
