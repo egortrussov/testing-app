@@ -1,0 +1,225 @@
+$primary-color: #4ADB71;
+$dark-color: #42C465;
+$danger-color: #fc393e;
+
+@mixin laptop {
+    @media (max-width: 1120px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 890px) {
+        @content;
+    }
+}
+
+@mixin tablet-sm {
+    @media (max-width: 660px) {
+        @content;
+    }
+}
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    @include tablet-sm {
+        padding-bottom: 5rem;
+    }
+
+    height: 100%;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+
+    .bg-circle {
+        position: absolute;
+        z-index: -20;
+
+        &-lg {
+            height: 800px;
+            width: 800px;
+            background-color: rgb(241, 241, 241);
+            border-radius: 100%;
+            top: -120px;
+            left: -200px;
+        }
+    }
+
+    .nav {
+        @include laptop {
+            padding: 1.5rem 2rem;
+        }
+
+        @include tablet {
+            padding: 1.5rem 1rem;
+        }
+
+        @include tablet-sm {
+            img {
+                height: 2rem;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        width: 100%;
+        padding: 1.5rem 4rem;
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+
+            img, h1 {
+                display: block;
+            }
+
+            img {
+                height: 2.4rem;
+            }
+
+            h1 {
+                font-weight: 800;
+                margin-left: .7rem;
+            }
+        }
+    }
+
+    .hero {
+        @include laptop {
+            padding: 0 2rem;
+        }
+
+        @include tablet {
+            padding: 0 1rem;
+        }
+
+        @include tablet-sm {
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            top: 0%;
+            transform: translateY(-0%);
+            margin-top: 3.5rem;
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding: 0 4rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100% !important;
+
+        .hero-left {
+            max-width: 500px !important;
+
+            h1 {
+                @include tablet {
+                    font-size: 2.4rem;
+                }
+
+                font-size: 2.9rem;
+                font-weight: 800;
+                line-height: 1.3;
+            }
+
+            .cta {
+                @include tablet {
+                    font-size: 1.2rem;
+                }
+
+                display: inline-block;
+                margin-top: 2rem;
+                font-size: 1.4rem;
+                font-weight: 700;
+                padding: .8rem 2.8rem;
+                border-radius: 5rem;
+                color: #fff;
+                transition: .2s;
+                background-image: linear-gradient(to right, rgb(25, 241, 180) , #AAFFA9 100%);
+
+                &:hover {
+                    background-position: right center;
+                }
+            }
+        }
+
+        .hero-right {
+            @include laptop {
+                max-width: 400px !important;
+            }
+
+            @include tablet {
+                max-width: 300px !important;
+            }
+
+            @include tablet-sm {
+                max-width: 300px !important;
+                margin-top: 0;
+                height: 330px;
+
+                img {
+                    left: 0;
+                    margin-top: 0;
+                }
+            }
+
+            width: 100%;
+            height: 10px;
+            min-width: 300px;
+            max-width: 550px !important;
+            margin-left: 2.5rem;
+            margin-right: 4rem;
+            position: relative;
+            height: 500px;
+            
+            img {
+                position: absolute;
+                width: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                animation: float alternate infinite ease-in-out 2s; 
+            }
+        }
+    }
+
+    .copyright {
+        @include laptop {
+            left: 2rem;
+        }
+
+        @include tablet {
+            left: 1rem;
+        }
+
+        @include tablet-sm {
+            left: 1rem;
+            text-align: center;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        position: absolute;
+        bottom: 2.5rem;
+        left: 4rem;
+        color: rgb(95, 95, 95);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-47%);
+    } 100% {
+        transform: translateY(-53%);
+    }
+}

@@ -144,6 +144,10 @@ export default class CreateTestForm extends Component {
             },
             body: JSON.stringify(this.state)
         })
+            .then(res => res.json())
+            .then(res => {
+                window.location.href = '/app/allTests'
+            })
     }
 
     deleteAnswer(quesId, ansId) {
@@ -229,14 +233,14 @@ export default class CreateTestForm extends Component {
                     { questions.map((ques, index) => {
                         return (
                             <div className="question-card">
-                                <button onClick={ () => this.deleteQuestion(index) } className="btn-delete">&times;</button>
+                                <button onClick={ () => this.deleteQuestion(index) } className="btn-delete"><span>&times;</span></button>
                                 <label className="title"><span>{ index + 1 }.</span> </label>
                                 <span className="input" contenteditable="true" type="text" onInput={ (e) => this.setQuestionTitle(e, index) } >Title</span>
                                 <div className="answers">
                                     { ques.answers.map((ans, inx) => {
                                         return (
                                             <div className="ans-card">
-                                                <button onClick={ () => this.deleteAnswer(index, inx) } className="btn-delete">&times;</button>
+                                                <button onClick={ () => this.deleteAnswer(index, inx) } className="btn-delete"><span>&times;</span></button>
                                                 <input type="radio" id={ `${index}-${inx}` } name={ index } title="Mark as correct" onChange={ () => this.setCorrectAnswerId(index, ans.answerId) } checked={ ques.correctAnswerId === ans.answerId } />
                                                 <label htmlFor={ `${index}-${inx}` }></label>
                                                 <span className="ans-letter">{ letters[inx] }) </span>
@@ -246,7 +250,7 @@ export default class CreateTestForm extends Component {
                                             </div>
                                         )
                                     }) }
-                                    <button onClick={ this.handleAddAnswer.bind(this, index) } className="add-question">+</button>
+                                    <button onClick={ this.handleAddAnswer.bind(this, index) } className="add-question"><span>+</span></button>
                                 </div>
                             </div>
                         )

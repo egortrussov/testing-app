@@ -181,6 +181,14 @@
             transition: .2s;
             transform: scale(0);
 
+            span {
+                position: absolute;
+                top: -4px;
+                left: 0;
+                right: 0;
+                font-weight: 700;
+            }
+
             &:focus {
                 outline: none;
             }
@@ -220,7 +228,19 @@
                 border-radius: 3px;
                 background-color: red;
                 transition: .2s;
+                padding: 0 !important;
                 transform: scale(0);
+                display: flex;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    display: block;
+                    position: absolute;
+                    top: -3px;
+                    font-weight: 700;
+                }
             }
 
             &:hover {
@@ -243,6 +263,16 @@
         border-radius: 5px;
         background-color: #fff;
         color: darken($dark-color, 30);
+        position: relative;
+        text-align: center;
+
+        span {
+            position: absolute;
+            top: -3px;
+            font-weight: 700;
+            left: 0;
+            right: 0;
+        }
 
         &:focus {
             outline: none;

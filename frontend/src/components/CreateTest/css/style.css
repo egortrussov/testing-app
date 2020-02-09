@@ -192,6 +192,14 @@
           transform: scale(0);
 }
 
+.questions .question-card > .btn-delete span {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  right: 0;
+  font-weight: 700;
+}
+
 .questions .question-card > .btn-delete:focus {
   outline: none;
 }
@@ -234,8 +242,26 @@
   background-color: red;
   -webkit-transition: .2s;
   transition: .2s;
+  padding: 0 !important;
   -webkit-transform: scale(0);
           transform: scale(0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.questions .question-card .ans-card .btn-delete span {
+  display: block;
+  position: absolute;
+  top: -3px;
+  font-weight: 700;
 }
 
 .questions .question-card .ans-card:hover .btn-delete {
@@ -254,6 +280,16 @@
   border-radius: 5px;
   background-color: #fff;
   color: #1a5329;
+  position: relative;
+  text-align: center;
+}
+
+.questions .add-question span {
+  position: absolute;
+  top: -3px;
+  font-weight: 700;
+  left: 0;
+  right: 0;
 }
 
 .questions .add-question:focus {
