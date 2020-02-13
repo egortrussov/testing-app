@@ -17,7 +17,7 @@ export default class PassTest extends Component {
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
-        fetch(`/api/tests/testInfo/${ testId }`)
+        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/testInfo/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
@@ -65,7 +65,7 @@ export default class PassTest extends Component {
             "date": Date.now(),
             "answersLetters": answers
         }
-        fetch(`/api/tests/saveResult/${ test._id }`, {
+        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/saveResult/${ test._id }`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

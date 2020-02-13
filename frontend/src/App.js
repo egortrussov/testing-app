@@ -36,9 +36,11 @@ class App extends Component {
 
     render() {
         const { token, userId } = this.state;
+        console.log(process.env);
+        
 
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={ process.env.PUBLIC_URL }>
                 <React.Fragment>
                     <TestsContext.Provider value={{ token, userId, setToken: this.setToken, logout: this.logout  }}>
                         <Switch>

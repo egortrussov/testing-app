@@ -18,7 +18,7 @@ export default class Profile extends Component {
     static contextType = TestsContext;
 
     componentDidMount() {
-        fetch('/api/users/user', {
+        fetch('https://testing-app-easytest.herokuapp.com/api/users/user', {
             headers: getHeaders()
         })
             .then(res => res.json())

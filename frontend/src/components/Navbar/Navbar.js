@@ -24,14 +24,14 @@ class Navbar extends Component {
 
     logout() {
         this.context.logout();
-        window.location.href = '/app/login'
+        window.location.href = process.env.PUBLIC_URL + '/app/login'
     }
 
     render() {
         const token = ls.get('token');
         console.log(token);
         
-        let isLoggedIn = token !== ''
+        let isLoggedIn = token !== '';
 
         return (
             <nav>
@@ -39,15 +39,15 @@ class Navbar extends Component {
                     <h2 className="logo">EasyTest</h2>
                 </div>
                 <div className="nav-item nav-middle">
-                    <NavLink exact className="nav-link" to="/app/"><i className="fas fa-home"></i> Home</NavLink>
-                    <NavLink className="nav-link" to="/app/allTests"><i className="fas fa-align-left"></i> Tests</NavLink>
-                    <NavLink className="nav-link" to="/app/createTest"><i className="fas fa-pen-alt"></i> Create Test</NavLink>
+                    <NavLink exact className="nav-link" to={process.env.PUBLIC_URL+"/app/"}><i className="fas fa-home"></i> Home</NavLink>
+                    <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/allTests"}><i className="fas fa-align-left"></i> Tests</NavLink>
+                    <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/createTest"}><i className="fas fa-pen-alt"></i> Create Test</NavLink>
                 </div>
                 <div className="nav-item nav-bottom">
                     { !isLoggedIn && (
                         <>
-                            <NavLink className="nav-link" to="/app/login">Login</NavLink>
-                            <NavLink className="nav-link" to="/app/register">Register</NavLink>
+                            <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/login"}>Login</NavLink>
+                            <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/register"}>Register</NavLink>
                         </>
                     ) }
                     { isLoggedIn && (

@@ -85,7 +85,7 @@ export default class Register extends Component {
             if (this.state.confirmPassword !== newUser.password) {
                 return;
             };
-            fetch('/api/users/addUser', {
+            fetch('https://testing-app-easytest.herokuapp.com/api/users/addUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

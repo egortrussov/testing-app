@@ -22,13 +22,13 @@ export default class TestInfo extends Component {
         let field = document.querySelector('span.field');
         console.log(field);
         
-        if (field) field.addEventListener('keypress',function(e){ 
+        if (field !== null && field) field.addEventListener('keypress',function(e){ 
             if (e.which === 13) {
                 e.preventDefault();
             }
         });
         
-        fetch(`/api/tests/testInfo/${ testId }`)
+        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/testInfo/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
@@ -37,7 +37,7 @@ export default class TestInfo extends Component {
                     test: res
                 })
             })
-        fetch(`/api/tests/testResults/${ testId }`)
+        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/testResults/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
@@ -80,7 +80,7 @@ export default class TestInfo extends Component {
         let field = document.querySelector('span.field');
         console.log(field);
         
-        field.addEventListener('keypress',function(e){ 
+        if (field && field !== null) field.addEventListener('keypress',function(e){ 
             if (e.which === 13) {
                 e.preventDefault();
             }
@@ -89,6 +89,8 @@ export default class TestInfo extends Component {
 
     render() {
         const { isLoading, test, testResults, errors } = this.state;
+        console.log(test);
+        
 
         if (isLoading || test === null) return (
             <Spinner />

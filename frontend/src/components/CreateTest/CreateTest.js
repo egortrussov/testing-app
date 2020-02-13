@@ -15,7 +15,7 @@ export default class CreateTest extends Component {
     componentDidMount() {
         if (!this.context.userId) 
             window.location.href = '/app/login';
-        fetch(`/api/tests/createdTests/${ this.context.userId }`)
+        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/createdTests/${ this.context.userId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);

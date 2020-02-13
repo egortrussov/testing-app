@@ -82,6 +82,8 @@ router.post('/login', (req, res) => {
     }
   
     // Check for existing user
+    console.log(req.body);
+    
     User.findOne({ email })
         .then(user => {
             console.log(req.body);

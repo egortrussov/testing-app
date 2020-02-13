@@ -16,7 +16,7 @@ export default class TestResult extends Component {
         const userId = this.props.match.params.userId;
         const resultId = this.props.match.params.resultId;
         
-        fetch(`/api/tests/testResult/${ userId }/${ resultId }`)
+        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/testResult/${ userId }/${ resultId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
