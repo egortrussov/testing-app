@@ -13,7 +13,8 @@ import './App.css'
 class App extends Component {
     state = {
         userId: ls.get('userId'),
-        token: ls.get('token')
+        token: ls.get('token'),
+        proxy: process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://testing-app-easytest.herokuapp.com'
     }
 
     setToken = (token, userId) => {
@@ -35,14 +36,14 @@ class App extends Component {
     }
 
     render() {
-        const { token, userId } = this.state;
+        const { token, userId, proxy } = this.state;
         console.log(process.env);
         
 
         return (
             <BrowserRouter basename={ process.env.PUBLIC_URL }>
                 <React.Fragment>
-                    <TestsContext.Provider value={{ token, userId, setToken: this.setToken, logout: this.logout  }}>
+                    <TestsContext.Provider value={{ token, userId, setToken: this.setToken, logout: this.logout, proxy  }}>
                         <Switch>
                             <Route exact path="/" component={ LandingPage } />
                             <Route path="/app" component={ MainPage } />

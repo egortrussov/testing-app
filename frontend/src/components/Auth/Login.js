@@ -69,7 +69,7 @@ export default class Login extends Component {
                 email: this.state.email,
                 password: this.state.password
             }
-            fetch('https://testing-app-easytest.herokuapp.com/api/users/login', {
+            fetch(`${ this.context.proxy }/api/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

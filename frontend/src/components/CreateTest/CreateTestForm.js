@@ -137,7 +137,7 @@ export default class CreateTestForm extends Component {
         if (!this.context.userId) 
             window.location.href = '/app/login'
         
-        fetch('https://testing-app-easytest.herokuapp.com/api/tests/createTest', {
+        fetch(`${ this.context.proxy }/api/tests/createTest`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

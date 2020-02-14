@@ -18,7 +18,9 @@ export default class Tests extends Component {
     static contextType = TestsContext;
 
     componentDidMount() {
-        fetch('https://testing-app-easytest.herokuapp.com/api/tests/allTests', {
+        console.log(this.context);
+        
+        fetch(`${ this.context.proxy }/api/tests/allTests`, {
             headers: getHeaders()
         })
             .then(res => res.json())

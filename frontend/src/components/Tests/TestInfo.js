@@ -7,6 +7,8 @@ import PointsCard from '../reusableComponents/PointsCard'
 
 import './css/style.css'
 
+import TestsContext from '../../context/TestsContext'
+
 export default class TestInfo extends Component {
     state = {
         isLoading: true,
@@ -15,6 +17,8 @@ export default class TestInfo extends Component {
         usernames: null,
         errors: []
     };
+
+    static contextType = TestsContext;
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
@@ -28,7 +32,7 @@ export default class TestInfo extends Component {
             }
         });
         
-        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/testInfo/${ testId }`)
+        fetch(`${ this.context.proxy }/api/tests/testInfo/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
@@ -37,7 +41,7 @@ export default class TestInfo extends Component {
                     test: res
                 })
             })
-        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/testResults/${ testId }`)
+        fetch(`${ this.context.proxy }/api/tests/testResults/${ testId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);

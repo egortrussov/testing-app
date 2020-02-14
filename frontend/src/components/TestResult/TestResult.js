@@ -5,6 +5,8 @@ import Spinner from '../Spinner/Spinner'
 
 import './css/style.css'
 
+import TestsContext from '../../context/TestsContext'
+
 export default class TestResult extends Component {
     state = {
         isLoading: true,
@@ -12,11 +14,13 @@ export default class TestResult extends Component {
         answers: null
     }
 
+    static contextType = TestsContext;
+
     componentDidMount() {
         const userId = this.props.match.params.userId;
         const resultId = this.props.match.params.resultId;
         
-        fetch(`https://testing-app-easytest.herokuapp.com/api/tests/testResult/${ userId }/${ resultId }`)
+        fetch(`${ this.context.proxy }/api/tests/testResult/${ userId }/${ resultId }`)
             .then(res => res.json())
             .then(res => {
                 console.log(res);
