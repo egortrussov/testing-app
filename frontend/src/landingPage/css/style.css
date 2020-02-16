@@ -13,7 +13,7 @@ header {
   overflow: hidden;
 }
 
-@media (max-width: 660px) {
+@media (max-width: 770px) {
   header {
     padding-bottom: 5rem;
   }
@@ -50,7 +50,7 @@ header .nav {
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 770px) {
   header .nav img {
     height: 2rem;
   }
@@ -112,7 +112,7 @@ header .hero {
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 770px) {
   header .hero {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -135,6 +135,12 @@ header .hero .hero-left h1 {
   font-size: 2.9rem;
   font-weight: 800;
   line-height: 1.3;
+}
+
+@media (min-width: 1440px) {
+  header .hero .hero-left h1 {
+    font-size: 3.3rem;
+  }
 }
 
 @media (max-width: 890px) {
@@ -178,6 +184,12 @@ header .hero .hero-right {
   height: 500px;
 }
 
+@media (min-width: 1440px) {
+  header .hero .hero-right {
+    max-width: 600px !important;
+  }
+}
+
 @media (max-width: 1120px) {
   header .hero .hero-right {
     max-width: 400px !important;
@@ -190,7 +202,7 @@ header .hero .hero-right {
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 770px) {
   header .hero .hero-right {
     max-width: 300px !important;
     margin-top: 0;
@@ -231,7 +243,7 @@ header .copyright {
   }
 }
 
-@media (max-width: 660px) {
+@media (max-width: 770px) {
   header .copyright {
     left: 1rem;
     text-align: center;

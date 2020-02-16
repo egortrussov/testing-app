@@ -17,10 +17,11 @@
   font-size: 1.3rem;
 }
 
-.btn {
+.btn, input.btn {
   position: relative;
-  padding: .6rem 1.8rem;
-  background-color: #4ADB71;
+  padding: .6rem 1.8rem !important;
+  -webkit-appearance: button;
+  background-color: #4ADB71 !important;
   display: inline-block;
   margin-top: 1.3rem;
   margin-bottom: .1rem;

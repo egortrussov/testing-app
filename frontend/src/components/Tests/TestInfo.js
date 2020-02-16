@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import Spinner from '../Spinner/Spinner'
 
 import PointsCard from '../reusableComponents/PointsCard'
@@ -8,6 +10,7 @@ import PointsCard from '../reusableComponents/PointsCard'
 import './css/style.css'
 
 import TestsContext from '../../context/TestsContext'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default class TestInfo extends Component {
     state = {
@@ -104,7 +107,7 @@ export default class TestInfo extends Component {
             <div>
                 <div className="page-top">
                     <Link to="/app/allTests">
-                        <i className="fas fa-arrow-left"></i> Back 
+                        <FontAwesomeIcon icon={ faArrowLeft } /> Back 
                     </Link>
                 </div>
                 <h1>{ test.title }</h1>

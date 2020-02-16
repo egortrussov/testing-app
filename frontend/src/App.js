@@ -14,7 +14,7 @@ class App extends Component {
     state = {
         userId: ls.get('userId'),
         token: ls.get('token'),
-        proxy: process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://testing-app-easytest.herokuapp.com'
+        proxy: window.location.href.startsWith('http://') ? 'http://localhost:5000' : 'https://testing-app-easytest.herokuapp.com'
     }
 
     setToken = (token, userId) => {
@@ -38,6 +38,8 @@ class App extends Component {
     render() {
         const { token, userId, proxy } = this.state;
         console.log(process.env);
+        console.log(window.location.href);
+        
         
 
         return (

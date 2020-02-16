@@ -33,6 +33,7 @@
 }
 
 .app-container nav .nav-item .nav-link {
+  position: relative;
   display: inline-block;
   font-size: 1.2rem;
   width: 100%;
@@ -40,6 +41,15 @@
   color: #fff;
   padding: 10px;
   font-weight: 700;
+  padding-left: 2.5rem;
+}
+
+.app-container nav .nav-item .nav-link .icon {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: .5rem;
 }
 
 .app-container nav .nav-item .nav-link.active {

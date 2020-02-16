@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import ls from 'local-storage'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faAlignLeft, faPenAlt, faSignInAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+
 import TestsContext from '../../context/TestsContext'
 
 class Navbar extends Component {
@@ -10,17 +13,6 @@ class Navbar extends Component {
     }
 
     static contextType = TestsContext;
-
-    // componentDidMount() {
-    //     let value = this.context;
-    //     console.log(value.token !== '');
-        
-    //     if (value.token !== '') {
-    //         this.setState({
-    //             isLoggedIn: true
-    //         })
-    //     }
-    // }
 
     logout() {
         this.context.logout();
@@ -39,19 +31,19 @@ class Navbar extends Component {
                     <h2 className="logo">EasyTest</h2>
                 </div>
                 <div className="nav-item nav-middle">
-                    <NavLink exact className="nav-link" to={process.env.PUBLIC_URL+"/app/"}><i className="fas fa-home"></i> Home</NavLink>
-                    <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/allTests"}><i className="fas fa-align-left"></i> Tests</NavLink>
-                    <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/createTest"}><i className="fas fa-pen-alt"></i> Create Test</NavLink>
+                    <NavLink exact className="nav-link" to={process.env.PUBLIC_URL+"/app/"}><FontAwesomeIcon className="icon" icon={ faHome } /> Home</NavLink>
+                    <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/allTests"}><FontAwesomeIcon className="icon" icon={ faAlignLeft } /> Tests</NavLink>
+                    <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/createTest"}><FontAwesomeIcon className="icon" icon={ faPenAlt } /> Create Test</NavLink>
                 </div>
                 <div className="nav-item nav-bottom">
                     { !isLoggedIn && (
                         <>
-                            <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/login"}>Login</NavLink>
-                            <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/register"}>Register</NavLink>
+                            <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/login"}><FontAwesomeIcon className="icon" icon={ faSignInAlt } /> Login</NavLink>
+                            <NavLink className="nav-link" to={process.env.PUBLIC_URL+"/app/register"}><FontAwesomeIcon className="icon" icon={ faUserPlus } /> Register</NavLink>
                         </>
                     ) }
                     { isLoggedIn && (
-                        <button className="nav-link" onClick={ this.logout.bind(this) } >Logout</button>
+                        <button className="nav-link" onClick={ this.logout.bind(this) } ><FontAwesomeIcon className="icon" icon={ faSignOutAlt } /> Logout</button>
                     ) }                    
                 </div>
             </nav>

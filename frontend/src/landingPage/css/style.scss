@@ -2,6 +2,12 @@ $primary-color: #4ADB71;
 $dark-color: #42C465;
 $danger-color: #fc393e;
 
+@mixin desktop {
+    @media (min-width: 1440px) {
+        @content;
+    }
+}
+
 @mixin laptop {
     @media (max-width: 1120px) {
         @content;
@@ -15,7 +21,7 @@ $danger-color: #fc393e;
 }
 
 @mixin tablet-sm {
-    @media (max-width: 660px) {
+    @media (max-width: 770px) {
         @content;
     }
 }
@@ -124,6 +130,10 @@ header {
             max-width: 500px !important;
 
             h1 {
+                @include desktop {
+                    font-size: 3.3rem;
+                }
+
                 @include tablet {
                     font-size: 2.4rem;
                 }
@@ -155,6 +165,10 @@ header {
         }
 
         .hero-right {
+            @include desktop {
+                max-width: 600px !important;
+            }
+
             @include laptop {
                 max-width: 400px !important;
             }

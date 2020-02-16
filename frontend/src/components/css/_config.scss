@@ -1,3 +1,27 @@
 $primary-color: #4ADB71;
 $dark-color: #42C465;
 $danger-color: #fc393e;
+
+@mixin desktop {
+    @media (min-width: 1440px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (max-width: 1120px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 890px) {
+        @content;
+    }
+}
+
+@mixin tablet-sm {
+    @media (max-width: 770px) {
+        @content;
+    }
+}

@@ -23,10 +23,11 @@ $radioActive: #42C465;
     }
 }
 
-.btn {
+.btn, input.btn {
     position: relative;
-    padding: .6rem 1.8rem;
-    background-color: $primary-color;
+    padding: .6rem 1.8rem !important;
+    -webkit-appearance: button;
+    background-color: $primary-color !important;
     display: inline-block;
     margin-top: 1.3rem;
     margin-bottom: .1rem;
