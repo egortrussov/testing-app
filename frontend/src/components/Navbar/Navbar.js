@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import ls from 'local-storage'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -28,7 +28,9 @@ class Navbar extends Component {
         return (
             <nav>
                 <div className="nav-item nav-top">
-                    <h2 className="logo">EasyTest</h2>
+                    <Link to="/">
+                        <h2 className="logo">EasyTest</h2>
+                    </Link>
                 </div>
                 <div className="nav-item nav-middle">
                     <NavLink exact className="nav-link" to={process.env.PUBLIC_URL+"/app/"}><FontAwesomeIcon className="icon" icon={ faHome } /> Home</NavLink>

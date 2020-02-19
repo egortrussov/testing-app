@@ -51,7 +51,7 @@ export default class Profile extends Component {
                 <h1 className="heading">
                     Hello, { user.name }!
                 </h1>
-                <h2>Your recent tests: </h2>
+                { user.passedTests.length > 0 ? ( <h2>Your recent tests: </h2> ) : ( <h2>You haven't passed any tests yet!</h2> ) }
                 { user.passedTests.map(test => {
                     console.log(test);
                     const linkToTest = `/app/testInfo/${ test.testId }`

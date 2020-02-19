@@ -53,6 +53,7 @@ export default class Tests extends Component {
         return (
             <div>
                 <h1 className="heading">Available tests: </h1>
+                { tests.length === 0 ? ( <h2>Oops, no tests available yet!</h2> ) : ( <></> ) }
                 { tests.map(test => {
                     const linkToTest = `/app/testInfo/${ test._id }`
 

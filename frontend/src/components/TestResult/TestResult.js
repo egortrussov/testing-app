@@ -92,6 +92,8 @@ export default class TestResult extends Component {
                 </div>
                 { answers.map((ans, inx) => {
                     let isCorrect = ans.toString() === test.questions[inx].correctAnswerId;
+                    console.log(test.questions);
+                    
                     let extraClassName = '';
                     if (!isCorrect) extraClassName = 'wrong';
                     let question = test.questions[inx];
@@ -100,12 +102,18 @@ export default class TestResult extends Component {
                     return (
                         <div className="question-ans">
                             <h3>{ inx + 1 }. { question.title }</h3>
-                            <span className={ "ans-text " + extraClassName}>
-                                Your answer: { ans }) { question.answers[ans - 1].text }
-                            </span>
+                            { ans ===  0 ? (
+                                <span className={ "ans-text " + extraClassName}>
+                                    Your answer: -
+                                </span>
+                            ) : (
+                                <span className={ "ans-text " + extraClassName}>
+                                    Your answer: { ans }) { question.answers[ans - 1].text }
+                                </span>
+                            ) } 
                             <span className="ans-text">
                                 Correct answer: { question.correctAnswerId }) { question.answers[parseInt(question.correctAnswerId) - 1].text }
-                            </span>
+                            </span>                           
                         </div>
                     )
                 }) }

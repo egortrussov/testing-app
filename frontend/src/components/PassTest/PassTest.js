@@ -21,8 +21,12 @@ export default class PassTest extends Component {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
+                let answers = [];
+                for (let i = 0; i < res.questions.length; i++) 
+                    answers[i] = 0;
                 this.setState({
                     isLoading: false,
+                    answers,
                     test: res
                 })
             })

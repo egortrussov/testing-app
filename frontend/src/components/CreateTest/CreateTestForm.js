@@ -235,7 +235,7 @@ export default class CreateTestForm extends Component {
                             <div className="question-card">
                                 <button onClick={ () => this.deleteQuestion(index) } className="btn-delete"><span>&times;</span></button>
                                 <label className="title"><span>{ index + 1 }.</span> </label>
-                                <span className="input" contenteditable="true" type="text" onInput={ (e) => this.setQuestionTitle(e, index) } >Title</span>
+                                <span className="input" contenteditable="true" type="text" onInput={ (e) => this.setQuestionTitle(e, index) } ></span>
                                 <div className="answers">
                                     { ques.answers.map((ans, inx) => {
                                         return (
