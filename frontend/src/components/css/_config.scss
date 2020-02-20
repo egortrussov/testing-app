@@ -25,3 +25,15 @@ $danger-color: #fc393e;
         @content;
     }
 }
+
+@mixin tablet-xsm {
+    @media (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin tablet-xxsm {
+    @media (max-width: 470px) {
+        @content;
+    }
+}

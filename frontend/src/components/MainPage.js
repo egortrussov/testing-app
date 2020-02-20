@@ -16,7 +16,36 @@ import Register from './Auth/Register'
 import './css/MainPage.css'
 import './css/GlobalStyles/style.css'
 
-export default class MainPage extends Component {
+export default class MainPage extends Component {    
+
+    componentDidMount() {
+        let mainEl = document.querySelector('main')
+        console.log("Hello");
+
+
+        setInterval(() => {
+            if (is_scrolling()) {
+                if (!mainEl.classList.contains("on-scroll-bar")) {
+                    mainEl.classList.add("on-scroll-bar");
+                }
+                
+            } else {
+                if (mainEl.classList.contains("on-scroll-bar")) {
+                    mainEl.classList.remove("on-scroll-bar");
+                }
+            }
+            
+        }, 10)
+
+        mainEl.addEventListener('scroll', (e) => {
+            window.lastScrollTime = new Date().getTime()
+        }, false)
+
+        function is_scrolling() {
+            return window.lastScrollTime && new Date().getTime() < window.lastScrollTime + 500
+        }
+    }
+    
 
     render() {
         return (
