@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { getHeaders } from '../../middleware/authMiddleware'
+
 import TestsContext from '../../context/TestsContext'
 
 import './css/style.css'
@@ -22,7 +24,8 @@ export default class CreateTestForm extends Component {
         subject: '',
         isProtected: false,
         accessKey: '',
-        creator: this.context.userId
+        creator: this.context.userId,
+        timeErrorMsg: ''
     }
 
     static contextType = TestsContext;
@@ -140,13 +143,25 @@ export default class CreateTestForm extends Component {
         fetch(`${ this.context.proxy }/api/tests/createTest`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-auth-token': this.context.token
             },
             body: JSON.stringify(this.state)
         })
             .then(res => res.json())
             .then(res => {
-                window.location.href = '/app/allTests'
+                console.log(res);
+                
+                if (!res.success) {
+                    if (res.isTimeErr) {
+                        this.setState({
+                            ...this.state,
+                            timeErrorMsg: 'You cannot create more than 1 test in 5 minutes!'
+                        })
+                    }
+                } else {
+                    window.location.href = '/app/allTests'
+                }
             })
     }
 
@@ -195,7 +210,7 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected } = this.state;
+        const { questions, isProtected, timeErrorMsg } = this.state;
 
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -259,6 +274,11 @@ export default class CreateTestForm extends Component {
                         New question
                     </button>
                 </div>
+                { timeErrorMsg && (
+                    <span className="error-msg">
+                        { timeErrorMsg }
+                    </span>
+                ) }
                 <button onClick={ this.handleAddTest.bind(this) } className="btn btn-cta">Create test!</button>
             </div>
         )
