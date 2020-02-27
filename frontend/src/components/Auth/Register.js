@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import './css/style.css'
 
+import Spinner from '../Spinner/Spinner'
+
 import { validate } from '../../middleware/validator'
 import TestsContext from '../../context/TestsContext'
 
@@ -11,7 +13,8 @@ export default class Register extends Component {
         password: '',
         confirmPassword: '',
         name: '',
-        errors: []
+        errors: [],
+        isLoading: false
     }
 
     static contextType = TestsContext;
@@ -58,6 +61,12 @@ export default class Register extends Component {
         });
     }
 
+    setLoading(state) {
+        this.setState({
+            isLoading: state
+        }, () => console.log(this.state))
+    }
+
     registerUser(e) {
         e.preventDefault();
 
@@ -101,7 +110,8 @@ export default class Register extends Component {
                         errors['email'] = 'User with such email already exists';
                         this.setState({
                             ...this.state,
-                            errors
+                            errors,
+                            isLoading: false
                         })
                     } else {
                         this.context.setToken(res.token, res.user._id);
@@ -112,7 +122,7 @@ export default class Register extends Component {
     }
 
     render() {
-        const { errors } = this.state;
+        const { errors, isLoading } = this.state;
 
         return (
             <>
@@ -138,7 +148,8 @@ export default class Register extends Component {
                         <span onInput={ (e) => this.setCredential(e) }  contenteditable="true" className="field" type="text" name="" id="confirmPassword"></span>
                         <span className="error-input">{ errors['confirmPassword'] }</span>
                     </div>
-                    <input type="submit" className="btn btn-cta" value="Create account" />
+                    <input onClick={ () => this.setLoading(true) } type="submit" className="btn btn-cta" value="Create account" />
+                    { isLoading && <Spinner size="sm" /> }
                 </form>
             </>
         )

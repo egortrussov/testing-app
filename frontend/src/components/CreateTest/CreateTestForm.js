@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { getHeaders } from '../../middleware/authMiddleware'
+import Spinner from '../Spinner/Spinner'
 
 import TestsContext from '../../context/TestsContext'
 
@@ -25,7 +25,8 @@ export default class CreateTestForm extends Component {
         isProtected: false,
         accessKey: '',
         creator: this.context.userId,
-        timeErrorMsg: ''
+        timeErrorMsg: '',
+        isLoading: false
     }
 
     static contextType = TestsContext;
@@ -137,6 +138,11 @@ export default class CreateTestForm extends Component {
     }
 
     handleAddTest() {
+        this.setState({
+            ...this.state,
+            isLoading: true
+        })
+
         if (!this.context.userId) 
             window.location.href = '/app/login'
         
@@ -156,7 +162,8 @@ export default class CreateTestForm extends Component {
                     if (res.isTimeErr) {
                         this.setState({
                             ...this.state,
-                            timeErrorMsg: 'You cannot create more than 1 test in 5 minutes!'
+                            timeErrorMsg: 'You cannot create more than 1 test in 5 minutes!',
+                            isLoading: false
                         })
                     }
                 } else {
@@ -210,8 +217,10 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading, title, description } = this.state;
 
+        console.log(isLoading);
+        
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
         return (
@@ -222,7 +231,7 @@ export default class CreateTestForm extends Component {
                 <div className="test-basic-info">
                     <div className="info-group">
                         <label htmlFor="title">Test name: </label>
-                        <span className="field" contenteditable="true" onInput={ (e) => this.setTestTitle(e) } type="text" name="title"> </span>
+                        <span value={ title } className="field" contenteditable="true" onInput={ (e) => this.setTestTitle(e) } type="text" name="title"></span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="subject">Subject: </label>
@@ -280,6 +289,8 @@ export default class CreateTestForm extends Component {
                     </span>
                 ) }
                 <button onClick={ this.handleAddTest.bind(this) } className="btn btn-cta">Create test!</button>
+                
+                { isLoading && <Spinner size="sm" /> }
             </div>
         )
     }

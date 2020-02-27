@@ -225,3 +225,9 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     min-height: 16px !important;
     min-width: 10px !important;
 }
+
+.error-msg {
+    color: $danger-color;
+    display: block;
+    margin-top: 1.6rem;
+}

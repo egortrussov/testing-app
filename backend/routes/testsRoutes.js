@@ -116,7 +116,7 @@ router.get('/testInfo/:testId', (req, res) => {
 
 // POST ROUTES 
 
-router.post('/createTest', auth, (req, res) => {
+router.post('/createTest', (req, res) => {
     const newTest = new Test({
         ...req.body,
         results: []

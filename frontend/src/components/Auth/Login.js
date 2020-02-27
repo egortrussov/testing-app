@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import './css/style.css'
 
+import Spinner from '../Spinner/Spinner'
+
 import { validate } from '../../middleware/validator'
 import AuthContext from '../../context/TestsContext'
 
@@ -9,7 +11,8 @@ export default class Login extends Component {
     state = {
         email: '',
         password: '',
-        errors: []
+        errors: [],
+        isLoading: false
     }
 
     constructor(props) {
@@ -46,11 +49,19 @@ export default class Login extends Component {
         this.setState({
             ...this.state,
             [e.target.getAttribute('data-name')]: e.target.innerHTML
-        })
+        }, () => console.log(this.state)
+        )
+    }
+
+    setLoading(state) {
+        this.setState({
+            isLoading: state
+        }, () => console.log(this.state))
     }
 
     handleSubmit(e) {
         e.preventDefault();
+
         let data = [
             { name: 'email', value: this.state.email },
             { name: 'password', value: this.state.password }
@@ -61,7 +72,8 @@ export default class Login extends Component {
         if (errors['email'] || errors['password']) {
             this.setState({
                 ...this.state,
-                errors: errors
+                errors: errors,
+                isLoading: false
             })
         } else {
             errors = [];
@@ -88,7 +100,8 @@ export default class Login extends Component {
                             errors['email'] = 'User does not exist!'
                         this.setState({
                             ...this.state,
-                            errors: errors
+                            errors: errors,
+                            isLoading: false
                         })
                     }
                 })
@@ -96,8 +109,8 @@ export default class Login extends Component {
     }
 
     render() {
-        const { errors } = this.state;
-        console.log(errors['email']);
+        const { errors, isLoading } = this.state;
+        console.log(isLoading);
         
 
         return (
@@ -115,7 +128,8 @@ export default class Login extends Component {
                         </span>
                         <span className="error-input">{ errors['password'] }</span>
                     </div>
-                    <input type="submit" className="btn btn-cta" value="Log in" />
+                    <input onClick={ () => this.setLoading(true) } type="submit" className="btn btn-cta" value="Log in" />
+                    { isLoading && <Spinner size="sm" /> }
                 </form>
             </div>
         )

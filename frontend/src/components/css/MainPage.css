@@ -1,5 +1,6 @@
 main::-webkit-scrollbar-track {
   -webkit-box-shadow: none !important;
+          box-shadow: none !important;
   background-color: transparent;
   -webkit-transition: all .2s;
   transition: all .2s;
@@ -32,6 +33,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   border-radius: 10px;
   width: 20px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #4ADB71;
 }
 
@@ -264,5 +266,11 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   display: block;
   min-height: 16px !important;
   min-width: 10px !important;
+}
+
+.error-msg {
+  color: #fc393e;
+  display: block;
+  margin-top: 1.6rem;
 }
 /*# sourceMappingURL=MainPage.css.map */

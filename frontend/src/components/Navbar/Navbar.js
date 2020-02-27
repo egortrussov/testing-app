@@ -30,7 +30,7 @@ class Navbar extends Component {
         return (
             <nav>
                 <div className="nav-item nav-top">
-                    <Link to="/">
+                    <Link exact to="/">
                         <h2 className="logo"><img src={ Logo } alt=""/> <span className="text">EasyTest</span></h2>
                     </Link>
                 </div>
