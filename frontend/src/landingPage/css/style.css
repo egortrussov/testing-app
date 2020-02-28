@@ -15,7 +15,7 @@ header {
 
 @media (max-width: 770px) {
   header {
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
   }
 }
 
@@ -220,6 +220,8 @@ header .hero .hero-right img {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
   -webkit-animation: float alternate infinite ease-in-out 2s;
           animation: float alternate infinite ease-in-out 2s;
 }
