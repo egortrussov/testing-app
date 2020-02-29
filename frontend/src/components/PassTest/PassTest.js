@@ -11,6 +11,7 @@ export default class PassTest extends Component {
         test: [],
         answers: [],
         answeredQuestions: 0,
+        isSubmitted: false
     }
 
     static contextType = TestsContext;
@@ -50,7 +51,16 @@ export default class PassTest extends Component {
         e.preventDefault();
         let points = 0;
         let results = [];
-        const { answers, test } = this.state;
+        const { answers, test, isSubmitted } = this.state;
+
+        if (isSubmitted) 
+            return;
+        
+        this.setState({
+            ...this.state,
+            isSubmitted: true
+        })
+
         test.questions.map((ques, index) => {
             if (ques.correctAnswerId === answers[index]) {
                 points++;
