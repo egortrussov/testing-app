@@ -130,6 +130,7 @@
 
 .questions {
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .questions .input {
@@ -303,5 +304,9 @@
   background-color: #fff;
   border-radius: .5rem;
   font-size: .9rem;
+}
+
+.questions .btn.btn-cta {
+  margin-top: 0rem;
 }
 /*# sourceMappingURL=style.css.map */

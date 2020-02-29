@@ -126,6 +126,7 @@
 
 .questions {
     margin-top: 2rem;
+    margin-bottom: 2rem;
 
     .input {
         display: inline-block;
@@ -286,5 +287,9 @@
         background-color: #fff;
         border-radius: .5rem;
         font-size: .9rem;
+    }
+
+    .btn.btn-cta {
+        margin-top: 0rem;
     }
 }

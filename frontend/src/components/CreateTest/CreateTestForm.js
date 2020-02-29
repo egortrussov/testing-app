@@ -26,7 +26,8 @@ export default class CreateTestForm extends Component {
         accessKey: '',
         creator: this.context.userId,
         timeErrorMsg: '',
-        isLoading: false
+        isLoading: false,
+        errors: []
     }
 
     static contextType = TestsContext;
@@ -143,6 +144,31 @@ export default class CreateTestForm extends Component {
             isLoading: true
         })
 
+        let newTest = this.state;
+
+        let errors = [];
+
+        if (!newTest.title) 
+            errors['title'] = 'The test must have a title'
+        if (!newTest.subject) 
+            errors['subject'] = 'The test must have a subject'
+        newTest.questions.map(ques => {
+            if (!ques.title) 
+                errors['questions'] = 'Questions must not be empty';
+            ques.answers.map(ans => {
+                if (!ans.text) 
+                    errors['answers'] = 'Answers must not be empty';
+            })
+        })
+
+        if (errors['title'] || errors['subject'] || errors['questions'] || errors['answers']) {
+            this.setState({
+                ...this.state,
+                errors
+            });
+            return;
+        }
+
         if (!this.context.userId) 
             window.location.href = '/app/login'
         
@@ -217,7 +243,7 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading, title, description } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading, title, errors } = this.state;
 
         console.log(isLoading);
         
@@ -232,10 +258,12 @@ export default class CreateTestForm extends Component {
                     <div className="info-group">
                         <label htmlFor="title">Test name: </label>
                         <span value={ title } className="field" contenteditable="true" onInput={ (e) => this.setTestTitle(e) } type="text" name="title"></span>
+                        <span className="error-input">{ errors['title'] }</span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="subject">Subject: </label>
                         <span className="field" contenteditable="true" onInput={ (e) => this.setTestSubject(e) } type="text" name="subject"> </span>
+                        <span className="error-input">{ errors['subject'] }</span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="description">Description: </label>
@@ -288,6 +316,18 @@ export default class CreateTestForm extends Component {
                         { timeErrorMsg }
                     </span>
                 ) }
+
+                { errors['questions'] && (
+                    <span className="error-msg">
+                        { errors['questions'] }
+                    </span>
+                ) }
+                { errors['answers'] && (
+                    <span className="error-msg">
+                        { errors['answers'] }
+                    </span>
+                ) }
+
                 <button onClick={ this.handleAddTest.bind(this) } className="btn btn-cta">Create test!</button>
                 
                 { isLoading && <Spinner size="sm" /> }
