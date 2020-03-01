@@ -1,3 +1,25 @@
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --main-bg-color: #444;
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
 main::-webkit-scrollbar-track {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
@@ -34,11 +56,12 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   width: 20px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #4ADB71;
+  background-color: var(--bg-color);
 }
 
 .app-container {
-  background-color: #4ADB71;
+  color: var(--main-text-color);
+  background-color: var(--bg-color);
   height: 100vh;
   position: relative;
   width: 100%;
@@ -162,7 +185,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 }
 
 .app-container nav .nav-item .nav-link.active {
-  background-color: #42C465 !important;
+  background-color: var(--dark-color) !important;
 }
 
 @media (max-width: 600px) {
@@ -172,7 +195,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 }
 
 .app-container nav .nav-item .nav-link:hover {
-  background-color: #47D36D;
+  background-color: var(--dark-color) !important;
 }
 
 @media (max-width: 600px) {
@@ -192,7 +215,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 }
 
 .app-container main {
-  background-color: #fff;
+  background-color: var(--main-bg-color);
   width: 100%;
   border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
@@ -218,6 +241,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   min-width: 200px;
   width: auto;
   padding: .3rem;
+  background: none !important;
 }
 
 .field::after {
@@ -244,7 +268,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   height: 3px;
   width: 0;
   z-index: 3;
-  background-color: #42C465;
+  background-color: var(--dark-primary-color);
   -webkit-transition: all .2s;
   transition: all .2s;
   top: calc(100% + 2px);
@@ -261,7 +285,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 .error-input {
   margin-top: .3rem;
   font-size: 16px;
-  color: #fc393e;
+  color: var(--danger-color);
   height: 10px !important;
   display: block;
   min-height: 16px !important;
@@ -269,7 +293,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 }
 
 .error-msg {
-  color: #fc393e;
+  color: var(--danger-color);
   display: block;
 }
 /*# sourceMappingURL=MainPage.css.map */

@@ -1,3 +1,25 @@
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --main-bg-color: #444;
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
 #psw, #confirmPassword, #password {
   -webkit-text-security: disc;
   -webkit-appearance: textfield;
@@ -23,10 +45,12 @@ form .form-group label {
 form .form-group .field {
   width: 100%;
   max-width: 400px;
+  background: none;
 }
 
 form .form-group .field.with-input {
   padding: none !important;
+  background: none !important;
 }
 
 form .form-group .field input {

@@ -1,3 +1,7 @@
+body {
+  background-color: var(--main-bg-color);
+}
+
 * {
   font-family: 'Nunito', sans-serif;
   margin: 0;
@@ -47,6 +51,7 @@ header .nav {
 @media (max-width: 890px) {
   header .nav {
     padding: 1.5rem 1rem;
+    text-align: center;
   }
 }
 
@@ -66,6 +71,15 @@ header .nav .nav-left {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: var(--main-text-color);
+}
+
+@media (max-width: 890px) {
+  header .nav .nav-left {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 header .nav .nav-left img, header .nav .nav-left h1 {
@@ -79,6 +93,18 @@ header .nav .nav-left img {
 header .nav .nav-left h1 {
   font-weight: 800;
   margin-left: .7rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  header .nav .nav-left img.light {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  header .nav .nav-left img.dark {
+    display: none;
+  }
 }
 
 header .hero {
@@ -98,6 +124,7 @@ header .hero {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   width: 100% !important;
+  color: var(--main-text-color);
 }
 
 @media (max-width: 1120px) {

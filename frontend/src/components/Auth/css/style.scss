@@ -23,9 +23,11 @@ form {
         .field {
             width: 100%;
             max-width: 400px;
+            background: none;
 
             &.with-input {
                 padding: none !important;
+                background: none !important;
             }
 
             input {

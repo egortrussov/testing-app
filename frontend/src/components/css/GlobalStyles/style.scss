@@ -18,7 +18,7 @@ $radioActive: #42C465;
     margin-bottom: 1.3rem;
 
     a {
-        color: $dark-color !important;
+        color: var(--dark-primary-color) !important;
         font-size: 1.3rem;
     }
 }
@@ -27,7 +27,7 @@ $radioActive: #42C465;
     position: relative;
     padding: .6rem 1.8rem !important;
     -webkit-appearance: button;
-    background-color: $primary-color !important;
+    background-color: var(--primary-color) !important;
     display: inline-block;
     margin-top: 1.3rem;
     margin-bottom: .1rem;

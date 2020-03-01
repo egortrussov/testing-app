@@ -33,7 +33,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     border-radius: 10px;
     width: 20px;
 	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: $primary-color;
+	background-color: var(--bg-color);
 }
 
 .app-container {
@@ -41,7 +41,8 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
         flex-direction: column;        
     }
 
-    background-color: $primary-color;
+    color: var(--main-text-color);
+    background-color: var(--bg-color);
     height: 100vh;
     position: relative;
     width: 100%;
@@ -131,7 +132,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
                         background: none !important;
                     }
 
-                    background-color: $dark-color !important;
+                    background-color: var(--dark-color) !important;
                 }
 
                 &:hover {
@@ -139,7 +140,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
                         background: none;
                     }
 
-                    background-color: #47D36D;
+                    background-color: var(--dark-color) !important;
                 }
 
                 i {
@@ -163,7 +164,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
             padding: 40px 20px;
         }
 
-        background-color: #fff;
+        background-color: var(--main-bg-color);
         width: 100%;
         border-top-left-radius: 40px;;
         border-bottom-left-radius: 40px;
@@ -180,6 +181,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     min-width: 200px;
     width: auto;
     padding: .3rem;
+    background: none !important;
 
     &::after {
         content: '';
@@ -202,7 +204,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
         height: 3px;
         width: 0;
         z-index: 3;
-        background-color: $dark-color;
+        background-color: var(--dark-primary-color);
         transition: all .2s;
         top: calc(100% + 2px);
     }
@@ -219,7 +221,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 .error-input {
     margin-top: .3rem;
     font-size: 16px;
-    color: $danger-color;
+    color: var(--danger-color);
     height: 10px !important;
     display: block;
     min-height: 16px !important;
@@ -227,6 +229,6 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 }
 
 .error-msg {
-    color: $danger-color;
+    color: var(--danger-color);
     display: block;
 }

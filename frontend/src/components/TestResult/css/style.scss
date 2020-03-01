@@ -9,7 +9,7 @@
         text-align: left;
 
         .resultTr:hover {
-            background-color: rgba($primary-color, .1);
+            background-color: rgba(var(--primary-color), .1);
         }
         
         td, th {
@@ -40,12 +40,12 @@
         .answerr {
 
             &.correct {
-                background-color: rgba($primary-color, .1);
-                color: $primary-color;
+                background-color: rgba(var(--primary-color), .1);
+                color: var(--primary-color);
             }
             &.wrong {
-                background-color: rgba($danger-color, .1);
-                color: $danger-color;
+                background-color: rgba(var(--danger-color), .1);
+                color: var(--danger-color);
             }
         }
 

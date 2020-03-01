@@ -1,3 +1,25 @@
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --main-bg-color: #444;
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
 .heading {
   font-size: 2.1rem;
   margin-bottom: 1.1rem;
@@ -13,7 +35,7 @@
 }
 
 .page-top a {
-  color: #42C465 !important;
+  color: var(--dark-primary-color) !important;
   font-size: 1.3rem;
 }
 
@@ -21,7 +43,7 @@
   position: relative;
   padding: .6rem 1.8rem !important;
   -webkit-appearance: button;
-  background-color: #4ADB71 !important;
+  background-color: var(--primary-color) !important;
   display: inline-block;
   margin-top: 1.3rem;
   margin-bottom: .1rem;

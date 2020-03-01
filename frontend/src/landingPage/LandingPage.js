@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import Logo from './img/logo.svg'
+import LogoLight from './img/logo-light.svg'
 import Hero from './img/hero.svg'
 
 import './css/style.css'
@@ -15,7 +16,8 @@ export default class LandingPage extends Component {
                 <div className="bg-circle-dm bg-circle"></div>
                 <div className="nav">
                     <div className="nav-left">
-                        <img src={ Logo } alt="" />
+                        <img className="light" src={ Logo } alt="" />
+                        <img className="dark" src={ LogoLight } alt="" />
                         <h1>EasyTest</h1>
                     </div>
                 </div>

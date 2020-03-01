@@ -1,3 +1,25 @@
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --main-bg-color: #444;
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
 .result-table {
   max-width: 100%;
   overflow: auto;
@@ -9,7 +31,7 @@
 }
 
 .result-table table .resultTr:hover {
-  background-color: rgba(74, 219, 113, 0.1);
+  background-color: rgba(var(--primary-color), 0.1);
 }
 
 .result-table table td, .result-table table th {
@@ -36,13 +58,13 @@
 }
 
 .result-table table .answerr.correct {
-  background-color: rgba(74, 219, 113, 0.1);
-  color: #4ADB71;
+  background-color: rgba(var(--primary-color), 0.1);
+  color: var(--primary-color);
 }
 
 .result-table table .answerr.wrong {
-  background-color: rgba(252, 57, 62, 0.1);
-  color: #fc393e;
+  background-color: rgba(var(--danger-color), 0.1);
+  color: var(--danger-color);
 }
 
 .result-table table th {

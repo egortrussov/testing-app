@@ -2,6 +2,31 @@ $primary-color: #4ADB71;
 $dark-color: #42C465;
 $danger-color: #fc393e;
 
+html {
+
+    --primary-color: #4ADB71;
+    --bg-color: #4ADB71;
+    --dark-color: #42C465;
+    --dark-primary-color: #42C465;
+    --main-bg-color: #fff;
+    --main-text-color: #000;
+    --danger-color: #fc393e;
+}
+
+@media(prefers-color-scheme: dark) {
+    html {
+        --bg-color: #333;
+        --primary-color: rgb(42, 150, 71);
+        --dark-primary-color: rgb(42, 150, 71);
+        --dark-color: #2b2b2b;
+        --main-bg-color: #444;
+        --main-text-color: #fff;
+        --danger-color: #ff4a50;
+    }
+}
+
+
+
 @mixin desktop {
     @media (min-width: 1440px) {
         @content;

@@ -26,6 +26,10 @@ $danger-color: #fc393e;
     }
 }
 
+body {
+    background-color: var(--main-bg-color);
+}
+
 * {
     font-family: 'Nunito', sans-serif;
     margin: 0;
@@ -64,6 +68,7 @@ header {
 
         @include tablet {
             padding: 1.5rem 1rem;
+            text-align: center;
         }
 
         @include tablet-sm {
@@ -80,8 +85,13 @@ header {
         padding: 1.5rem 4rem;
         
         .nav-left {
+            @include tablet {
+                justify-content: center;
+            }
+
             display: flex;
             align-items: center;
+            color: var(--main-text-color);
 
             img, h1 {
                 display: block;
@@ -94,6 +104,17 @@ header {
             h1 {
                 font-weight: 800;
                 margin-left: .7rem;
+            }
+
+            @media(prefers-color-scheme: dark) {
+                img.light {
+                    display: none;
+                }
+            }
+            @media(prefers-color-scheme: light) {
+                img.dark {
+                    display: none;
+                }
             }
         }
     }
@@ -125,6 +146,7 @@ header {
         top: 50%;
         transform: translateY(-50%);
         width: 100% !important;
+        color: var(--main-text-color);
 
         .hero-left {
             max-width: 500px !important;

@@ -10,11 +10,12 @@
     }
 
     textarea {
+        background: none;
         position: relative;
         display: block;
         width: 100%;
         max-width: 450px;
-        caret-color: $dark-color;
+        caret-color: var(--dark-color);
         font-family: inherit;
         // height: auto;
         height: 140px;
@@ -43,18 +44,25 @@
             height: 3px;
             width: 0;
             z-index: 3;
-            background-color: $dark-color;
+            background-color: var(--dark-primary-color);
             transition: all .2s;
             top: calc(100% + 2px);
         }
 
         &:focus {
             outline: none;
-            border-bottom: 2px solid $dark-color;
+            border-bottom: 2px solid var(--dark-primary-color);
 
             &:before {
                 width: 100%;
             }
+        }
+    }
+
+    .info-group {
+
+        label {
+            color: var(--main-text-color) !important; 
         }
     }
 
@@ -64,6 +72,7 @@
         margin-top: 1.2rem;
 
         label {
+            color: var(--main-text-color);
             margin-top: 0;
             margin-left: .5rem;
         }
@@ -97,7 +106,7 @@
             height: 3px;
             width: 0;
             z-index: 3;
-            background-color: $dark-color;
+            background-color: var(--dark-primary-color);
             transition: all .2s;
             top: calc(100% + 2px);
         }
@@ -133,7 +142,7 @@
         min-width: 80px !important;
         padding: .2rem;
         position: relative;
-        caret-color: $dark-color;
+        caret-color: var(--dark-primary-color);
 
         &::before {
             content: '';
@@ -142,7 +151,7 @@
             transform: translateX(-50%);
             height: 2px;
             width: 0;
-            background-color: $dark-color;
+            background-color: var(--dark-primary-color);
             transition: all .2s;
             top: calc(100% + 2px);
         }
@@ -260,10 +269,10 @@
         font-size: 1.2rem;
         font-weight: 700;
         padding: 0 !important;
-        border: 1.5px solid $dark-color;
+        border: 1.5px solid var(--dark-primary-color);
         border-radius: 5px;
-        background-color: #fff;
-        color: darken($dark-color, 30);
+        background: none;
+        color: var(--dark-primary-color);
         position: relative;
         text-align: center;
 
@@ -281,7 +290,7 @@
     }
 
     .new-question {
-        border: 1.5px solid $dark-color;
+        border: 1.5px solid var(--dark-color);
         padding: .4rem 1.2rem;
         margin-top: 1.2rem;
         background-color: #fff;
