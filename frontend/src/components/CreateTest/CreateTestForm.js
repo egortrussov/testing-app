@@ -27,7 +27,9 @@ export default class CreateTestForm extends Component {
         creator: this.context.userId,
         timeErrorMsg: '',
         isLoading: false,
-        errors: []
+        errors: [],
+        maxAttempts: null,
+        isLimitedAttempts: false
     }
 
     static contextType = TestsContext;
@@ -120,11 +122,28 @@ export default class CreateTestForm extends Component {
         })
     }
 
+    setAttemptsState(e) {
+        this.setState({
+            ...this.state,
+            isLimitedAttempts: !this.state.isLimitedAttempts,
+            maxAttempts: null
+        })
+    }
+
     setAccessKey(e) {
         this.setState({
             ...this.state,
             accessKey: e.target.innerText
         })
+    }
+
+    setAttemptsNumber(e) {
+        this.setState({
+            ...this.state,
+            maxAttempts: parseInt(e.target.value)
+        })
+        console.log(this.state);
+        
     }
 
     setCorrectAnswerId(quesIndex, ansId) {
@@ -243,7 +262,7 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading, title, errors } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading, title, errors, isLimitedAttempts } = this.state;
 
         console.log(isLoading);
         
@@ -279,7 +298,16 @@ export default class CreateTestForm extends Component {
                             <span class="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } name="key" > </span>
                         </div>
                     ) }
-                    
+                    <div className="info-group-checkbox">
+                        <input onChange={ this.setAttemptsState.bind(this) } type="checkbox" name="isLimitedAttempts" />
+                        <label htmlFor="isProtected" name="isProtected">Limited attempts</label>
+                    </div>
+                    { isLimitedAttempts && (
+                        <div className="info-group">
+                            <label htmlFor="key">Maximum attempts: </label>
+                            <input type="number" min="1" max="10" onChange={ (e) => this.setAttemptsNumber(e) } name="key"  />
+                        </div>
+                    ) }
                 </div>
                 <div className="questions">
                     { questions.map((ques, index) => {

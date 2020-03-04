@@ -29,7 +29,8 @@ const TestSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    maxAttempts: Number
 })
 
 module.exports = Test = mongoose.model('Test', TestSchema);
