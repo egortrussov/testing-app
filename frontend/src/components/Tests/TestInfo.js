@@ -67,20 +67,37 @@ export default class TestInfo extends Component {
     }
 
     goToTest() {
-        console.log(this.state.test);
+        const { test, errors, testResults } = this.state;
+        const { maxAttempts } = test;
+        let usedAttemtps = 0;
+        testResults.forEach(res => {
+            if (res.userId === this.context.userId) 
+                usedAttemtps++;
+        })
+        console.log(usedAttemtps, maxAttempts);
         
-        const { currentAccessKey } = this.state;
-        const { accessKey, _id, isProtected } = this.state.test;
-        if (accessKey === currentAccessKey || !isProtected) {
-            window.location.href = `/app/passTest/${ _id }`
-        } else {
-            let { errors } = this.state;
-            errors['keyError'] = 'Incorrect access key!';
+        if (maxAttempts && usedAttemtps >= maxAttempts) {
+            errors['attempts'] = 'You have not got any attempts left!';
             this.setState({
                 ...this.state,
                 errors
             })
+        } else {
+            const { currentAccessKey } = this.state;
+            const { accessKey, _id, isProtected } = test;
+            if (accessKey === currentAccessKey || !isProtected) {
+                window.location.href = `/app/passTest/${ _id }`
+            } else {
+                let { errors } = this.state;
+                errors['keyError'] = 'Incorrect access key!';
+                this.setState({
+                    ...this.state,
+                    errors
+                })
+            }
         }
+        
+        
     }   
     
     componentDidUpdate() {
@@ -96,12 +113,18 @@ export default class TestInfo extends Component {
 
     render() {
         const { isLoading, test, testResults, errors } = this.state;
-        console.log(test);
         
-
         if (isLoading || test === null) return (
             <Spinner />
         )
+
+        const { maxAttempts } = test;
+        let usedAttemtps = 0;
+        if (testResults) testResults.forEach(res => {
+            if (res.userId === this.context.userId) 
+                usedAttemtps++;
+        })
+        const attemtpsLeft = maxAttempts - usedAttemtps;
 
         return (
             <div>
@@ -123,12 +146,19 @@ export default class TestInfo extends Component {
                     //)
                     
                  ) }
+                 { maxAttempts && (
+                    <div className="attempts-block">
+                        <span className="max-attemtts">Attempts left: { attemtpsLeft }</span>
+                    </div>
+                 ) }
                 <br/>
                 {/* <Link class="btn btn-cta" to={ `/app/passTest/${ test._id }` }>
                     Pass test!
                 </Link> */}
-                <button onClick={ () => this.goToTest() } className="btn btn-cta">Pass test!</button>
-                
+                <div className="btn-block">
+                    <span className="error-input">{ errors['attempts'] }</span>
+                    <button onClick={ () => this.goToTest() } className="btn btn-cta">Pass test!</button>
+                </div>
                 
                 <div className="results">
                     <h3>Results: </h3>
