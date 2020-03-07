@@ -35,6 +35,7 @@ html {
   max-width: 450px;
   caret-color: var(--dark-color);
   font-family: inherit;
+  color: var(--main-text-color) !important;
   height: 140px;
   border: none;
   -webkit-transition: all .2s;

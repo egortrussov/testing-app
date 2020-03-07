@@ -38,10 +38,21 @@ export default class CreateTestForm extends Component {
 
     componentDidMount() {
                 
-        var x, i, j, selElmnt, a, b, c;
+        var x, i, selElmnt, a, b, c;
         /* Look for any elements with the class "custom-select": */
         x = document.getElementsByClassName('custom-select');
         console.log(x);
+
+        let timeValues = [5 * 60, 10 * 60, 20 * 60, 30 * 60, 1 * 60 * 60, 1.5 * 60 * 60];
+
+        const setst = (j) => {
+            console.log("hhhh");
+            
+            this.setState({
+                ...this.state,
+                timeLimit: timeValues[j - 1]
+            }, () => console.log(this.state))
+        }
 
         for (i = 0; i < x.length; i++) {
             selElmnt = x[i].getElementsByTagName('select')[0];
@@ -53,20 +64,31 @@ export default class CreateTestForm extends Component {
             /* For each element, create a new DIV that will contain the option list: */
             b = document.createElement('DIV');
             b.setAttribute('class', 'select-items select-hide');
-            for (j = 1; j < selElmnt.length; j++) {
+            for (let j = 1; j < selElmnt.length; j++) {
                 /* For each option in the original select element,
             create a new DIV that will act as an option item: */
                 c = document.createElement('DIV');
                 c.innerHTML = selElmnt.options[j].innerHTML;
+                console.log(selElmnt);
+                
                 c.addEventListener('click', function(e) {
                     /* When an item is clicked, update the original select box,
                 and the selected item: */
+                    
                     var y, i, k, s, h;
                     s = this.parentNode.parentNode.getElementsByTagName('select')[0];
                     h = this.parentNode.previousSibling;
+                    console.log(timeValues[j - 1]);
+                    // this.setState({
+                    //     ...this.state,
+                    //     timeLimit: timeValues[j - 1]
+                    // })
+                    
+                    
                     for (i = 0; i < s.length; i++) {
                         if (s.options[i].innerHTML == this.innerHTML) {
                             s.selectedIndex = i;
+
                             h.innerHTML = this.innerHTML;
                             y = this.parentNode.getElementsByClassName(
                                 'same-as-selected'
@@ -79,6 +101,8 @@ export default class CreateTestForm extends Component {
                         }
                     }
                     h.click();
+
+                    setst(j);
                 });
                 b.appendChild(c);
             }
@@ -217,6 +241,14 @@ export default class CreateTestForm extends Component {
         })
     }
 
+    setTimeLimitState(e) {
+        this.setState({
+            ...this.state,
+            isLimitedTime: !this.state.isLimitedTime,
+            timeLimit: null
+        })
+    }
+
     setAccessKey(e) {
         this.setState({
             ...this.state,
@@ -251,7 +283,9 @@ export default class CreateTestForm extends Component {
         })
 
         let newTest = this.state;
-
+        
+        console.log(this.state);
+        
         let errors = [];
 
         if (!newTest.title) 
@@ -349,9 +383,9 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading, title, errors, isLimitedAttempts } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading, title, errors, isLimitedAttempts, isLimitedTime } = this.state;
 
-        console.log(isLoading);
+        console.log(isLimitedTime);
         
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -387,7 +421,7 @@ export default class CreateTestForm extends Component {
                     ) }
                     <div className="info-group-checkbox">
                         <input onChange={ this.setAttemptsState.bind(this) } type="checkbox" name="isLimitedAttempts" />
-                        <label htmlFor="isProtected" name="isProtected">Limited attempts</label>
+                        <label htmlFor="isLimitedAttempts" name="isLimitedAttempts">Limited attempts</label>
                     </div>
                     { isLimitedAttempts && (
                         <div className="info-group">
@@ -395,17 +429,36 @@ export default class CreateTestForm extends Component {
                             <input type="number" min="1" max="10" onChange={ (e) => this.setAttemptsNumber(e) } name="key"  />
                         </div>
                     ) }
-                    <div className="custom-select" style={{ width: 300 + 'px' }}>
-                    <select>
-                        <option value="0">Select time limit:</option>
-                        <option value="1">5 minutes</option>
-                        <option value="2">10 minutes</option>
-                        <option value="3">20 minuted</option>
-                        <option value="4">30 minutes</option>
-                        <option value="5">1 hour</option>
-                        <option value="6">1.5 hours</option>
-                    </select>
+                    <div className="info-group-checkbox">
+                        <input onChange={ this.setTimeLimitState.bind(this) } type="checkbox" name="isLimitedTime" />
+                        <label htmlFor="isLimitedTime" name="isLimitedTime">Limited time</label>
                     </div>
+                    { isLimitedTime ? (
+                        <div className="custom-select" style={{ width: 300 + 'px' }}>
+                            <select>
+                                <option value="0">Select time limit:</option>
+                                <option value="1">5 minutes</option>
+                                <option value="2">10 minutes</option>
+                                <option value="3">20 minuted</option>
+                                <option value="4">30 minutes</option>
+                                <option value="5">1 hour</option>
+                                <option value="6">1.5 hours</option>
+                            </select>
+                        </div>
+                    ) : (
+                        <div className="custom-select" style={{ width: 300 + 'px', visibility: 'hidden' }}>
+                            <select>
+                                <option value="0">Select time limit:</option>
+                                <option value="1">5 minutes</option>
+                                <option value="2">10 minutes</option>
+                                <option value="3">20 minuted</option>
+                                <option value="4">30 minutes</option>
+                                <option value="5">1 hour</option>
+                                <option value="6">1.5 hours</option>
+                            </select>
+                        </div>
+                    ) }
+                    
                 </div>
                 <div className="questions">
                     { questions.map((ques, index) => {

@@ -119,8 +119,11 @@ router.get('/testInfo/:testId', (req, res) => {
 router.post('/createTest', (req, res) => {
     const newTest = new Test({
         ...req.body,
+        timeLimit: req.body.timeLimit,
         results: []
     });
+    console.log(req.body.timeLimit, 'hhh');
+    
 
     let testId = null;
 

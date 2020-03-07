@@ -30,7 +30,8 @@ const TestSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    maxAttempts: Number
+    maxAttempts: Number,
+    timeLimit: Number
 })
 
 module.exports = Test = mongoose.model('Test', TestSchema);
