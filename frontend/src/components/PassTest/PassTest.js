@@ -38,14 +38,20 @@ export default class PassTest extends Component {
                     let time = timeLimit;
                     setInterval(() => {
                         time = Math.max(time - 1, 0);
-                        const { isTimeUp } = this.state;
-                        if (!isTimeUp && time <= 0) 
+                        let { isTimeUp } = this.state;
+                        if (!isTimeUp && time <= 0) {
                             isTimeUp = true;
+                            let els = document.querySelectorAll('input');
+                            els.forEach(el => {
+                                el.setAttribute('onChange', 'return false');
+                                el.setAttribute('onClick', 'return false');
+                            })
+                        }
                         this.setState({
                             ...this.state,
                             isTimeUp,
                             time
-                        })
+                        }, () => console.log(this.state));
                         console.log(time);
                         
                     }, 1000)
@@ -55,20 +61,25 @@ export default class PassTest extends Component {
             })
     }
 
-    handleSelect(index, answerId) {
-        console.log(index, answerId);
+    handleSelect(e, index, answerId) {
+        console.log(e, index, answerId);
         let { answers, answeredQuestions, isTimeUp } = this.state;
+        console.log(isTimeUp);
+        
         if (isTimeUp) 
             return;
-        if (typeof(answers[index]) === 'undefined') {
-            answeredQuestions++;
+        else {
+            if (typeof(answers[index]) === 'undefined') {
+                answeredQuestions++;
+            }
+            answers[index] = answerId;
+            this.setState({
+                ...this.state,
+                answers,
+                answeredQuestions
+            }, () => console.log(this.state) )
         }
-        answers[index] = answerId;
-        this.setState({
-            ...this.state,
-            answers,
-            answeredQuestions
-        }, () => console.log(this.state) )
+        
     }
 
     finishTest(e) {
