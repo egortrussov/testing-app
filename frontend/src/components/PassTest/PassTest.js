@@ -11,7 +11,9 @@ export default class PassTest extends Component {
         test: [],
         answers: [],
         answeredQuestions: 0,
-        isSubmitted: false
+        isSubmitted: false,
+        isTimeUp: false,
+        time: null
     }
 
     static contextType = TestsContext;
@@ -30,12 +32,34 @@ export default class PassTest extends Component {
                     answers,
                     test: res
                 })
+
+                if (res.timeLimit) {
+                    const { timeLimit } = res;
+                    let time = timeLimit;
+                    setInterval(() => {
+                        time = Math.max(time - 1, 0);
+                        const { isTimeUp } = this.state;
+                        if (!isTimeUp && time <= 0) 
+                            isTimeUp = true;
+                        this.setState({
+                            ...this.state,
+                            isTimeUp,
+                            time
+                        })
+                        console.log(time);
+                        
+                    }, 1000)
+                }
+
+                
             })
     }
 
     handleSelect(index, answerId) {
         console.log(index, answerId);
-        let { answers, answeredQuestions } = this.state;
+        let { answers, answeredQuestions, isTimeUp } = this.state;
+        if (isTimeUp) 
+            return;
         if (typeof(answers[index]) === 'undefined') {
             answeredQuestions++;
         }
