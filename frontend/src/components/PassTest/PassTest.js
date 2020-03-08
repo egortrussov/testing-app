@@ -4,6 +4,7 @@ import TestsContext from '../../context/TestsContext'
 import Spinner from '../Spinner/Spinner'
 
 import './css/style.css'
+import { convertTimeShort } from '../../middleware/convertTime'
 
 export default class PassTest extends Component {
     state = {
@@ -41,7 +42,7 @@ export default class PassTest extends Component {
                         let { isTimeUp } = this.state;
                         if (!isTimeUp && time <= 0) {
                             isTimeUp = true;
-                            let els = document.querySelectorAll('input');
+                            let els = document.querySelectorAll("input[type='radio']");
                             els.forEach(el => {
                                 el.setAttribute('onChange', 'return false');
                                 el.setAttribute('onClick', 'return false');
@@ -51,8 +52,7 @@ export default class PassTest extends Component {
                             ...this.state,
                             isTimeUp,
                             time
-                        }, () => console.log(this.state));
-                        console.log(time);
+                        });
                         
                     }, 1000)
                 }
@@ -61,10 +61,8 @@ export default class PassTest extends Component {
             })
     }
 
-    handleSelect(e, index, answerId) {
-        console.log(e, index, answerId);
+    handleSelect(index, answerId) {
         let { answers, answeredQuestions, isTimeUp } = this.state;
-        console.log(isTimeUp);
         
         if (isTimeUp) 
             return;
@@ -95,6 +93,9 @@ export default class PassTest extends Component {
             ...this.state,
             isSubmitted: true
         })
+
+        console.log('finish!');
+        
 
         test.questions.map((ques, index) => {
             if (ques.correctAnswerId === answers[index]) {
@@ -128,7 +129,7 @@ export default class PassTest extends Component {
     }
 
     render() {
-        const { isLoading, test } = this.state;
+        const { isLoading, test, answeredQuestions, time } = this.state;
         const { questions } = test;
 
         if (isLoading) return (
@@ -136,33 +137,43 @@ export default class PassTest extends Component {
         )
 
         return (
-            <form className="test-form" onSubmit={ e => this.finishTest(e) }>
-                <h1 className="heading">
-                    Pass test '{ test.title }'
-                </h1>
-                <div className="test-questions">
-                    { questions.map((ques, index) => {
-                        return (
-                            <div className="question-card">
-                                <h3 className="question-title">
-                                    { index + 1 }.  { ques.title }
-                                </h3>
-                                <div className="answers">
-                                    { ques.answers.map(ans => {
-                                        return (
-                                            <div className="answer">
-                                                <input onChange={ this.handleSelect.bind(this, index, ans.answerId) } id={ ans._id } type="radio" name={ index } />
-                                                <label htmlFor={ ans._id }>{ ans.text }</label>
-                                            </div>
-                                        )
-                                    }) }
-                                </div>
-                            </div>
-                        )
-                    }) }
+            <>
+                <div className="info-block">
+                    <div>
+                        Time left: { convertTimeShort(time) }
+                    </div>
+                    <div>
+                        Answered questions: { answeredQuestions } / { questions.length }
+                    </div>
                 </div>
-                <input type="submit" className="btn btn-cta" value="Finish" />
-            </form>
+                <form className="test-form" onSubmit={ e => this.finishTest(e) }>
+                    <h1 className="heading">
+                        Pass test '{ test.title }'
+                    </h1>
+                    <div className="test-questions">
+                        { questions.map((ques, index) => {
+                            return (
+                                <div className="question-card">
+                                    <h3 className="question-title">
+                                        { index + 1 }.  { ques.title }
+                                    </h3>
+                                    <div className="answers">
+                                        { ques.answers.map(ans => {
+                                            return (
+                                                <div className="answer">
+                                                    <input onChange={ this.handleSelect.bind(this, index, ans.answerId) } id={ ans._id } type="radio" name={ index } />
+                                                    <label htmlFor={ ans._id }>{ ans.text }</label>
+                                                </div>
+                                            )
+                                        }) }
+                                    </div>
+                                </div>
+                            )
+                        }) }
+                    </div>
+                    <input type="submit" className="btn btn-cta" value="Finish" />
+                </form>
+            </>
         )
     }
 }

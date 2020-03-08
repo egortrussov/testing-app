@@ -7,6 +7,8 @@ import Spinner from '../Spinner/Spinner'
 
 import PointsCard from '../reusableComponents/PointsCard'
 
+import { convertTime } from '../../middleware/convertTime'
+
 import './css/style.css'
 
 import TestsContext from '../../context/TestsContext'
@@ -118,7 +120,7 @@ export default class TestInfo extends Component {
             <Spinner />
         )
 
-        const { maxAttempts } = test;
+        const { maxAttempts, timeLimit } = test;
         let usedAttemtps = 0;
         if (testResults) testResults.forEach(res => {
             if (res.userId === this.context.userId) 
@@ -149,6 +151,11 @@ export default class TestInfo extends Component {
                  { maxAttempts && (
                     <div className="attempts-block">
                         <span className="max-attemtts">Attempts left: { attemtpsLeft }</span>
+                    </div>
+                 ) }
+                 { timeLimit && (
+                    <div className="attempts-block">
+                        <span className="max-attemtts">Time limit: { convertTime(timeLimit) }</span>
                     </div>
                  ) }
                 <br/>
