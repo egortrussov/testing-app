@@ -140,7 +140,9 @@ export default class PassTest extends Component {
             <>
                 <div className="info-block">
                     <div>
-                        Time left: { convertTimeShort(time) }
+                        { test.timeLimit && (
+                            <span>Time left: { convertTimeShort(time) }</span>
+                        ) } 
                     </div>
                     <div>
                         Answered questions: { answeredQuestions } / { questions.length }

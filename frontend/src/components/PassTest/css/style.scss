@@ -3,7 +3,7 @@ $radioBorder: #D1D7E3;
 $radioActive: #42C465;
 
 .test-form {
-    margin-top: 0 !important;
+    margin-top: 2rem !important;
 }
 
 .answer {
@@ -80,4 +80,25 @@ $radioActive: #42C465;
         }
     }
 
+}
+
+.info-block {
+    position: absolute;
+    width: auto !important;
+    max-width: 95% !important;
+    white-space: nowrap;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-color);
+    color: #fff;
+    font-weight: 700;
+    padding: .5rem 1rem;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    box-shadow: 5px 5px 20px rgba(#000, .2);
+
+    div {
+        width: auto !important;
+    }
 }

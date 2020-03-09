@@ -1,5 +1,5 @@
 .test-form {
-  margin-top: 0 !important;
+  margin-top: 2rem !important;
 }
 
 .answer {
@@ -92,5 +92,28 @@
 .answer:hover input:checked + span:after {
   -webkit-transform: scale(0.4);
           transform: scale(0.4);
+}
+
+.info-block {
+  position: absolute;
+  width: auto !important;
+  max-width: 95% !important;
+  white-space: nowrap;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: var(--bg-color);
+  color: #fff;
+  font-weight: 700;
+  padding: .5rem 1rem;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.info-block div {
+  width: auto !important;
 }
 /*# sourceMappingURL=style.css.map */
