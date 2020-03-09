@@ -90,3 +90,9 @@ function closeAllSelect(elmnt) {
 }
 
 document.addEventListener("click", closeAllSelect);
+
+let infoEl = document.querySelector('.info-box');
+let mainEl = document.querySelector('main');
+infoEl.offsetTop = max(0, mainEl.offsetTop);
+console.log('huhuhuhuhu')
+console.log(infoEl.offsetTop, mainEl.offsetTop);

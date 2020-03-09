@@ -1,9 +1,12 @@
+@import '../../css/config';
+
 $radioSize: 18px;
 $radioBorder: #D1D7E3;
 $radioActive: #42C465;
 
 .test-form {
     margin-top: 2rem !important;
+    margin-bottom: 3rem;
 }
 
 .answer {
@@ -83,7 +86,16 @@ $radioActive: #42C465;
 }
 
 .info-block {
-    position: absolute;
+    @include tablet-xsm {
+        top: auto;
+        bottom: 0 !important;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+    }
+
+    position: fixed;
     width: auto !important;
     max-width: 95% !important;
     white-space: nowrap;

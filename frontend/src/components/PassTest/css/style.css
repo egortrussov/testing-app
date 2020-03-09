@@ -1,5 +1,30 @@
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --dark-main-bg-color: #eee;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --main-bg-color: #444;
+    --dark-main-bg-color: #333;
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
 .test-form {
   margin-top: 2rem !important;
+  margin-bottom: 3rem;
 }
 
 .answer {
@@ -95,7 +120,7 @@
 }
 
 .info-block {
-  position: absolute;
+  position: fixed;
   width: auto !important;
   max-width: 95% !important;
   white-space: nowrap;
@@ -111,6 +136,17 @@
   border-bottom-left-radius: 1rem;
   -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
           box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+  .info-block {
+    top: auto;
+    bottom: 0 !important;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+  }
 }
 
 .info-block div {

@@ -67,7 +67,7 @@ export default class PassTest extends Component {
         if (isTimeUp) 
             return;
         else {
-            if (typeof(answers[index]) === 'undefined') {
+            if (!answers[index]) {
                 answeredQuestions++;
             }
             answers[index] = answerId;
