@@ -7,6 +7,9 @@ import './css/style.css'
 
 import TestsContext from '../../context/TestsContext'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+
 export default class TestResult extends Component {
     state = {
         isLoading: true,
@@ -84,7 +87,7 @@ export default class TestResult extends Component {
                                 else 
                                     extraClassName = 'wrong'
                                 return (
-                                    <th className={ `answerr ans ${ extraClassName }` }>{ isCorrect ? (<i className="far fa-check-circle"></i> ) : (<i className="far fa-times-circle"></i>) }</th>
+                                    <th className={ `answerr ans ${ extraClassName }` }>{ isCorrect ? (<FontAwesomeIcon className="icon" icon={ faCheckCircle } /> ) : (<FontAwesomeIcon className="icon" icon={ faTimesCircle } />) }</th>
                                 )
                             }) }
                         </tr>

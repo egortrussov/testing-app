@@ -6,6 +6,9 @@ import Spinner from '../Spinner/Spinner'
 import { formatDate } from '../../middleware/dateFormat'
 import { getHeaders } from '../../middleware/authMiddleware'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+
 import './css/style.css'
 
 export default class Tests extends Component {
@@ -54,24 +57,34 @@ export default class Tests extends Component {
             <div>
                 <h1 className="heading">Available tests: </h1>
                 { tests.length === 0 ? ( <h2>Oops, no tests available yet!</h2> ) : ( <></> ) }
-                { tests.map(test => {
-                    const linkToTest = `/app/testInfo/${ test._id }`
+                <div className="tests-container">
+                    { tests.map(test => {
+                        const linkToTest = `/app/testInfo/${ test._id }`
 
-                    return (
-                        <Link to={ linkToTest }>
-                            <div key={ test._id } className="test-card">
-                                <div className="text-card-left">
-                                    <h3 className="test-title">{ test.title }</h3>
-                                    <h4 className="test-date">Date: { formatDate(test.createdAt) }</h4>
+                        return (
+                            <Link to={ linkToTest }>
+                                <div class="test-card">
+                                    <h3 class="test-card__title">
+                                        { test.title }
+                                    </h3>
+                                    <h4 class="test-card__subject">
+                                        { test.subject }
+                                    </h4>
+                                    <p class="test-card__description">
+                                        { test.description ? test.description : 'No description provided!' }
+                                    </p>
+                                    <div class="test-card__btns">
+                                        <div class="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>0</span> </div>
+                                        <div class="btns-btn right"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>{ test.results.length }</span> </div>
+                                    </div>
+                                    <h4 class="test-card__date">
+                                        { formatDate(test.createdAt) }
+                                    </h4>
                                 </div>
-                                <div className="test-card-right">
-                                    <h3 className="test-subject">Subject: <span className="subject">{ test.subject }</span></h3>
-                                    <h3>Times passed: { test.results.length }</h3>
-                                </div>
-                            </div>
-                        </Link>
-                    )
-                }) }
+                            </Link>
+                        )
+                    }) }
+                </div>
             </div>
         )
     }

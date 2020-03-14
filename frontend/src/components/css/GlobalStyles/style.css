@@ -114,4 +114,108 @@ input[type="radio"]:checked + label:after {
   transition: transform .3s ease;
   transition: transform .3s ease, -webkit-transform .3s ease;
 }
+
+.tests-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 1540px) {
+  .tests-container {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 1000px) {
+  .tests-container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.test-card {
+  width: 100%;
+  max-width: 430px;
+  width: auto;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  padding: 1.5rem;
+  -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+.test-card:hover {
+  -webkit-box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.3);
+}
+
+.test-card__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.test-card__subject {
+  margin-top: .2rem;
+  font-size: 1.1rem;
+}
+
+.test-card__description {
+  margin: 1.1rem 0;
+}
+
+.test-card__btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: .5rem;
+}
+
+.test-card__btns .btns-btn {
+  padding: .7rem;
+  background-color: #eeeeee;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.test-card__btns .btns-btn.left {
+  border-top-left-radius: .4rem;
+  border-bottom-left-radius: .4rem;
+}
+
+.test-card__btns .btns-btn.right {
+  border-top-right-radius: .4rem;
+  border-bottom-right-radius: .4rem;
+}
+
+.test-card__btns .btns-btn .icon, .test-card__btns .btns-btn span {
+  display: block;
+}
+
+.test-card__btns .btns-btn .icon {
+  font-size: 1.3rem;
+  margin-right: .4rem;
+}
+
+.test-card__date {
+  margin-top: 1.5rem;
+  color: #999ba3;
+  font-weight: 700;
+}
 /*# sourceMappingURL=style.css.map */
