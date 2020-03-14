@@ -1,0 +1,12 @@
+.test-card .points-card, .test-card .result-link {
+  margin-top: .5rem;
+}
+
+.test-card .result-link {
+  margin-left: 1rem;
+}
+
+.test-card .result-link:hover {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=style.css.map */

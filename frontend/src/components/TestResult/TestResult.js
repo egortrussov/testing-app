@@ -9,6 +9,7 @@ import TestsContext from '../../context/TestsContext'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default class TestResult extends Component {
     state = {
@@ -52,7 +53,7 @@ export default class TestResult extends Component {
             <div>
                 <div className="page-top">
                     <Link to="/app/">
-                        <i className="fas fa-arrow-left"></i> Back 
+                        <FontAwesomeIcon className="icon" icon={ faArrowLeft } /> Back
                     </Link>
                 </div>
                 <h1 className="heading">

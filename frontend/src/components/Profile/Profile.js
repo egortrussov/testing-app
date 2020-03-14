@@ -8,6 +8,8 @@ import PointsCard from '../reusableComponents/PointsCard'
 
 import TestsContext from '../../context/TestsContext'
 
+import './css/style.css'
+
 export default class Profile extends Component {
     state = {
         user: null,
@@ -52,25 +54,29 @@ export default class Profile extends Component {
                     Hello, { user.name }!
                 </h1>
                 { user.passedTests.length > 0 ? ( <h2>Your recent tests: </h2> ) : ( <h2>You haven't passed any tests yet!</h2> ) }
-                { user.passedTests.map(test => {
-                    console.log(test);
-                    const linkToTest = `/app/testInfo/${ test.testId }`
+                <div className="tests-container">
+                    { user.passedTests.map(test => {
+                        console.log(test);
+                        const linkToTest = `/app/testInfo/${ test.testId }`
 
-                    return (
-                        <Link to={ linkToTest } key={ test._id } className="test-card">
-                            <div className="test-card-left">
-                                <h3>{ test.title }</h3>
-                                <h4>{ formatDate(test.date) }</h4>
-                            </div>
-                            <div className="test-card-right">
-                                <PointsCard points={ test.points } maxPoints={ test.maxPoints } />
-                                <Link className="result-link" to={ `/app/testResult/${ user._id }/${ test._id }` }>
-                                    View result
-                                </Link>
-                            </div>
-                        </Link>
-                    )
-                }) }
+                        return (
+                            <Link to={ linkToTest } key={ test._id } >
+                                <div class="test-card">
+                                    <h3 class="test-card__title">
+                                        { test.title }
+                                    </h3>
+                                    <PointsCard points={ test.points } maxPoints={ test.maxPoints } />
+                                    <Link className="result-link" to={ `/app/testResult/${ user._id }/${ test._id }` }>
+                                        View result
+                                    </Link>
+                                    <h4 class="test-card__date">
+                                        { formatDate(test.date) }
+                                    </h4>
+                                </div>
+                            </Link>
+                        )
+                    }) }
+                </div>
             </div>
         )
     }

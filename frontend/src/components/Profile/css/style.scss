@@ -1,0 +1,14 @@
+.test-card {
+
+    .points-card, .result-link {
+        margin-top: .5rem;
+    }
+
+    .result-link {
+        margin-left: 1rem;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
