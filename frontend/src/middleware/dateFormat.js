@@ -19,7 +19,7 @@ const formatDate = date1 => {
     let monthIndex = date.getMonth();
     let year = date.getFullYear();
 
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    return day + ' ' + monthNames[monthIndex] + ', ' + year;
 };
 
 export {

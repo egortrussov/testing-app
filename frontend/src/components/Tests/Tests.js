@@ -75,7 +75,7 @@ export default class Tests extends Component {
                                     </p>
                                     <div class="test-card__btns">
                                         <div class="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>0</span> </div>
-                                        <div class="btns-btn right"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>{ test.results.length }</span> </div>
+                                        <div class="btns-btn right"><FontAwesomeIcon className="icon" icon={ faUser } /> <span>{ test.results.length }</span> </div>
                                     </div>
                                     <h4 class="test-card__date">
                                         { formatDate(test.createdAt) }

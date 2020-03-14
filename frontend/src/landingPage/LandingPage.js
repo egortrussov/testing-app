@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Logo from './img/logo.svg'
-import LogoLight from './img/logo-light.svg'
+import Logo from './img/logo1.svg'
+import LogoLight from './img/logo-light1.svg'
 import Hero from './img/hero.svg'
 
 import './css/style.css'
