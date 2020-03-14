@@ -2,7 +2,7 @@ const validate = (data) => {
     let errors = [];
     data.forEach(field => {
         if (field.name === 'email') {
-            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(field.value)) ) {
+            if (!(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(field.value)) ) {
                 errors['email'] = 'Invalid email'
             } 
         } 

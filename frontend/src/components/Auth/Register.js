@@ -83,7 +83,8 @@ export default class Register extends Component {
         if (errors['email'] || errors['password'] || errors['fullName'] || errors['confirmPassword']) {
             this.setState({
                 ...this.state,
-                errors: errors
+                errors: errors,
+                isLoading: false
             })
         } else {
             const newUser = {

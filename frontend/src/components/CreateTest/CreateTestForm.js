@@ -86,7 +86,7 @@ export default class CreateTestForm extends Component {
                     
                     
                     for (i = 0; i < s.length; i++) {
-                        if (s.options[i].innerHTML == this.innerHTML) {
+                        if (s.options[i].innerHTML === this.innerHTML) {
                             s.selectedIndex = i;
 
                             h.innerHTML = this.innerHTML;
@@ -127,7 +127,7 @@ export default class CreateTestForm extends Component {
             x = document.getElementsByClassName('select-items');
             y = document.getElementsByClassName('select-selected');
             for (i = 0; i < y.length; i++) {
-                if (elmnt == y[i]) {
+                if (elmnt === y[i]) {
                     arrNo.push(i);
                 } else {
                     y[i].classList.remove('select-arrow-active');
@@ -298,7 +298,9 @@ export default class CreateTestForm extends Component {
             ques.answers.map(ans => {
                 if (!ans.text) 
                     errors['answers'] = 'Answers must not be empty';
+                return true;
             })
+            return true;
         })
 
         if (errors['title'] || errors['subject'] || errors['questions'] || errors['answers']) {
