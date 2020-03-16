@@ -5,6 +5,7 @@ html {
   --dark-primary-color: #42C465;
   --main-bg-color: #fff;
   --dark-main-bg-color: #eee;
+  --dark-main-bg-color-shade: #e7e7e7;
   --main-text-color: #000;
   --danger-color: #fc393e;
 }
@@ -17,6 +18,7 @@ html {
     --dark-color: #2b2b2b;
     --main-bg-color: #444;
     --dark-main-bg-color: rgb(61, 61, 61);
+    --dark-main-bg-color-shade: rgb(59, 59, 59);
     --main-text-color: #fff;
     --danger-color: #ff4a50;
   }
@@ -217,5 +219,75 @@ input[type="radio"]:checked + label:after {
   margin-top: 1.5rem;
   color: #999ba3;
   font-weight: 700;
+}
+
+.question-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem 0;
+  margin-bottom: 3rem !important;
+}
+
+.question-container__title {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.question-container__answers {
+  margin-top: 1rem;
+}
+
+.question-container__answers .answer-block {
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 0.5px solid var(--dark-main-bg-color);
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+.question-container__answers .answer-block:hover {
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.question-container__answers .answer-block__letter {
+  width: 50px;
+  height: 50px;
+  background-color: var(--dark-main-bg-color-shade);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.question-container__answers .answer-block__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 1rem;
+}
+
+.question-container__answers .answer-block.selected .answer-block__letter {
+  background-color: #4ADB71;
+  color: #fff;
 }
 /*# sourceMappingURL=style.css.map */

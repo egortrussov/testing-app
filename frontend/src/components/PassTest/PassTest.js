@@ -132,6 +132,8 @@ export default class PassTest extends Component {
         const { isLoading, test, answeredQuestions, time } = this.state;
         const { questions } = test;
 
+        const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+
         if (isLoading) return (
             <Spinner />
         )
@@ -155,7 +157,27 @@ export default class PassTest extends Component {
                     <div className="test-questions">
                         { questions.map((ques, index) => {
                             return (
-                                <div className="question-card">
+                                <div className="question-container">
+                                    <h3 class="question-container__title">
+                                        { index + 1 }.  { ques.title }
+                                    </h3>
+                                    <div className="question-container__answers">
+                                        { ques.answers.map((ans, inx) => {
+                                            return (
+                                                <div className="answer-block">
+                                                    <div className="answer-block__letter"><span>{ letters[inx] }</span></div>
+                                                    <div className="answer-block__text">
+                                                        <span>{ ans.text }</span>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }) }
+                                        
+                                    </div>
+                                </div>
+                            )
+
+                                {/* <div className="question-card">
                                     <h3 className="question-title">
                                         { index + 1 }.  { ques.title }
                                     </h3>
@@ -169,8 +191,8 @@ export default class PassTest extends Component {
                                             )
                                         }) }
                                     </div>
-                                </div>
-                            )
+                                </div> */}
+                            
                         }) }
                     </div>
                     <input type="submit" className="btn btn-cta" value="Finish" />

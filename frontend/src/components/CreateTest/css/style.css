@@ -5,6 +5,7 @@ html {
   --dark-primary-color: #42C465;
   --main-bg-color: #fff;
   --dark-main-bg-color: #eee;
+  --dark-main-bg-color-shade: #e7e7e7;
   --main-text-color: #000;
   --danger-color: #fc393e;
 }
@@ -17,6 +18,7 @@ html {
     --dark-color: #2b2b2b;
     --main-bg-color: #444;
     --dark-main-bg-color: rgb(61, 61, 61);
+    --dark-main-bg-color-shade: rgb(59, 59, 59);
     --main-text-color: #fff;
     --danger-color: #ff4a50;
   }
