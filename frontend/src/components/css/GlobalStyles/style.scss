@@ -188,6 +188,7 @@ input[type="radio"] {
             border: .5px solid var(--dark-main-bg-color);
             transition: all .2s;
             cursor: pointer;
+            transition: all .2s;
 
             &:hover {
                 box-shadow: 5px 5px 10px rgba(#000, .1);;
@@ -216,7 +217,7 @@ input[type="radio"] {
             &.selected {
 
                 .answer-block__letter {
-                    background-color: #4ADB71;
+                    background-color: var(--primary-color);
                     color: #fff;
                 }
             }

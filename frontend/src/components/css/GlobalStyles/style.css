@@ -248,6 +248,7 @@ input[type="radio"]:checked + label:after {
   -webkit-transition: all .2s;
   transition: all .2s;
   cursor: pointer;
+  transition: all .2s;
 }
 
 .question-container__answers .answer-block:hover {
@@ -287,7 +288,7 @@ input[type="radio"]:checked + label:after {
 }
 
 .question-container__answers .answer-block.selected .answer-block__letter {
-  background-color: #4ADB71;
+  background-color: var(--primary-color);
   color: #fff;
 }
 /*# sourceMappingURL=style.css.map */

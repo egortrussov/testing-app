@@ -129,7 +129,7 @@ export default class PassTest extends Component {
     }
 
     render() {
-        const { isLoading, test, answeredQuestions, time } = this.state;
+        const { isLoading, test, answeredQuestions, time, answers } = this.state;
         const { questions } = test;
 
         const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
@@ -163,8 +163,16 @@ export default class PassTest extends Component {
                                     </h3>
                                     <div className="question-container__answers">
                                         { ques.answers.map((ans, inx) => {
+                                            const uid = `${ ques }-${ inx }`;
+                                            let extraClassName = '';
+                                            console.log(answers);
+                                            console.log(answers[index].toString() === (inx + 1).toString());
+                                            
+                                            if (answers[index].toString() === (inx + 1).toString()) 
+                                                extraClassName = 'selected';
+
                                             return (
-                                                <div className="answer-block">
+                                                <div className={ "answer-block " + extraClassName } onClick={ this.handleSelect.bind(this, index, ans.answerId) }>
                                                     <div className="answer-block__letter"><span>{ letters[inx] }</span></div>
                                                     <div className="answer-block__text">
                                                         <span>{ ans.text }</span>
