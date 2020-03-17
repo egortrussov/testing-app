@@ -331,10 +331,11 @@ html {
 }
 
 .questions .new-question {
-  border: 1.5px solid var(--dark-color);
+  border: 1.5px solid var(--bg-color);
   padding: .4rem 1.2rem;
   margin-top: 1.2rem;
-  background-color: #fff;
+  background-color: var(--dark-main-bg-color);
+  color: var(--main-text-color);
   border-radius: .5rem;
   font-size: .9rem;
 }
@@ -412,5 +413,44 @@ html {
 .select-items div:hover, .same-as-selected {
   background-color: var(--dark-color);
   color: #fff !important;
+}
+
+.btn-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: .3rem;
+}
+
+.btn-group .increment-btn {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  font-size: 1.3rem;
+  padding: 0 !important;
+  background-color: var(--dark-main-bg-color);
+  border: none;
+}
+
+.btn-group .increment-btn:focus {
+  outline: none;
+}
+
+.btn-group .increment-btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--main-text-color);
+}
+
+.btn-group .attempts-num {
+  margin: 0 .7rem;
 }
 /*# sourceMappingURL=style.css.map */

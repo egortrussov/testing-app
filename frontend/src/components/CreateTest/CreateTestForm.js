@@ -237,7 +237,7 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             isLimitedAttempts: !this.state.isLimitedAttempts,
-            maxAttempts: null
+            maxAttempts: 1
         })
     }
 
@@ -263,6 +263,20 @@ export default class CreateTestForm extends Component {
         })
         console.log(this.state);
         
+    }
+
+    changeAttemptsNumber(value) {
+        let { maxAttempts } = this.state;
+
+        if (value > 0) 
+            maxAttempts = Math.min(maxAttempts + value, 10);
+        else 
+            maxAttempts = Math.max(maxAttempts + value, 1);
+
+        this.setState({
+            ...this.state,
+            maxAttempts
+        })
     }
 
     setCorrectAnswerId(quesIndex, ansId) {
@@ -385,9 +399,9 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading, title, errors, isLimitedAttempts, isLimitedTime } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading, title, errors, isLimitedAttempts, isLimitedTime, maxAttempts } = this.state;
 
-        console.log(isLimitedTime);
+        console.log(maxAttempts);
         
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -428,7 +442,12 @@ export default class CreateTestForm extends Component {
                     { isLimitedAttempts && (
                         <div className="info-group">
                             <label htmlFor="key">Maximum attempts: </label>
-                            <input type="number" min="1" max="10" onChange={ (e) => this.setAttemptsNumber(e) } name="key"  />
+                            <div className="btn-group">
+                                <button className="increment-btn" onClick={ () => this.changeAttemptsNumber(-1) }> <span>-</span> </button>
+                                <span className="attempts-num">{ maxAttempts }</span>
+                                <button className="increment-btn" onClick={ () => this.changeAttemptsNumber(1) }> <span>+</span> </button>
+                            </div>
+                            
                         </div>
                     ) }
                     <div className="info-group-checkbox">
