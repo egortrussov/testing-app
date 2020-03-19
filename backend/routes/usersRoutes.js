@@ -31,6 +31,30 @@ router.get('/userInfo/:userId', (req, res) => {
 
 // POST ROUTES
 
+router.post('/saveUserData/:userId', (req, res) => {
+    const userId = req.params.userId;
+
+    User
+        .findOne({ _id: userId })
+        .then(user => {
+            if (!user) 
+                res.status(401).json({ isSuccess: false, msg: 'User not found' });
+            else {
+                const { profileImageUrl, socialMedia } = req.body;
+                if (profileImageUrl)
+                    user.profileImageUrl = profileImageUrl;
+                if (socialMedia) 
+                    user.socialMedia = socialMedia;
+                
+                user
+                    .save()
+                    .then(() => {
+                        res.status(200).json({ isSuccess: true, msg: 'User info saved' });
+                    })
+            }
+        })
+})
+
 router.post('/addUser', (req, res) => {
     const newUser = new User({
         ...req.body,

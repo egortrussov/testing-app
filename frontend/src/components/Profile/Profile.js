@@ -14,6 +14,7 @@ export default class Profile extends Component {
     state = {
         user: null,
         passedTests: [],
+        avgResult: null,
         isLoading: true
     }
 
@@ -33,16 +34,25 @@ export default class Profile extends Component {
                 
                 res.passedTests.reverse();
 
+                let avgResult = 0;
+                res.passedTests.forEach(test => {
+                    avgResult += test.points / test.maxPoints;
+                    console.log(avgResult)
+                })
+                avgResult /= res.passedTests.length;
+                avgResult = Math.floor(avgResult * 100);
+
                 this.setState({
                     user: res,
-                    isLoading: false
+                    avgResult,
+                    isLoading: false,
                 })
             })
     }
     
 
     render() {
-        const { user, isLoading } = this.state;
+        const { user, isLoading, avgResult } = this.state;
 
         if (isLoading) return (
             <Spinner />
@@ -53,6 +63,26 @@ export default class Profile extends Component {
                 <h1 className="heading">
                     Hello, { user.name }!
                 </h1>
+                <div className="profile-block">
+                    <div className="profile-image">
+                        <div className="profile-image__img">
+                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" alt=""/>
+                        </div>
+                        <input type="text" className="image-url" />
+                        <span className="hint">(Paste image url here)</span>
+                    </div>
+                    <div className="profile-info">
+                        <div className="profile-info__block">
+                            <span className="info-text">Name: { user.name }</span>
+                        </div>
+                        <div className="profile-info__block">
+                            <span className="info-text">Tests passed: { user.passedTests.length }</span>
+                        </div>
+                        <div className="profile-info__block">
+                            <span className="info-text">Average result: { avgResult }%</span>
+                        </div>
+                    </div>
+                </div>
                 { user.passedTests.length > 0 ? ( <h2>Your recent tests: </h2> ) : ( <h2>You haven't passed any tests yet!</h2> ) }
                 <div className="tests-container">
                     { user.passedTests.map(test => {
