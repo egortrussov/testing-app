@@ -1,3 +1,29 @@
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --dark-main-bg-color: #eee;
+  --dark-main-bg-color-shade: #e7e7e7;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --main-bg-color: #444;
+    --dark-main-bg-color: rgb(61, 61, 61);
+    --dark-main-bg-color-shade: rgb(59, 59, 59);
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
 .test-card .points-card, .test-card .result-link {
   margin-top: .5rem;
 }
@@ -8,5 +34,44 @@
 
 .test-card .result-link:hover {
   text-decoration: underline;
+}
+
+.profile-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 470px) {
+  .profile-block {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .profile-block .profile-info {
+    width: 100%;
+    margin-left: 2rem;
+  }
+}
+
+.profile-block .profile-img {
+  width: 160px;
+}
+
+.profile-block .profile-img img {
+  width: 100%;
+}
+
+.profile-block .profile-info__block {
+  margin: .2rem 0;
+  font-size: 1.1rem;
 }
 /*# sourceMappingURL=style.css.map */

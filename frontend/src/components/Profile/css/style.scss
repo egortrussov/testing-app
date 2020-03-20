@@ -1,3 +1,5 @@
+@import '../../css/config';
+
 .test-card {
 
     .points-card, .result-link {
@@ -9,6 +11,38 @@
 
         &:hover {
             text-decoration: underline;
+        }
+    }
+}
+
+.profile-block {
+    @include tablet-xxsm {
+        flex-direction: column;
+        justify-content: center;
+
+        .profile-info {
+            width: 100%;
+            margin-left: 2rem;
+        }
+    }
+
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+
+    .profile-img {
+        width: 160px;
+        
+        img {
+            width: 100%;
+        }
+    }
+
+    .profile-info {
+
+        &__block {
+            margin: .2rem 0;
+            font-size: 1.1rem;
         }
     }
 }

@@ -53,16 +53,6 @@ export default class Profile extends Component {
                 })
             })
     }
-    
-    handleSetProfileImgUrl(url) {
-        this.setState({
-            ...this.state,
-            user: {
-                ...this.state.user,
-                profileImageUrl: url
-            }
-        })
-    }
 
     render() {
         const { user, isLoading, avgResult } = this.state;
@@ -79,12 +69,8 @@ export default class Profile extends Component {
                     Hello, { user.name }!
                 </h1>
                 <div className="profile-block">
-                    <div className="profile-image">
-                        <div className="profile-image__img">
-                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" alt=""/>
-                        </div>
-                        <input type="text" className="image-url" value={ user.profileImageUrl } />
-                        <span className="hint">(Paste image url here)</span>
+                    <div className="profile-img">
+                        <img src="/img/profile-img.svg" alt=""/>
                     </div>
                     <div className="profile-info">
                         <div className="profile-info__block">
