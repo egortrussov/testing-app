@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import Spinner from '../Spinner/Spinner'
 import { getHeaders } from '../../middleware/authMiddleware'
 import { formatDate } from '../../middleware/dateFormat'
 import { Link } from 'react-router-dom'
+
 
 import PointsCard from '../reusableComponents/PointsCard'
 
@@ -10,12 +11,15 @@ import TestsContext from '../../context/TestsContext'
 
 import './css/style.css'
 
+const TestsContainer = React.lazy(() => import('../reusableComponents/tests/TestsContainer'))
+
 export default class Profile extends Component {
     state = {
         user: null,
         passedTests: [],
         avgResult: null,
-        isLoading: true
+        isLoading: true,
+        nextLinkVal: null
     }
 
     static contextType = TestsContext;
@@ -50,9 +54,20 @@ export default class Profile extends Component {
             })
     }
     
+    handleSetProfileImgUrl(url) {
+        this.setState({
+            ...this.state,
+            user: {
+                ...this.state.user,
+                profileImageUrl: url
+            }
+        })
+    }
 
     render() {
         const { user, isLoading, avgResult } = this.state;
+
+        let tempTests = [];
 
         if (isLoading) return (
             <Spinner />
@@ -68,7 +83,7 @@ export default class Profile extends Component {
                         <div className="profile-image__img">
                             <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" alt=""/>
                         </div>
-                        <input type="text" className="image-url" />
+                        <input type="text" className="image-url" value={ user.profileImageUrl } />
                         <span className="hint">(Paste image url here)</span>
                     </div>
                     <div className="profile-info">
@@ -84,29 +99,18 @@ export default class Profile extends Component {
                     </div>
                 </div>
                 { user.passedTests.length > 0 ? ( <h2>Your recent tests: </h2> ) : ( <h2>You haven't passed any tests yet!</h2> ) }
-                <div className="tests-container">
-                    { user.passedTests.map(test => {
-                        console.log(test);
-                        const linkToTest = `/app/testInfo/${ test.testId }`
-
+                { user.passedTests.map((test, inx) => {
+                    tempTests.push(test);
+                    console.log(tempTests.length)
+                    if (inx % 5 === 0 || inx === user.passedTests.length) {
+                        tempTests = [];
                         return (
-                            <Link to={ linkToTest } key={ test._id } >
-                                <div class="test-card">
-                                    <h3 class="test-card__title">
-                                        { test.title }
-                                    </h3>
-                                    <PointsCard points={ test.points } maxPoints={ test.maxPoints } />
-                                    <Link className="result-link" to={ `/app/testResult/${ user._id }/${ test._id }` }>
-                                        View result
-                                    </Link>
-                                    <h4 class="test-card__date">
-                                        { formatDate(test.date) }
-                                    </h4>
-                                </div>
-                            </Link>
+                            <Suspense fallback={ <Spinner /> }>
+                                <TestsContainer type="result" tests={ tempTests } user={ user } />
+                            </Suspense>
                         )
-                    }) }
-                </div>
+                    } 
+                }) }
             </div>
         )
     }

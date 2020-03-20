@@ -35,6 +35,19 @@ $radioActive: #42C465;
     border-radius: .5rem;
     font-weight: 700;
     border: none;
+
+    &:focus {
+        outline: none;
+    }
+
+    &.btn-primary {
+        background: none !important;
+        border: 2px solid var(--primary-color);
+    }
+
+    &.sm {
+        padding: .4rem 1.2rem !important;
+    }
 }
 
 input[type="radio"] {

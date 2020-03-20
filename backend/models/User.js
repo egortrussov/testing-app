@@ -22,8 +22,7 @@ const UserSchema = new Schema({
         required: false,
         default: 0
     },
-    profileImageUrl: String,
-    socialMedia: [String]
+    profileImageUrl: String
 })
 
 module.exports = User = mongoose.model('User', UserSchema);

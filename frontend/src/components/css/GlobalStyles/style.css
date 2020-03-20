@@ -57,6 +57,19 @@ html {
   border: none;
 }
 
+.btn:focus, input.btn:focus {
+  outline: none;
+}
+
+.btn.btn-primary, input.btn.btn-primary {
+  background: none !important;
+  border: 2px solid var(--primary-color);
+}
+
+.btn.sm, input.btn.sm {
+  padding: .4rem 1.2rem !important;
+}
+
 input[type="radio"] {
   display: none;
 }
