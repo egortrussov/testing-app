@@ -4,7 +4,6 @@ import { getHeaders } from '../../middleware/authMiddleware'
 import { formatDate } from '../../middleware/dateFormat'
 import { Link } from 'react-router-dom'
 
-
 import PointsCard from '../reusableComponents/PointsCard'
 
 import TestsContext from '../../context/TestsContext'
@@ -85,18 +84,9 @@ export default class Profile extends Component {
                     </div>
                 </div>
                 { user.passedTests.length > 0 ? ( <h2>Your recent tests: </h2> ) : ( <h2>You haven't passed any tests yet!</h2> ) }
-                { user.passedTests.map((test, inx) => {
-                    tempTests.push(test);
-                    console.log(tempTests.length)
-                    if (inx % 5 === 0 || inx === user.passedTests.length) {
-                        tempTests = [];
-                        return (
-                            <Suspense fallback={ <Spinner /> }>
-                                <TestsContainer type="result" tests={ tempTests } user={ user } />
-                            </Suspense>
-                        )
-                    } 
-                }) }
+                { <Suspense fallback={ <Spinner /> }>
+                    <TestsContainer type="result" tests={ user.passedTests } user={ user } />
+                </Suspense> }
             </div>
         )
     }

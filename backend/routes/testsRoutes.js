@@ -97,12 +97,33 @@ router.get('/createdTests/:userId', (req, res) => {
         })
 })
 
-router.get('/allTests', auth, (req, res) => {
-    Test.find()
-        .sort({ createdAt: -1 })
-        .then(tests => {
-            res.status(200).json(tests);
-        })
+router.get('/allTests', (req, res) => {
+    const { isLimited } = req.body;
+
+    if (isLimited) {
+        const { left, right } = req.body;
+        console.log(left, right)
+        Test 
+            .find()
+            .then(tests => {
+                if (left >= tests.length) 
+                    res.status(200).json({ tests: [] });
+                else {
+                    const size = tests.length;
+                    let resp = tests.slice(Math.min(left, size), Math.min(right, size));
+                    let isMoreTests = true;
+                    if (right >= size)
+                        isMoreTests = false;
+                    res.status(200).json({ len: resp.length, tests: resp, isMoreTests })
+                }
+            })
+    } else {
+        Test.find()
+            .sort({ createdAt: -1 })
+            .then(tests => {
+                res.status(200).json(tests);
+            })
+    }
 })
 
 router.get('/testInfo/:testId', (req, res) => {
@@ -166,7 +187,6 @@ router.post('/createTest', (req, res) => {
 })
 
 router.post('/saveResult/:testId', (req, res) => {
-    console.log(req.body, '----------------------------');
     User 
         .findOne({ _id: req.body.userId })
         .then(user => {

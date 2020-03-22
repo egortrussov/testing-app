@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import TestsContext from '../../context/TestsContext'
 import Spinner from '../Spinner/Spinner'
@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 
 import './css/style.css'
+
+const TestsContainer = React.lazy(() => import('../reusableComponents/tests/TestsContainer'))
 
 export default class Tests extends Component {
     state = {
@@ -45,6 +47,8 @@ export default class Tests extends Component {
     render() {
         const { isLoading, tests, isRedirectToLogin } = this.state;
 
+        let tempTests = [];
+
         if (isRedirectToLogin) return (
             <Redirect to="/app/login" />
         )
@@ -57,34 +61,9 @@ export default class Tests extends Component {
             <div>
                 <h1 className="heading">Available tests: </h1>
                 { tests.length === 0 ? ( <h2>Oops, no tests available yet!</h2> ) : ( <></> ) }
-                <div className="tests-container">
-                    { tests.map(test => {
-                        const linkToTest = `/app/testInfo/${ test._id }`
-
-                        return (
-                            <Link to={ linkToTest }>
-                                <div class="test-card">
-                                    <h3 class="test-card__title">
-                                        { test.title }
-                                    </h3>
-                                    <h4 class="test-card__subject">
-                                        { test.subject }
-                                    </h4>
-                                    <p class="test-card__description">
-                                        { test.description ? test.description : 'No description provided!' }
-                                    </p>
-                                    <div class="test-card__btns">
-                                        <div class="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>0</span> </div>
-                                        <div class="btns-btn right"><FontAwesomeIcon className="icon" icon={ faUser } /> <span>{ test.results.length }</span> </div>
-                                    </div>
-                                    <h4 class="test-card__date">
-                                        { formatDate(test.createdAt) }
-                                    </h4>
-                                </div>
-                            </Link>
-                        )
-                    }) }
-                </div>
+                { <Suspense fallback={ <Spinner /> }>
+                    <TestsContainer type="full" tests={ tests } />
+                </Suspense> }
             </div>
         )
     }
