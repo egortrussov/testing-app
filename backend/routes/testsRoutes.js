@@ -138,6 +138,7 @@ router.get('/testInfo/:testId', (req, res) => {
 
 // POST ROUTES 
 
+// Get all tests with limits
 router.post('/allTests', (req, res) => {
     const { isLimited } = req.body;
     console.log(req.body)
@@ -147,7 +148,40 @@ router.post('/allTests', (req, res) => {
         console.log(left, right)
         Test 
             .find()
+            .sort({ createdAt: -1 })
             .then(tests => {
+                if (left >= tests.length) 
+                    res.status(200).json({ tests: [] });
+                else {
+                    const size = tests.length;
+                    let resp = tests.slice(Math.min(left, size), Math.min(right, size));
+                    let isMoreTests = true;
+                    if (right >= size)
+                        isMoreTests = false;
+                    res.status(200).json({ len: resp.length, tests: resp, isMoreTests })
+                }
+            })
+    } else {
+        Test.find()
+            .sort({ createdAt: -1 })
+            .then(tests => {
+                res.status(200).json(tests);
+            })
+    }
+})
+
+// Get passed tests with limit
+router.post('/passedTests/:userId', (req, res) => {
+    const { isLimited } = req.body;
+    console.log(req.body)
+
+    if (isLimited) {
+        const { left, right } = req.body;
+        console.log(left, right)
+        User 
+            .findOne({ _id: req.params.userId })
+            .then(user => {
+                let tests = user.passedTests;
                 if (left >= tests.length) 
                     res.status(200).json({ tests: [] });
                 else {

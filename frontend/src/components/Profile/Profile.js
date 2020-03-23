@@ -56,11 +56,15 @@ export default class Profile extends Component {
     render() {
         const { user, isLoading, avgResult } = this.state;
 
+        console.log(user)
+
         let tempTests = [];
 
-        if (isLoading) return (
+        if (isLoading || !user) return (
             <Spinner />
         )
+
+        const urlToFetch = `${ this.context.proxy }/api/tests/passedTests/${ user._id }`;
 
         return (
             <div>
@@ -85,7 +89,7 @@ export default class Profile extends Component {
                 </div>
                 { user.passedTests.length > 0 ? ( <h2>Your recent tests: </h2> ) : ( <h2>You haven't passed any tests yet!</h2> ) }
                 { <Suspense fallback={ <Spinner /> }>
-                    <TestsContainer type="result" tests={ user.passedTests } user={ user } />
+                    <TestsContainer type="result" urlToFetch={ urlToFetch } user={ user } />
                 </Suspense> }
             </div>
         )

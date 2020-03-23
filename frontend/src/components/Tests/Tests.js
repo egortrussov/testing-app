@@ -50,34 +50,34 @@ export default class Tests extends Component {
     //         })
     // }
 
-    loadMore() {
-        let { left, right, tests } = this.state;
-        console.log('ijijijijiji')
-        fetch(`${ this.context.proxy }/api/tests/allTests`, {
-            method: 'POST',
-            headers: {
-                ...getHeaders(),
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                isLimited: true,
-                left,
-                right
-            })
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                res.tests.forEach(test => tests.push(test));
-                this.setState({
-                    ...this.state,
-                    tests,
-                    left: left + 3,
-                    right: right + 3,
-                    isMoreTests: res.isMoreTests
-                }, () => console.log(this.state.tests))
-            });
-    }
+    // loadMore() {
+    //     let { left, right, tests } = this.state;
+    //     console.log('ijijijijiji')
+    //     fetch(`${ this.context.proxy }/api/tests/allTests`, {
+    //         method: 'POST',
+    //         headers: {
+    //             ...getHeaders(),
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             isLimited: true,
+    //             left,
+    //             right
+    //         })
+    //     })
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             console.log(res);
+    //             res.tests.forEach(test => tests.push(test));
+    //             this.setState({
+    //                 ...this.state,
+    //                 tests,
+    //                 left: left + 3,
+    //                 right: right + 3,
+    //                 isMoreTests: res.isMoreTests
+    //             }, () => console.log(this.state.tests))
+    //         });
+    // }
 
     // componentDidMount() {
     //     this.loadMore();
@@ -90,6 +90,8 @@ export default class Tests extends Component {
         let tempTests = [];
         console.log(isMoreTests)
 
+        const linkToFetch = `${ this.context.proxy }/api/tests/allTests`;
+
         if (isRedirectToLogin) return (
             <Redirect to="/app/login" />
         )
@@ -98,34 +100,26 @@ export default class Tests extends Component {
             <Spinner />
         )
 
-        let items = [];
-        tests.map(test => {
-            items.push (
-                <Suspense fallback={ <Spinner size="sm" /> } >
-                    <TestCard type={ "full" } test={ test } user={ null } />
-                </Suspense> 
-            )
-        })
-        console.log(items)
+        // let items = [];
+        // tests.map(test => {
+        //     items.push (
+        //         <Suspense fallback={ <Spinner size="sm" /> } >
+        //             <TestCard type={ "full" } test={ test } user={ null } />
+        //         </Suspense> 
+        //     )
+        // })
+        // console.log(items)
 
         return (
             <>
                 <h1 className="heading">Available tests: </h1>
                 { tests.length === 0 ? ( <h2>Oops, no tests available yet!</h2> ) : ( <></> ) }
-                {/* <div className="tests-container"> */}
-                    <InfiniteScroll
-                        pageStart={ "0" }
-                        loadMore={ this.loadMore.bind(this) }
-                        hasMore={ isMoreTests }
-                        loader={ <Spinner /> }
-                        useWindow={ false }
-                         >
-                        <div className="tests-container">
-                            { items }
-                        </div>
-                        
-                    </InfiniteScroll>
-                {/* </div> */}
+                <Suspense fallback={ <Spinner /> }>
+                    <TestsContainer 
+                        urlToFetch={ linkToFetch }
+                        type={ "full" } />
+                </Suspense>
+                
             </>
         )
     }
