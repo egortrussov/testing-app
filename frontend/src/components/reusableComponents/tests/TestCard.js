@@ -10,7 +10,11 @@ import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 
 const TestCard = ({ test, type, user }) => {
 
-    const linkToTest = `/app/testInfo/${ test.testId }`
+    let linkToTest = '';
+    if (type === 'full')
+        linkToTest = `/app/testInfo/${ test._id }`;
+    else 
+        linkToTest = `/app/testInfo/${ test.testId }`;
 
     if (type === 'result')
         return (
