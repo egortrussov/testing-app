@@ -14,7 +14,7 @@ class App extends Component {
     state = {
         userId: ls.get('userId'),
         token: ls.get('token'),
-        proxy: window.location.href.startsWith('http://') ? 'http://localhost:5000' : 'https://testing-app-easytest.herokuapp.com'
+        proxy: window.location.href.startsWith('http://') ? 'http://localhost:5000' : ''
     }
 
     setToken = (token, userId) => {
