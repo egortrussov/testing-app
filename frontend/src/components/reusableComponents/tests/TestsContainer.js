@@ -95,7 +95,7 @@ export default class TestsComtainer extends Component {
                 loader={ <Spinner /> }
                 useWindow={ false } >
                 <div className="tests-container">
-                        { items }
+                    { items.length === 0 ? <h3>Oops, no tests available yet!</h3> : items }
                 </div>
                 
             </InfiniteScroll>
