@@ -14,8 +14,26 @@ class App extends Component {
     state = {
         userId: ls.get('userId'),
         token: ls.get('token'),
-        proxy: process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : 'https://easytestapp.herokuapp.com'
+        proxy: ''
     }
+
+    componentDidMount() {
+        let proxy = '';
+        if (process.env.NODE_ENV === 'production') {
+            if (window.location.href.startsWith('https'))
+                proxy = 'https://easytestapp.herokuapp.com';
+            else if (window.location.href.startsWith('http'))
+                proxy = 'http://easytestapp.herokuapp.com';
+            else 
+                proxy = 'easytestapp.herokuapp.com';
+        } else 
+            proxy = 'http://localhost:5000';
+        this.setState({
+            ...this.state,
+            proxy
+        })
+    }
+    
 
     setToken = (token, userId) => {
         this.setState({
