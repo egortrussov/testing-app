@@ -88,7 +88,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 
                 img {
                     width: 30px;
-                    margin-right: .2rem;
+                    margin-right: .6rem;
                 }
 
                 color: #fff;
@@ -131,17 +131,17 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
                     left: .5rem;
                 }
 
-                &.active {
+                &:hover {
                     @include tablet-xsm {
                         background: none !important;
                     }
 
-                    background-color: var(--dark-color) !important;
+                    background-color: var(--dark-color-lighten) !important;
                 }
 
-                &:hover {
+                &.active {
                     @include tablet-xsm {
-                        background: none;
+                        background: none !important;
                     }
 
                     background-color: var(--dark-color) !important;

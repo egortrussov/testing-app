@@ -2,6 +2,7 @@ html {
   --primary-color: #4ADB71;
   --bg-color: #4ADB71;
   --dark-color: #42C465;
+  --dark-color-lighten: rgb(77, 209, 112);
   --dark-primary-color: #42C465;
   --main-bg-color: #fff;
   --dark-main-bg-color: #eee;
@@ -16,6 +17,7 @@ html {
     --primary-color: rgb(42, 150, 71);
     --dark-primary-color: rgb(42, 150, 71);
     --dark-color: #2b2b2b;
+    --dark-color-lighten: #313131;
     --main-bg-color: #444;
     --dark-main-bg-color: rgb(61, 61, 61);
     --dark-main-bg-color-shade: rgb(59, 59, 59);
@@ -148,7 +150,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 
 .app-container nav .nav-item .logo img {
   width: 30px;
-  margin-right: .2rem;
+  margin-right: .6rem;
 }
 
 .app-container nav .nav-item .nav-link {
@@ -192,6 +194,16 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   }
 }
 
+.app-container nav .nav-item .nav-link:hover {
+  background-color: var(--dark-color-lighten) !important;
+}
+
+@media (max-width: 600px) {
+  .app-container nav .nav-item .nav-link:hover {
+    background: none !important;
+  }
+}
+
 .app-container nav .nav-item .nav-link.active {
   background-color: var(--dark-color) !important;
 }
@@ -199,16 +211,6 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 @media (max-width: 600px) {
   .app-container nav .nav-item .nav-link.active {
     background: none !important;
-  }
-}
-
-.app-container nav .nav-item .nav-link:hover {
-  background-color: var(--dark-color) !important;
-}
-
-@media (max-width: 600px) {
-  .app-container nav .nav-item .nav-link:hover {
-    background: none;
   }
 }
 
