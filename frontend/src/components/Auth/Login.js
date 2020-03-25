@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import './css/style.css'
 
+import Input from '../reusableComponents/inputField/Input'
 import Spinner from '../Spinner/Spinner'
 
 import { validate } from '../../middleware/validator'
@@ -117,6 +118,7 @@ export default class Login extends Component {
             <div>
                 <h1 className="heading">Log in</h1>
                 <form id="login-form" onSubmit={ (e) => this.handleSubmit(e) }>
+                    <Input />
                     <div className="form-group">
                         <label htmlFor="">E-mail: </label>
                         <span data-name="email" onInput={ (e) => this.setCredential(e) } className="field" contentEditable="true" id="email"></span>

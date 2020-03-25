@@ -1,0 +1,35 @@
+.input-group {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+
+    input {
+        background: none;
+        border: none;
+        border-bottom: 3px solid #ddd;
+        width: 100%;
+        max-width: 400px;
+        color: var(--main-text-color);
+        padding: .3rem;
+        font-size: 1.1rem;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    label {
+        position: absolute;
+        width: 0px;
+        height: 3px;
+        background-color: var(--primary-color);
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        transition: all .2s;
+    }
+
+    input:focus + label {
+        width: 100%;
+    }
+}
