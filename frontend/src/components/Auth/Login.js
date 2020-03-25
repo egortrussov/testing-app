@@ -24,24 +24,24 @@ export default class Login extends Component {
     static contextType = AuthContext;
 
     componentDidMount() {
-        const psw = document.querySelector('#psw');
-        const email = document.querySelector('#email');
-        psw.addEventListener('focus',function(e){ /*yourcode*/ },false);
-        psw.addEventListener('keyup',function(e){ console.log(e.keyCode) },false);
-        email.addEventListener('keypress',function(e){ 
-            if (e.which === 13) {
-                e.preventDefault();
-                // let form = document.querySelector('form#login-form');
-                // form.submit()
-            }
-         },false);
-        psw.addEventListener('keypress',function(e){ 
-            if (e.which === 13) {
-                e.preventDefault();
-                // let form = document.querySelector('form#login-form');
-                // form.submit()
-            }
-         },false);
+        // const psw = document.querySelector('#psw');
+        // const email = document.querySelector('#email');
+        // psw.addEventListener('focus',function(e){ /*yourcode*/ },false);
+        // psw.addEventListener('keyup',function(e){ console.log(e.keyCode) },false);
+        // email.addEventListener('keypress',function(e){ 
+        //     if (e.which === 13) {
+        //         e.preventDefault();
+        //         // let form = document.querySelector('form#login-form');
+        //         // form.submit()
+        //     }
+        //  },false);
+        // psw.addEventListener('keypress',function(e){ 
+        //     if (e.which === 13) {
+        //         e.preventDefault();
+        //         // let form = document.querySelector('form#login-form');
+        //         // form.submit()
+        //     }
+        //  },false);
     }
 
     setCredential(e) {
@@ -49,7 +49,7 @@ export default class Login extends Component {
         
         this.setState({
             ...this.state,
-            [e.target.getAttribute('data-name')]: e.target.innerHTML
+            [e.target.name]: e.target.value
         }, () => console.log(this.state)
         )
     }
@@ -118,8 +118,17 @@ export default class Login extends Component {
             <div>
                 <h1 className="heading">Log in</h1>
                 <form id="login-form" onSubmit={ (e) => this.handleSubmit(e) }>
-                    <Input />
                     <div className="form-group">
+                        <label htmlFor="">Email: </label>
+                        <Input name="email" type="text" onChange={ (e) => this.setCredential(e) } />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="">Password</label>
+                        <Input name="password" type="password" onChange={ (e) => this.setCredential(e) } />
+                    </div>
+                    
+                    
+                    {/* <div className="form-group">
                         <label htmlFor="">E-mail: </label>
                         <span data-name="email" onInput={ (e) => this.setCredential(e) } className="field" contentEditable="true" id="email"></span>
                         <span className="error-input">{ errors['email'] }</span>
@@ -129,7 +138,7 @@ export default class Login extends Component {
                         <span data-name="password" onInput={ (e) => this.setCredential(e) } id="psw" className="field with-input" contentEditable="true">
                         </span>
                         <span className="error-input">{ errors['password'] }</span>
-                    </div>
+                    </div> */}
                     <input onClick={ () => this.setLoading(true) } type="submit" className="btn btn-cta" value="Log in" />
                     { isLoading && <Spinner size="sm" /> }
                 </form>
