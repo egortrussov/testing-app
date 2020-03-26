@@ -17,7 +17,7 @@ class App extends Component {
         proxy: ''
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let proxy = '';
         if (process.env.NODE_ENV === 'production') {
             if (window.location.href.startsWith('https'))
@@ -28,6 +28,7 @@ class App extends Component {
                 proxy = 'easytestapp.herokuapp.com';
         } else 
             proxy = 'http://localhost:5000';
+        console.log(proxy)
         this.setState({
             ...this.state,
             proxy

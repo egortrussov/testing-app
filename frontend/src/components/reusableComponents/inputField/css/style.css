@@ -5,7 +5,7 @@
 }
 
 .input-group input {
-  background: none;
+  background: none !important;
   border: none;
   border-bottom: 3px solid #ddd;
   width: 100%;
@@ -17,6 +17,18 @@
 
 .input-group input:focus {
   outline: none;
+}
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  background: none !important;
+  background-color: transparent !important;
+  -webkit-box-shadow: 0 0 0 30px var(--main-bg-color) inset !important;
+  -webkit-text-fill-color: var(--main-text-color) !important;
 }
 
 .input-group label {

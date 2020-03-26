@@ -121,10 +121,12 @@ export default class Login extends Component {
                     <div className="form-group">
                         <label htmlFor="">Email: </label>
                         <Input name="email" type="text" onChange={ (e) => this.setCredential(e) } />
+                        <span className="error-input">{ errors['email'] }</span>
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Password</label>
                         <Input name="password" type="password" onChange={ (e) => this.setCredential(e) } />
+                        <span className="error-input">{ errors['password'] }</span>
                     </div>
                     
                     
