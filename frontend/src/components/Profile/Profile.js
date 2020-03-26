@@ -67,7 +67,7 @@ export default class Profile extends Component {
         const urlToFetch = `${ this.context.proxy }/api/tests/passedTests/${ user._id }`;
 
         return (
-            <div>
+            <>
                 <h1 className="heading">
                     Hello, { user.name }!
                 </h1>
@@ -91,7 +91,7 @@ export default class Profile extends Component {
                 { <Suspense fallback={ <Spinner /> }>
                     <TestsContainer type="result" urlToFetch={ urlToFetch } user={ user } />
                 </Suspense> }
-            </div>
+            </>
         )
     }
 }
