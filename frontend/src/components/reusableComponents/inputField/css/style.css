@@ -4,6 +4,10 @@
   max-width: 400px;
 }
 
+.input-group.mini {
+  max-width: 250px;
+}
+
 .input-group input {
   background: none !important;
   border: none;
@@ -17,6 +21,11 @@
 
 .input-group input:focus {
   outline: none;
+}
+
+.input-group input.mini {
+  max-width: 250px;
+  border-bottom-width: 2px;
 }
 
 .input-group input:-webkit-autofill,
@@ -40,8 +49,12 @@
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   bottom: 0;
-  -webkit-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+.input-group input.mini + label {
+  height: 2px;
 }
 
 .input-group input:focus + label {

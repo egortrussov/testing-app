@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Spinner from '../Spinner/Spinner'
 
 import PointsCard from '../reusableComponents/PointsCard'
+import Input from '../reusableComponents/inputField/Input'
 
 import { convertTime } from '../../middleware/convertTime'
 
@@ -64,7 +65,7 @@ export default class TestInfo extends Component {
     setAccessKey(e) {
         this.setState({
             ...this.state,
-            currentAccessKey: e.target.innerText
+            currentAccessKey: e.target.value
         })
     }
 
@@ -142,7 +143,8 @@ export default class TestInfo extends Component {
                         <>
                             <br/>
                             <label htmlFor="title">To start the test, you need to type in the secret key!</label> <br/>
-                            <span id="field" className="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } type="text" name="title"></span>
+                            <Input type="text" name="secretKey" isMini={ true } onChange={ (e) => this.setAccessKey(e) } />
+                            {/* <span id="field" className="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } type="text" name="title"></span> */}
                             <span className="error-input">{ errors['keyError'] }</span>
                         </>
                     //)

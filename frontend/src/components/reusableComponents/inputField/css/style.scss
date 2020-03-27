@@ -3,6 +3,10 @@
     width: 100%;
     max-width: 400px;
 
+    &.mini {
+        max-width: 250px;
+    }
+
     input {
         background: none !important;
         border: none;
@@ -15,6 +19,11 @@
 
         &:focus {
             outline: none;
+        }
+
+        &.mini {
+            max-width: 250px;
+            border-bottom-width: 2px;
         }
     }
 
@@ -37,7 +46,11 @@
         left: 50%;
         transform: translateX(-50%);
         bottom: 0;
-        transition: all .2s;
+        transition: all .25s ease;
+    }
+
+    input.mini + label {
+        height: 2px;
     }
 
     input:focus + label {
