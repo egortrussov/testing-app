@@ -11,7 +11,7 @@ import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 const TestCard = ({ test, type, user }) => {
 
     let linkToTest = '';
-    if (type === 'full')
+    if (type === 'full' || type === 'created')
         linkToTest = `/app/testInfo/${ test._id }`;
     else 
         linkToTest = `/app/testInfo/${ test.testId }`;
@@ -29,6 +29,27 @@ const TestCard = ({ test, type, user }) => {
                     </Link>
                     <h4 class="test-card__date">
                         { formatDate(test.date) }
+                    </h4>
+                </div>
+            </Link>
+        )
+    
+    if (type === 'created') 
+        return (
+            <Link to={ linkToTest }>
+                <div class="test-card">
+                    <h3 class="test-card__title">
+                        { test.title }
+                    </h3>
+                    <h4 class="test-card__subject">
+                        { test.subject }
+                    </h4>
+                    <div class="test-card__btns">
+                        <div class="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>0</span> </div>
+                        <div class="btns-btn right"><FontAwesomeIcon className="icon" icon={ faUser } /> <span>{ test.results.length }</span> </div>
+                    </div>
+                    <h4 class="test-card__date">
+                        { formatDate(test.createdAt) }
                     </h4>
                 </div>
             </Link>

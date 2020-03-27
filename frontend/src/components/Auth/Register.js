@@ -20,42 +20,6 @@ export default class Register extends Component {
 
     static contextType = TestsContext;
 
-    componentDidMount() {
-        // const psw = document.querySelector('#password');
-        // const psw1 = document.querySelector('#confirmPassword');
-        // const email = document.querySelector('#email');
-        // psw.addEventListener('focus',function(e){ /*yourcode*/ },false);
-        // psw.addEventListener('keyup',function(e){ console.log(e.keyCode) },false);
-        // psw1.addEventListener('focus',function(e){ /*yourcode*/ },false);
-        // psw1.addEventListener('keyup',function(e){ console.log(e.keyCode) },false);
-        // email.addEventListener('keypress',function(e){ 
-        //     if (e.which === 13) {
-        //         e.preventDefault();
-        //         // let form = document.querySelector('form#login-form');
-        //         // form.submit()
-        //     }
-        //  },false);
-        // let fields = document.querySelectorAll('.field');
-        // fields.forEach(field => {
-        //     field.addEventListener('keypress',function(e){ 
-        //         if (e.which === 13) {
-        //             e.preventDefault();
-        //         }
-        //     });
-        // }) 
-        // psw.addEventListener('keypress',function(e){ 
-        //     if (e.which === 13) {
-        //         e.preventDefault();
-        //     }
-        //  },false);
-        // psw1.addEventListener('keypress',function(e){ 
-        //     if (e.which === 13) {
-        //         e.preventDefault();
-        //     }
-        //  },false);
-    }
-    
-
     setCredential(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -134,25 +98,21 @@ export default class Register extends Component {
                         <label htmlFor="">E-mail: </label>
                         <Input type="text" name="email" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['email'] }</span>
-                        
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Full name: </label>
                         <Input type="text" name="name" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['name'] }</span>
-                        
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Password: </label>
                         <Input type="password" name="password" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['password'] }</span>
-                        
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Confirm password: </label>
                         <Input type="password" name="confirmPassword" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['confirmPassword'] }</span>
-                        
                     </div>
                     <input onClick={ () => this.setLoading(true) } type="submit" className="btn btn-cta" value="Create account" />
                     { isLoading && <Spinner size="sm" /> }

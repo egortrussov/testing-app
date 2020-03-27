@@ -78,7 +78,7 @@ router.get('/passedTests/:userId', (req, res) => {
         })
 })
 
-router.get('/createdTests/:userId', (req, res) => {
+router.post('/createdTests/:userId', (req, res) => {
     User
         .findOne({ _id: req.params.userId })
         .then(user => {
@@ -92,7 +92,7 @@ router.get('/createdTests/:userId', (req, res) => {
                 .then(tests => {
                     console.log(tests);
                     
-                    res.status(200).json(tests);
+                    res.status(200).json({ tests });
                 })
         })
 })

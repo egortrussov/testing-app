@@ -24,7 +24,7 @@ export default class TestsComtainer extends Component {
     loadMore() {
         const { urlToFetch } = this.props;
         const { left, right, tests } = this.state;
-        console.log('jjjjjjj')
+        console.log(urlToFetch)
 
         fetch(urlToFetch, {
             method: 'POST',
