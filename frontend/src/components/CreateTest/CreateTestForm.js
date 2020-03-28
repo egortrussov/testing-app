@@ -500,9 +500,9 @@ export default class CreateTestForm extends Component {
                                             <div className={ "answer-block " + extraClassName }>
                                                 <div className="answer-block__letter" onClick={ () => this.setCorrectAnswerId(index, ans.answerId) }><span>{ letters[inx] }</span></div>
                                                 <div className="answer-block__text">
-                                                    <input id={ `_${ index }-${ inx }` } type="text" onChange={(e) => this.setAnswerText(e, index, inx) } />
+                                                    <input autoComplete="off" id={ `_${ index }-${ inx }` } type="text" onChange={(e) => this.setAnswerText(e, index, inx) } />
                                                     <button className="btn-delete" onClick={ () => this.deleteAnswer(index, inx) }>
-                                                        &times;
+                                                        <span>&times;</span>
                                                     </button>
                                                 </div>
                                             </div>
