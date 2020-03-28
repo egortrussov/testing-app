@@ -409,3 +409,11 @@
     }
 }
 
+.question-container__title {
+    display: flex;
+    align-items: center;
+
+    input {
+        display: inline-block;
+    }
+}

@@ -364,9 +364,7 @@ export default class CreateTestForm extends Component {
         if (corrAnswer.toString() === (ansId + 1).toString()) {
             if (ansId === 0) {
                 questions[quesId].correctAnswerId = '1';
-            } else {
-                console.log('fff');
-                
+            } else {                
                 questions[quesId].correctAnswerId = (ansId).toString();
             }
         } 
@@ -485,7 +483,7 @@ export default class CreateTestForm extends Component {
                         return (
                             <div className="question-container">
                                 <h3 class="question-container__title">
-                                    { index + 1 }.  { ques.title }
+                                    <span>{ index + 1 }.</span>  <Input type="text" isMini={ true } onChange={ (e) => this.setQuestionTitle(e, index) } name="questionTitle" />
                                 </h3>
                                 <div className="question-container__answers">
                                     { ques.answers.map((ans, inx) => {
@@ -499,15 +497,18 @@ export default class CreateTestForm extends Component {
                                         console.log(extraClassName)
 
                                         return (
-                                            <div className={ "answer-block " + extraClassName } onClick={ () => this.setCorrectAnswerId(index, ans.answerId) }>
-                                                <div className="answer-block__letter"><span>{ letters[inx] }</span></div>
+                                            <div className={ "answer-block " + extraClassName }>
+                                                <div className="answer-block__letter" onClick={ () => this.setCorrectAnswerId(index, ans.answerId) }><span>{ letters[inx] }</span></div>
                                                 <div className="answer-block__text">
-                                                    <input type="text" onChange={(e) => this.setAnswerText(e, index, inx) } />
+                                                    <input id={ `_${ index }-${ inx }` } type="text" onChange={(e) => this.setAnswerText(e, index, inx) } />
+                                                    <button className="btn-delete" onClick={ () => this.deleteAnswer(index, inx) }>
+                                                        &times;
+                                                    </button>
                                                 </div>
                                             </div>
                                         )
                                     }) }
-                                    
+                                    <button onClick={ this.handleAddAnswer.bind(this, index) } className="add-question"><span>+</span></button>
                                 </div>
                             </div>
                         )
