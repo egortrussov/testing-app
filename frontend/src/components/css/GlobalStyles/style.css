@@ -300,10 +300,32 @@ input[type="radio"]:checked + label:after {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 0 1rem;
+  width: 100%;
+}
+
+.question-container__answers .answer-block__text input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: none;
+  border: none;
+  color: var(--main-text-color);
+}
+
+.question-container__answers .answer-block__text input:hover, .question-container__answers .answer-block__text input:focus {
+  outline: none;
 }
 
 .question-container__answers .answer-block.selected .answer-block__letter {
   background-color: var(--primary-color);
   color: #fff;
+}
+
+textarea {
+  white-space: pre-wrap;
+}
+
+input, textarea {
+  caret-color: var(--main-text-color) !important;
 }
 /*# sourceMappingURL=style.css.map */

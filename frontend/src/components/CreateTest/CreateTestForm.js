@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Spinner from '../Spinner/Spinner'
+import Input from '../reusableComponents/inputField/Input'
 
 import TestsContext from '../../context/TestsContext'
 
@@ -185,7 +186,7 @@ export default class CreateTestForm extends Component {
 
     setQuestionTitle(e, index) {
         let { questions } = this.state;
-        questions[index].title = e.target.innerText;
+        questions[index].title = e.target.value;
         this.setState({
             ...this.state,
             questions
@@ -193,11 +194,11 @@ export default class CreateTestForm extends Component {
     }
 
     setAnswerText(e, index, inx) {
-        console.log(e.target.innerText);
+        console.log(e.target.value);
         
         let { questions } = this.state;
         console.log(questions[index].answers, inx);
-        questions[index].answers[inx].text = e.target.innerText;
+        questions[index].answers[inx].text = e.target.value;
         this.setState({
             ...this.state,
             questions
@@ -207,7 +208,7 @@ export default class CreateTestForm extends Component {
     setTestTitle(e) {
         this.setState({
             ...this.state,
-            title: e.target.innerText
+            title: e.target.value
         })
     }
 
@@ -221,7 +222,7 @@ export default class CreateTestForm extends Component {
     setTestSubject(e) {
         this.setState({
             ...this.state,
-            subject: e.target.innerText
+            subject: e.target.value
         }, () => console.log(this.state.subject))
     }
 
@@ -252,7 +253,7 @@ export default class CreateTestForm extends Component {
     setAccessKey(e) {
         this.setState({
             ...this.state,
-            accessKey: e.target.innerText
+            accessKey: e.target.value
         })
     }
 
@@ -372,7 +373,7 @@ export default class CreateTestForm extends Component {
         for (let i = inx; i < questions[quesId].answers.length; i++) {
             questions[quesId].answers[i].answerId = (parseInt(questions[quesId].answers[i].answerId) - 1).toString();
             if (i !== inx)
-                document.getElementById(`_${ quesId }-${ i - 1 }`).innerText = questions[quesId].answers[i].text;
+                document.getElementById(`_${ quesId }-${ i - 1 }`).value = questions[quesId].answers[i].text;
         }  
         console.log(ansId);
         
@@ -400,8 +401,6 @@ export default class CreateTestForm extends Component {
 
     render() {
         const { questions, isProtected, timeErrorMsg, isLoading, title, errors, isLimitedAttempts, isLimitedTime, maxAttempts } = this.state;
-
-        console.log(maxAttempts);
         
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -413,12 +412,12 @@ export default class CreateTestForm extends Component {
                 <div className="test-basic-info">
                     <div className="info-group">
                         <label htmlFor="title">Test name: </label>
-                        <span value={ title } className="field" contenteditable="true" onInput={ (e) => this.setTestTitle(e) } type="text" name="title"></span>
+                        <Input type="text" onChange={ (e) => this.setTestTitle(e) } isMini={ true } name="title" />
                         <span className="error-input">{ errors['title'] }</span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="subject">Subject: </label>
-                        <span className="field" contenteditable="true" onInput={ (e) => this.setTestSubject(e) } type="text" name="subject"> </span>
+                        <Input type="text" onChange={ (e) => this.setTestSubject(e) } isMini={ true } name="title" />
                         <span className="error-input">{ errors['subject'] }</span>
                     </div>
                     <div className="info-group">
@@ -432,7 +431,7 @@ export default class CreateTestForm extends Component {
                     { isProtected && (
                         <div className="info-group">
                             <label htmlFor="key">Secret key: </label>
-                            <span class="field" contenteditable="true" onInput={ (e) => this.setAccessKey(e) } name="key" > </span>
+                            <Input onChange={ (e) => this.setAccessKey(e) } isMini={ true } name="accessKey" type="text" />
                         </div>
                     ) }
                     <div className="info-group-checkbox">
@@ -484,25 +483,31 @@ export default class CreateTestForm extends Component {
                 <div className="questions">
                     { questions.map((ques, index) => {
                         return (
-                            <div className="question-card">
-                                <button onClick={ () => this.deleteQuestion(index) } className="btn-delete"><span>&times;</span></button>
-                                <label className="title"><span>{ index + 1 }.</span> </label>
-                                <span className="input" contenteditable="true" type="text" onInput={ (e) => this.setQuestionTitle(e, index) } ></span>
-                                <div className="answers">
+                            <div className="question-container">
+                                <h3 class="question-container__title">
+                                    { index + 1 }.  { ques.title }
+                                </h3>
+                                <div className="question-container__answers">
                                     { ques.answers.map((ans, inx) => {
+                                        const uid = `${ ques }-${ inx }`;
+                                        let extraClassName = '';
+
+                                        console.log(ques.correctAnswerId.toString() ===(inx + 1).toString())
+                                        
+                                        if (ques.correctAnswerId.toString() === (inx + 1).toString()) 
+                                            extraClassName = 'selected';
+                                        console.log(extraClassName)
+
                                         return (
-                                            <div className="ans-card">
-                                                <button onClick={ () => this.deleteAnswer(index, inx) } className="btn-delete"><span>&times;</span></button>
-                                                <input type="radio" id={ `${index}-${inx}` } name={ index } title="Mark as correct" onChange={ () => this.setCorrectAnswerId(index, ans.answerId) } checked={ ques.correctAnswerId === ans.answerId } />
-                                                <label htmlFor={ `${index}-${inx}` }></label>
-                                                <span className="ans-letter">{ letters[inx] }) </span>
-                                                <span id={ `_${ index }-${ inx }` } className="input" contenteditable="true" onInput={ (e) => this.setAnswerText(e, index, inx) } type="text"></span>
-                                                
-                                                
+                                            <div className={ "answer-block " + extraClassName } onClick={ () => this.setCorrectAnswerId(index, ans.answerId) }>
+                                                <div className="answer-block__letter"><span>{ letters[inx] }</span></div>
+                                                <div className="answer-block__text">
+                                                    <input type="text" onChange={(e) => this.setAnswerText(e, index, inx) } />
+                                                </div>
                                             </div>
                                         )
                                     }) }
-                                    <button onClick={ this.handleAddAnswer.bind(this, index) } className="add-question"><span>+</span></button>
+                                    
                                 </div>
                             </div>
                         )
