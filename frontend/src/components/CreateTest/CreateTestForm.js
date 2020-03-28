@@ -482,7 +482,11 @@ export default class CreateTestForm extends Component {
                     { questions.map((ques, index) => {
                         return (
                             <div className="question-container">
+                                
                                 <h3 class="question-container__title">
+                                    <div className="delete-question-btn">
+                                        <span>&times;</span>
+                                    </div>
                                     <span>{ index + 1 }.</span>  <Input type="text" isMini={ true } onChange={ (e) => this.setQuestionTitle(e, index) } name="questionTitle" />
                                 </h3>
                                 <div className="question-container__answers">
