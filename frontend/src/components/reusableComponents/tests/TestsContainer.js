@@ -41,7 +41,7 @@ export default class TestsComtainer extends Component {
             .then(res => res.json())
             .then(res => {
                 console.log(res);
-                if (res.tokenError) {
+                if (res.isTokenError) {
                     this.context.logout();
                     this.setState({
                         ...this.state,

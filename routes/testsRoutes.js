@@ -127,7 +127,7 @@ router.get('/allTests', (req, res) => {
     }
 })
 
-router.get('/testInfo/:testId', (req, res) => {
+router.get('/testInfo/:testId', auth, (req, res) => {
     console.log(req.params.testId);
     
     Test.findOne({ _id: req.params.testId })
@@ -139,7 +139,7 @@ router.get('/testInfo/:testId', (req, res) => {
 // POST ROUTES 
 
 // Get all tests with limits
-router.post('/allTests', (req, res) => {
+router.post('/allTests', auth, (req, res) => {
     const { isLimited } = req.body;
     console.log(req.body)
 
@@ -171,7 +171,7 @@ router.post('/allTests', (req, res) => {
 })
 
 // Get passed tests with limit
-router.post('/passedTests/:userId', (req, res) => {
+router.post('/passedTests/:userId', auth, (req, res) => {
     const { isLimited } = req.body;
     console.log(req.body)
 

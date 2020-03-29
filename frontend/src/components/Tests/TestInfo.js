@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -14,6 +14,7 @@ import './css/style.css'
 
 import TestsContext from '../../context/TestsContext'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { getHeaders } from '../../middleware/authMiddleware';
 
 export default class TestInfo extends Component {
     state = {
@@ -21,7 +22,8 @@ export default class TestInfo extends Component {
         test: null,
         testResults: null,
         usernames: null,
-        errors: []
+        errors: [],
+        isRedirectToLogin: false
     };
 
     static contextType = TestsContext;
@@ -38,14 +40,25 @@ export default class TestInfo extends Component {
             }
         });
         
-        fetch(`${ this.context.proxy }/api/tests/testInfo/${ testId }`)
+        fetch(`${ this.context.proxy }/api/tests/testInfo/${ testId }`, {
+            headers: {
+                ...getHeaders()
+            }
+        })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
-                this.setState({
-                    isLoading: false,
-                    test: res
-                })
+                if (res.isTokenError) {
+                    this.context.logout();
+                    this.setState({
+                        ...this.state,
+                        isRedirectToLogin: true
+                    })
+                } else {
+                    this.setState({
+                        isLoading: false,
+                        test: res
+                    })
+                }
             })
         fetch(`${ this.context.proxy }/api/tests/testResults/${ testId }`)
             .then(res => res.json())
@@ -115,7 +128,11 @@ export default class TestInfo extends Component {
     }
 
     render() {
-        const { isLoading, test, testResults, errors } = this.state;
+        const { isLoading, test, testResults, errors, isRedirectToLogin } = this.state;
+
+        if (isRedirectToLogin) return (
+            <Redirect to='/app/login' />
+        )
         
         if (isLoading || test === null) return (
             <Spinner />
