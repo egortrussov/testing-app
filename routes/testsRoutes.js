@@ -182,6 +182,7 @@ router.post('/passedTests/:userId', (req, res) => {
             .findOne({ _id: req.params.userId })
             .then(user => {
                 let tests = user.passedTests;
+                tests.sort((a, b) => b.date - a.date);
                 if (left >= tests.length) 
                     res.status(200).json({ tests: [] });
                 else {

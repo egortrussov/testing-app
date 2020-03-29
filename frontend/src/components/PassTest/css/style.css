@@ -157,4 +157,10 @@ html {
 .info-block div {
   width: auto !important;
 }
+
+.answer-block__text {
+  -webkit-box-pack: left !important;
+      -ms-flex-pack: left !important;
+          justify-content: left !important;
+}
 /*# sourceMappingURL=style.css.map */
