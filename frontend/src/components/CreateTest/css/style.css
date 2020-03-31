@@ -336,7 +336,7 @@ html {
   border: 1.5px solid var(--bg-color);
   padding: .4rem 1.2rem;
   margin-top: 1.2rem;
-  background-color: var(--dark-main-bg-color);
+  background: none;
   color: var(--main-text-color);
   border-radius: .5rem;
   font-size: .9rem;

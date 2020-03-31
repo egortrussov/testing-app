@@ -5,6 +5,7 @@ import Spinner from '../Spinner/Spinner'
 
 import './css/style.css'
 import { convertTimeShort } from '../../middleware/convertTime'
+import { getHeaders } from '../../middleware/authMiddleware'
 
 export default class PassTest extends Component {
     state = {
@@ -21,7 +22,9 @@ export default class PassTest extends Component {
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
-        fetch(`${ this.context.proxy }/api/tests/testInfo/${ testId }`)
+        fetch(`${ this.context.proxy }/api/tests/testInfo/${ testId }`, {
+            headers: getHeaders()
+        })
             .then(res => res.json())
             .then(res => {
                 console.log(res);
@@ -165,8 +168,6 @@ export default class PassTest extends Component {
                                         { ques.answers.map((ans, inx) => {
                                             const uid = `${ ques }-${ inx }`;
                                             let extraClassName = '';
-                                            console.log(answers);
-                                            console.log(answers[index].toString() === (inx + 1).toString());
                                             
                                             if (answers[index].toString() === (inx + 1).toString()) 
                                                 extraClassName = 'selected';
