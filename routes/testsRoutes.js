@@ -281,5 +281,26 @@ router.post('/saveResult/:testId', (req, res) => {
         })
 })
 
+router.post('/likeTest/:testId', (req, res) => {
+    const { userId, isIncrease } = req.body;
+    const testId = req.params.testId;
+    console.log(isIncrease)
+    Test
+        .findOne({ _id: testId })
+        .then(test => {
+            if (isIncrease) {
+                if (!test.likes.find((like) => like === userId)) 
+                    test.likes.push(userId);
+            } else {
+                test.likes = test.likes.filter(like => {
+                    return like !== userId
+                })
+            }
+            test
+                .save()
+                .then(() => res.status(200).json(test));
+        })
+})
+
 
 module.exports = router;

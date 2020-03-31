@@ -31,7 +31,8 @@ const TestSchema = new Schema({
         default: Date.now
     },
     maxAttempts: Number,
-    timeLimit: Number
+    timeLimit: Number,
+    likes: [String]
 })
 
 module.exports = Test = mongoose.model('Test', TestSchema);
