@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Spinner from '../Spinner/Spinner'
 
@@ -16,6 +15,9 @@ import TestsContext from '../../context/TestsContext'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getHeaders } from '../../middleware/authMiddleware';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+
 export default class TestInfo extends Component {
     state = {
         isLoading: true,
@@ -23,22 +25,14 @@ export default class TestInfo extends Component {
         testResults: null,
         usernames: null,
         errors: [],
-        isRedirectToLogin: false
+        isRedirectToLogin: false,
+        hasLiked: false
     };
 
     static contextType = TestsContext;
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
-
-        let field = document.querySelector('span.field');
-        console.log(field);
-        
-        if (field !== null && field) field.addEventListener('keypress',function(e){ 
-            if (e.which === 13) {
-                e.preventDefault();
-            }
-        });
         
         fetch(`${ this.context.proxy }/api/tests/testInfo/${ testId }`, {
             headers: {
@@ -54,9 +48,14 @@ export default class TestInfo extends Component {
                         isRedirectToLogin: true
                     })
                 } else {
+                    let hasLiked = false;
+                    if (res.likes.find((like) => like === this.context.userId))
+                        hasLiked = true;
                     this.setState({
+                        ...this.state,
                         isLoading: false,
-                        test: res
+                        test: res,
+                        hasLiked
                     })
                 }
             })
@@ -127,8 +126,31 @@ export default class TestInfo extends Component {
         });
     }
 
+    setLike() {
+        const { test, hasLiked } = this.state;
+
+        fetch(`${ this.context.proxy }/api/tests/likeTest/${ test._id }`, {
+            method: 'POST',
+            headers: {
+                ...getHeaders,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                isIncrease: !hasLiked,
+                userId: this.context.userId
+            })
+        }) 
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    hasLiked: !hasLiked
+                }, () => console.log(this.state.hasLiked))
+            })
+    }
+
     render() {
-        const { isLoading, test, testResults, errors, isRedirectToLogin } = this.state;
+        const { isLoading, test, testResults, errors, isRedirectToLogin, hasLiked } = this.state;
 
         if (isRedirectToLogin) return (
             <Redirect to='/app/login' />
@@ -184,6 +206,12 @@ export default class TestInfo extends Component {
                 <div className="btn-block">
                     <span className="error-input">{ errors['attempts'] }</span>
                     <button onClick={ () => this.goToTest() } className="btn btn-cta">Pass test!</button>
+                </div>
+
+                <div className="like-block">
+                    { usedAttemtps ? (
+                        <FontAwesomeIcon className={ `like-icon ${ hasLiked ? 'active' : '' }` } onClick={ this.setLike.bind(this) } icon={ faThumbsUp } /> 
+                    ) : ( <></> ) } 
                 </div>
                 
                 <div className="results">

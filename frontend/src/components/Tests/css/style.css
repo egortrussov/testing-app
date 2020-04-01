@@ -134,4 +134,8 @@ html {
           transform: translateX(-50%);
   top: calc(100% + 2px);
 }
+
+.like-icon.active {
+  color: red;
+}
 /*# sourceMappingURL=style.css.map */

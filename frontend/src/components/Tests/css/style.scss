@@ -105,3 +105,10 @@
         }
     }
 }
+
+.like-icon {
+
+    &.active {
+        color: red;
+    }
+}
