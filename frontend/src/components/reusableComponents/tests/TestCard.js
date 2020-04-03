@@ -15,6 +15,17 @@ const TestCard = ({ test, type, user }) => {
         linkToTest = `/app/testInfo/${ test._id }`;
     else 
         linkToTest = `/app/testInfo/${ test.testId }`;
+    
+    if (test.description) {
+        let newDescription = test.description;
+        if (newDescription.length >= 50) {
+            newDescription = newDescription.slice(0, 50)
+            newDescription += '...';
+        }
+        test.description = newDescription;
+    }
+    
+    
 
     if (type === 'result')
         return (

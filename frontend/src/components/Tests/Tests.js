@@ -38,7 +38,7 @@ export default class Tests extends Component {
 
         return (
             <>
-                <h1 className="heading">Available tests: </h1>
+                <h1 className="heading">Recent tests: </h1>
                 <Suspense fallback={ <Spinner /> }>
                     <TestsContainer 
                         urlToFetch={ linkToFetch }

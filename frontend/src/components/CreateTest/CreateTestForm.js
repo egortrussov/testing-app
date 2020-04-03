@@ -373,7 +373,10 @@ export default class CreateTestForm extends Component {
             if (i !== inx)
                 document.getElementById(`_${ quesId }-${ i - 1 }`).value = questions[quesId].answers[i].text;
         }  
-        console.log(ansId);
+        console.log(+questions[quesId].correctAnswerId, questions[quesId].answers.length)
+        if (+questions[quesId].correctAnswerId >= questions[quesId].answers.length) 
+            questions[quesId].correctAnswerId =  (questions[quesId].answers.length - 1).toString();
+        console.log(questions[quesId]);
         
         questions[quesId].answers.splice(ansId, 1);
 
