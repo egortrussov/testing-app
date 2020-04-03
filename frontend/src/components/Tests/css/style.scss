@@ -106,6 +106,40 @@
     }
 }
 
+.btn-block {
+    display: flex;
+
+    button {
+        margin: 0;
+        display: block;
+        
+        &.btn-cta {
+            background-color: #fff;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &.like-btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            background: none !important;
+            border: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center !important;
+
+            .icon {
+                display: block;
+                font-size: 1.1rem;
+                margin-right: .4rem;
+            }
+
+            span {
+                display: block;
+            }
+        }
+    }
+}
+
 .like-icon {
 
     &.active {

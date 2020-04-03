@@ -135,6 +135,46 @@ html {
   top: calc(100% + 2px);
 }
 
+.btn-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.btn-block button {
+  margin: 0;
+  display: block;
+}
+
+.btn-block button.btn-cta {
+  background-color: #fff;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-block button.like-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background: none !important;
+  border: 2px solid var(--primary-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+}
+
+.btn-block button.like-btn .icon {
+  display: block;
+  font-size: 1.1rem;
+  margin-right: .4rem;
+}
+
+.btn-block button.like-btn span {
+  display: block;
+}
+
 .like-icon.active {
   color: red;
 }

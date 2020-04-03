@@ -142,8 +142,12 @@ export default class TestInfo extends Component {
         }) 
             .then(res => res.json())
             .then(res => {
+                let { test } = this.state;
+                test.likes = res.likes;
+                console.log(test.likes.length)
                 this.setState({
                     ...this.state,
+                    test,
                     hasLiked: !hasLiked
                 }, () => console.log(this.state.hasLiked))
             })
@@ -203,15 +207,13 @@ export default class TestInfo extends Component {
                 {/* <Link class="btn btn-cta" to={ `/app/passTest/${ test._id }` }>
                     Pass test!
                 </Link> */}
+                <span className="error-input">{ errors['attempts'] }</span>
                 <div className="btn-block">
-                    <span className="error-input">{ errors['attempts'] }</span>
                     <button onClick={ () => this.goToTest() } className="btn btn-cta">Pass test!</button>
-                </div>
-
-                <div className="like-block">
-                    { usedAttemtps ? (
-                        <FontAwesomeIcon className={ `like-icon ${ hasLiked ? 'active' : '' }` } onClick={ this.setLike.bind(this) } icon={ faThumbsUp } /> 
-                    ) : ( <></> ) } 
+                    <button className="btn like-btn" onClick={ this.setLike.bind(this) } icon={ faThumbsUp }> 
+                        <FontAwesomeIcon className="icon" icon={ faThumbsUp } />
+                        <span>{ test.likes.length }</span>
+                    </button>
                 </div>
                 
                 <div className="results">
