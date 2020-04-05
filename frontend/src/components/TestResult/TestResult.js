@@ -10,6 +10,7 @@ import TestsContext from '../../context/TestsContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import BackLink from '../reusableComponents/backLink/BackLink'
 
 export default class TestResult extends Component {
     state = {
@@ -51,11 +52,7 @@ export default class TestResult extends Component {
 
         return (
             <div>
-                <div className="page-top">
-                    <Link to="/app/">
-                        <FontAwesomeIcon className="icon" icon={ faArrowLeft } /> Back
-                    </Link>
-                </div>
+                <BackLink />
                 <h1 className="heading">
                     Test result for "{ test.title }"
                 </h1>

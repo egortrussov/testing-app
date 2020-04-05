@@ -17,6 +17,7 @@ import { getHeaders } from '../../middleware/authMiddleware';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import BackLink from '../reusableComponents/backLink/BackLink';
 
 export default class TestInfo extends Component {
     state = {
@@ -174,11 +175,7 @@ export default class TestInfo extends Component {
 
         return (
             <div>
-                <div className="page-top">
-                    <Link to="/app/allTests">
-                        <FontAwesomeIcon icon={ faArrowLeft } /> Back 
-                    </Link>
-                </div>
+                <BackLink />
                 <h1>{ test.title }</h1>
                 <p>{ test.description }</p>
                 { test.isProtected && (
