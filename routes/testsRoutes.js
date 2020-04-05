@@ -127,7 +127,7 @@ router.get('/allTests', (req, res) => {
     }
 })
 
-router.get('/testInfo/:testId', auth, (req, res) => {
+router.get('/testInfo/:testId', (req, res) => {
     console.log(req.params.testId);
     
     Test.findOne({ _id: req.params.testId })

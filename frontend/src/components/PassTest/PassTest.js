@@ -22,8 +22,11 @@ export default class PassTest extends Component {
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
+
         fetch(`${ this.context.proxy }/api/tests/testInfo/${ testId }`, {
-            headers: getHeaders()
+            headers: {
+                ...getHeaders()
+            }
         })
             .then(res => res.json())
             .then(res => {
