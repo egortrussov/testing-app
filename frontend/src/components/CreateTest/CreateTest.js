@@ -21,16 +21,18 @@ export default class CreateTest extends Component {
     componentDidMount() {
         if (!this.context.userId) 
             window.location.href = '/app/login';
-        // fetch(`${ this.context.proxy }/api/tests/createdTests/${ this.context.userId }`)
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         console.log(res);
+        fetch(`${ this.context.proxy }/api/tests/createdTests/${ this.context.userId }`, {
+            method: 'POST'
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res);
                 
-        //         this.setState({
-        //             createdTests: res,
-        //             isLoading: false
-        //         })
-        //     })
+                this.setState({
+                    createdTests: res.tests,
+                    isLoading: false
+                })
+            })
     }
     
     render() {

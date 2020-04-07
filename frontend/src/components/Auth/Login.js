@@ -92,7 +92,7 @@ export default class Login extends Component {
                 .then(res => res.json())
                 .then(res => {
                     if (res.success) {
-                        this.context.setToken(res.token, res.user._id);
+                        this.context.setToken(res.token, res.user._id, res.user);
                         window.location.href = '/app/'
                     } else {
                         if (res.doesUserExist) 

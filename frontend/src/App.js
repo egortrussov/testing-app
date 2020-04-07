@@ -12,6 +12,7 @@ import './App.css'
 
 class App extends Component {
     state = {
+        user: ls.get('user'),
         userId: ls.get('userId'),
         token: ls.get('token'),
         proxy: ''
@@ -36,13 +37,15 @@ class App extends Component {
     }
     
 
-    setToken = (token, userId) => {
+    setToken = (token, userId, user) => {
         this.setState({
             token: token,
-            userId: userId
+            userId: userId,
+            user
         })
         ls.set('token', token);
         ls.set('userId', userId);
+        ls.set('user', user);
     }
 
     logout = () => {
@@ -55,7 +58,7 @@ class App extends Component {
     }
 
     render() {
-        const { token, userId, proxy } = this.state;
+        const { token, userId, proxy, user } = this.state;
         console.log(process.env);
         console.log(window.location.href);
         
@@ -64,7 +67,7 @@ class App extends Component {
         return (
             <BrowserRouter basename={ process.env.PUBLIC_URL }>
                 <React.Fragment>
-                    <TestsContext.Provider value={{ token, userId, setToken: this.setToken, logout: this.logout, proxy  }}>
+                    <TestsContext.Provider value={{ token, userId, user, setToken: this.setToken, logout: this.logout, proxy  }}>
                         <Switch>
                             <Route exact path="/" component={ LandingPage } />
                             <Route path="/app" component={ MainPage } />
