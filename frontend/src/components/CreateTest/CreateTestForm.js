@@ -7,6 +7,10 @@ import TestsContext from '../../context/TestsContext'
 
 import './css/style.css'
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 export default class CreateTestForm extends Component {
     state = {
         questions: [{
@@ -426,8 +430,15 @@ export default class CreateTestForm extends Component {
                         <textarea className="" onChange={ (e) => this.setTestDescription(e) } name="description" id="" cols="30" rows="10"></textarea>
                     </div>
                     <div className="info-group-checkbox">
-                        <input onChange={ this.setProtectedState.bind(this) } type="checkbox" name="isProtected" />
-                        <label htmlFor="isProtected" name="isProtected">Protected</label>
+                        <div className="pretty p-icon p-smooth p-thick p-curve">
+                            <input type="checkbox" onChange={ this.setProtectedState.bind(this) } />
+                            <div className="state p-success">
+                                <i className="icon">
+                                <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                                </i>
+                                <label>Protected</label>
+                            </div>
+                        </div>
                     </div>
                     { isProtected && (
                         <div className="info-group">
@@ -436,8 +447,15 @@ export default class CreateTestForm extends Component {
                         </div>
                     ) }
                     <div className="info-group-checkbox">
-                        <input onChange={ this.setAttemptsState.bind(this) } type="checkbox" name="isLimitedAttempts" />
-                        <label htmlFor="isLimitedAttempts" name="isLimitedAttempts">Limited attempts</label>
+                        <div className="pretty p-icon p-smooth p-thick p-curve">
+                            <input type="checkbox" onChange={ this.setAttemptsState.bind(this) } />
+                            <div className="state p-success">
+                                <i className="icon">
+                                <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                                </i>
+                                <label>Limited attempts</label>
+                            </div>
+                        </div>
                     </div>
                     { isLimitedAttempts && (
                         <div className="info-group">
@@ -451,8 +469,15 @@ export default class CreateTestForm extends Component {
                         </div>
                     ) }
                     <div className="info-group-checkbox">
-                        <input onChange={ this.setTimeLimitState.bind(this) } type="checkbox" name="isLimitedTime" />
-                        <label htmlFor="isLimitedTime" name="isLimitedTime">Limited time</label>
+                        <div className="pretty p-icon p-smooth p-thick p-curve">
+                            <input type="checkbox" onChange={ this.setTimeLimitState.bind(this) } />
+                            <div className="state p-success">
+                                <i className="icon">
+                                <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                                </i>
+                                <label>Limited time</label>
+                            </div>
+                        </div>
                     </div>
                     { isLimitedTime ? (
                         <div className="custom-select" style={{ width: 300 + 'px' }}>
