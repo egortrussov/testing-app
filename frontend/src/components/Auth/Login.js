@@ -8,11 +8,15 @@ import Spinner from '../Spinner/Spinner'
 import { validate } from '../../middleware/validator'
 import AuthContext from '../../context/TestsContext'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 export default class Login extends Component {
     state = {
         email: '',
         password: '',
         errors: [],
+        isLongerExpiratuon: false,
         isLoading: false
     }
 
@@ -22,27 +26,6 @@ export default class Login extends Component {
     }
 
     static contextType = AuthContext;
-
-    componentDidMount() {
-        // const psw = document.querySelector('#psw');
-        // const email = document.querySelector('#email');
-        // psw.addEventListener('focus',function(e){ /*yourcode*/ },false);
-        // psw.addEventListener('keyup',function(e){ console.log(e.keyCode) },false);
-        // email.addEventListener('keypress',function(e){ 
-        //     if (e.which === 13) {
-        //         e.preventDefault();
-        //         // let form = document.querySelector('form#login-form');
-        //         // form.submit()
-        //     }
-        //  },false);
-        // psw.addEventListener('keypress',function(e){ 
-        //     if (e.which === 13) {
-        //         e.preventDefault();
-        //         // let form = document.querySelector('form#login-form');
-        //         // form.submit()
-        //     }
-        //  },false);
-    }
 
     setCredential(e) {
         console.log(e.target);
@@ -60,12 +43,21 @@ export default class Login extends Component {
         }, () => console.log(this.state))
     }
 
+    setExpirationState() {
+        this.setState({
+            ...this.state,
+            isLongerExpiratuon: !this.state.isLongerExpiratuon
+        })
+    } 
+
     handleSubmit(e) {
         e.preventDefault();
 
+        const { email, password, isLongerExpiratuon } = this.state;
+
         let data = [
-            { name: 'email', value: this.state.email },
-            { name: 'password', value: this.state.password }
+            { name: 'email', value: email },
+            { name: 'password', value: password }
         ];
         let errors = validate(data);
         console.log(errors['email']);
@@ -79,8 +71,9 @@ export default class Login extends Component {
         } else {
             errors = [];
             const query = {
-                email: this.state.email,
-                password: this.state.password
+                email,
+                password,
+                isLongerExpiratuon
             }
             fetch(`${ this.context.proxy }/api/users/login`, {
                 method: 'POST',
@@ -128,19 +121,17 @@ export default class Login extends Component {
                         <Input name="password" type="password" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['password'] }</span>
                     </div>
-                    
-                    
-                    {/* <div className="form-group">
-                        <label htmlFor="">E-mail: </label>
-                        <span data-name="email" onInput={ (e) => this.setCredential(e) } className="field" contentEditable="true" id="email"></span>
-                        <span className="error-input">{ errors['email'] }</span>
+
+                    <div className="checkbox-group pretty p-icon p-smooth p-thick p-curve">
+                        <input type="checkbox" onChange={ this.setExpirationState.bind(this) } />
+                        <div className="state p-success">
+                            <i className="icon">
+                            <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                            </i>
+                            <label>Remember for a day</label>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="">Password: </label>
-                        <span data-name="password" onInput={ (e) => this.setCredential(e) } id="psw" className="field with-input" contentEditable="true">
-                        </span>
-                        <span className="error-input">{ errors['password'] }</span>
-                    </div> */}
+                    
                     <input onClick={ () => this.setLoading(true) } type="submit" className="btn btn-cta" value="Log in" />
                     { isLoading && <Spinner size="sm" /> }
                 </form>

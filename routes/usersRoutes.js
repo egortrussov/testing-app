@@ -98,7 +98,7 @@ router.post('/addUser', (req, res) => {
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
     
-    
+    const { isLongerExpiration } = req.body;
   
     // Simple validation
     if(!email || !password) {
@@ -113,6 +113,8 @@ router.post('/login', (req, res) => {
             console.log(req.body);
             if(!user) return res.status(400).json({ success: false, msg: 'User Does not exist' });
 
+            let expirationTime = isLongerExpiration ? 3600 * 24 : 3600;
+
             // Validate password
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
@@ -122,7 +124,7 @@ router.post('/login', (req, res) => {
                     jwt.sign(
                         { id: user.id },
                         JWT_SECRET,
-                        { expiresIn: 3600 },
+                        { expiresIn: expirationTime },
                         (err, token) => {
                             if(err) throw err;
                             res.json({

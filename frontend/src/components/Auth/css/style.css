@@ -66,4 +66,18 @@ form .form-group .field input {
   border: none;
   padding: inherit;
 }
+
+.checkbox-group {
+  display: block;
+}
+
+i {
+  margin: 0;
+}
+
+.check-icon {
+  font-size: .7rem;
+  margin-left: .15rem;
+  margin-top: -.2rem;
+}
 /*# sourceMappingURL=style.css.map */
