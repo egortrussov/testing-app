@@ -330,6 +330,29 @@ export default class CreateTestForm extends Component {
             return;
         }
 
+        let isErrors = false;
+
+        if (newTest.title.length >= 30) {
+            errors['title'] = 'Title must not be longer than 30 syllables';
+            isErrors = true;
+        }
+        if (newTest.subject.length >= 18) {
+            errors['title'] = 'Title subject not be longer than 18 syllables';
+            isErrors = true;
+        }
+        if (newTest.description.length >= 400) {
+            errors['title'] = 'Title description not be longer than 400 syllables';
+            isErrors = true;
+        }
+
+        if (isErrors) {
+            this.setState({
+                ...this.state,
+                errors
+            })
+            return;
+        }
+
         if (!this.context.userId) 
             window.location.href = '/app/login'
         
