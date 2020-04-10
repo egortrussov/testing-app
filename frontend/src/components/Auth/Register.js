@@ -5,6 +5,7 @@ import './css/style.css'
 import Spinner from '../Spinner/Spinner'
 
 import { validate } from '../../middleware/validator'
+import { getPasswordStrenth } from '../../middleware/passwordStrenth'
 import TestsContext from '../../context/TestsContext'
 import Input from '../reusableComponents/inputField/Input'
 
@@ -88,7 +89,10 @@ export default class Register extends Component {
     }
 
     render() {
-        const { errors, isLoading } = this.state;
+        const { errors, isLoading, password } = this.state;
+
+        let { strenth } = getPasswordStrenth(password);
+        console.log(strenth)
 
         return (
             <>
@@ -105,7 +109,7 @@ export default class Register extends Component {
                         <span className="error-input">{ errors['name'] }</span>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="">Password: </label>
+                        <label htmlFor="">Password: { strenth }</label>
                         <Input type="password" name="password" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['password'] }</span>
                     </div>
