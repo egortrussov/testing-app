@@ -1,5 +1,10 @@
 @import '../../css/config';
 
+$extraStrong: #0de278;
+$strong: #13d685;
+$meduim: #ffdf29;
+$weak: #ff8829;
+
 #psw, #confirmPassword, #password {
     -webkit-text-security: disc;
     -webkit-appearance: textfield;
@@ -61,4 +66,24 @@ i {
     margin-left: 0rem;
     padding-top: 0;
     margin-top: 0;
+}
+
+.strenth-text {
+    font-size: .9rem;
+
+    &.weak {
+        color: $weak;
+    }
+
+    &.medium {
+        color: $meduim;
+    }
+
+    &.strong {
+        color: $strong;
+    }
+
+    &.extraStrong {
+        color: $extraStrong;
+    }
 }

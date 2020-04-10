@@ -42,17 +42,26 @@ export const getPasswordStrenth = (password) => {
         }
     }
 
-    let result = 'Weak';
+    let result = 'Weak',
+        className = "weak";
 
-    if (points >= 2) 
+    if (points >= 2) {
         result = 'Medium';
-    if (points >= 4) 
+        className = 'medium';
+    }
+    if (points >= 4) {
         result = 'Strong';
-    if (points >= 5) 
+        className = 'strong';
+    }
+    if (points >= 5) {
         result = 'Ultra strong';
+        className = 'ultra-strong';
+    }
+        
     
     return {
         points,
+        className,
         strenth: result
     }
 }

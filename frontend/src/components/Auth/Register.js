@@ -91,8 +91,7 @@ export default class Register extends Component {
     render() {
         const { errors, isLoading, password } = this.state;
 
-        let { strenth } = getPasswordStrenth(password);
-        console.log(strenth)
+        let { strenth, className } = getPasswordStrenth(password);
 
         return (
             <>
@@ -109,7 +108,7 @@ export default class Register extends Component {
                         <span className="error-input">{ errors['name'] }</span>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="">Password: { strenth }</label>
+                        <label htmlFor="">Password: { strenth && <span className={ "strenth-text " + className }>({ strenth })</span> } </label>
                         <Input type="password" name="password" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['password'] }</span>
                     </div>

@@ -88,4 +88,24 @@ i {
   padding-top: 0;
   margin-top: 0;
 }
+
+.strenth-text {
+  font-size: .9rem;
+}
+
+.strenth-text.weak {
+  color: #ff8829;
+}
+
+.strenth-text.medium {
+  color: #ffdf29;
+}
+
+.strenth-text.strong {
+  color: #13d685;
+}
+
+.strenth-text.extraStrong {
+  color: #0de278;
+}
 /*# sourceMappingURL=style.css.map */
