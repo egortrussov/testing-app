@@ -1,1 +1,10 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.page-top {
+  margin-bottom: 1.3rem;
+}
+
+.page-top .a {
+  color: var(--dark-primary-color) !important;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+/*# sourceMappingURL=style.css.map */
