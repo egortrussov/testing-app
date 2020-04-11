@@ -404,7 +404,7 @@ export default class CreateTestForm extends Component {
         if (+questions[quesId].correctAnswerId >= questions[quesId].answers.length) 
             questions[quesId].correctAnswerId =  (questions[quesId].answers.length - 1).toString();
         console.log(questions[quesId]);
-        
+         
         questions[quesId].answers.splice(ansId, 1);
 
         console.log(questions[quesId].answers);
