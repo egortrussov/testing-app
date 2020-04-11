@@ -163,6 +163,7 @@ html {
   -webkit-box-align: center !important;
       -ms-flex-align: center !important;
           align-items: center !important;
+  color: var(--main-text-color) !important;
 }
 
 .btn-block button.like-btn .icon {

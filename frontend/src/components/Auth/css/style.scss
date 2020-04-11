@@ -1,17 +1,9 @@
 @import '../../css/config';
 
-$extraStrong: #0de278;
+$ultraStrong: #0de278;
 $strong: #13d685;
 $meduim: #ffdf29;
 $weak: #ff8829;
-
-#psw, #confirmPassword, #password {
-    -webkit-text-security: disc;
-    -webkit-appearance: textfield;
-    background-color: white;
-    -webkit-user-select: text;
-    cursor: auto;
-}
 
 form {
     margin-top: 2rem;
@@ -83,7 +75,7 @@ i {
         color: $strong;
     }
 
-    &.extraStrong {
-        color: $extraStrong;
+    &.ultra-strong {
+        color: $ultraStrong;
     }
 }

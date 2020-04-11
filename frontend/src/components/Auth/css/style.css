@@ -26,14 +26,6 @@ html {
   }
 }
 
-#psw, #confirmPassword, #password {
-  -webkit-text-security: disc;
-  -webkit-appearance: textfield;
-  background-color: white;
-  -webkit-user-select: text;
-  cursor: auto;
-}
-
 form {
   margin-top: 2rem;
 }
@@ -105,7 +97,7 @@ i {
   color: #13d685;
 }
 
-.strenth-text.extraStrong {
+.strenth-text.ultra-strong {
   color: #0de278;
 }
 /*# sourceMappingURL=style.css.map */

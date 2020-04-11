@@ -105,7 +105,7 @@ export default class Register extends Component {
                     <div className="form-group">
                         <label htmlFor="">Full name: </label>
                         <Input type="text" name="name" onChange={ (e) => this.setCredential(e) } />
-                        <span className="error-input">{ errors['name'] }</span>
+                        <span className="error-input">{ errors['fullName'] }</span>
                     </div>
                     <div className="form-group">
                         <label htmlFor="">Password: { strenth && <span className={ "strenth-text " + className }>({ strenth })</span> } </label>

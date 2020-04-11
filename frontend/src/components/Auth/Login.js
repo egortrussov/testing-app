@@ -60,7 +60,7 @@ export default class Login extends Component {
             { name: 'password', value: password }
         ];
         let errors = validate(data);
-        console.log(errors['email']);
+        
         
         if (errors['email'] || errors['password']) {
             this.setState({
