@@ -66,9 +66,6 @@ export default class TestsComtainer extends Component {
 
         const { isLoading, tests, isRedirectToLogin, isMoreTests } = this.state;
 
-        let tempTests = [];
-        console.log(isMoreTests)
-
         if (isRedirectToLogin) return (
             <Redirect to="/app/login" />
         )
@@ -78,10 +75,10 @@ export default class TestsComtainer extends Component {
         )
 
         let items = [];
-        tests.map(test => {
-            items.push (
-                <Suspense fallback={ <Spinner size="sm" /> } >
-                    <TestCard type={ type } test={ test } user={ user || null } />
+        tests.map((test, inx) => {
+            return items.push (
+                <Suspense key={ inx } fallback={ <Spinner size="sm" /> } >
+                    <TestCard key={ `${ inx }-${ inx }` } type={ type } test={ test } user={ user || null } />
                 </Suspense> 
             )
         })
@@ -91,7 +88,6 @@ export default class TestsComtainer extends Component {
                 pageStart={ "0" }
                 loadMore={ this.loadMore.bind(this) }
                 hasMore={ isMoreTests }
-                preload={ false }
                 loader={ <Spinner /> }
                 useWindow={ false } >
                 <div className="tests-container">

@@ -428,7 +428,7 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading, title, errors, isLimitedAttempts, isLimitedTime, maxAttempts } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading,  errors, isLimitedAttempts, isLimitedTime, maxAttempts } = this.state;
         
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -532,9 +532,9 @@ export default class CreateTestForm extends Component {
                 <div className="questions">
                     { questions.map((ques, index) => {
                         return (
-                            <div className="question-container">
+                            <div key={ index } className="question-container">
                                 
-                                <h3 class="question-container__title">
+                                <h3 className="question-container__title">
                                     <div className="delete-question-btn">
                                         <span>&times;</span>
                                     </div>
@@ -542,7 +542,6 @@ export default class CreateTestForm extends Component {
                                 </h3>
                                 <div className="question-container__answers">
                                     { ques.answers.map((ans, inx) => {
-                                        const uid = `${ ques }-${ inx }`;
                                         let extraClassName = '';
 
                                         console.log(ques.correctAnswerId.toString() ===(inx + 1).toString())
@@ -552,7 +551,7 @@ export default class CreateTestForm extends Component {
                                         console.log(extraClassName)
 
                                         return (
-                                            <div className={ "answer-block " + extraClassName }>
+                                            <div key={ `${ inx }-${ index }` } className={ "answer-block " + extraClassName }>
                                                 <div className="answer-block__letter" onClick={ () => this.setCorrectAnswerId(index, ans.answerId) }><span>{ letters[inx] }</span></div>
                                                 <div className="answer-block__text">
                                                     <input autoComplete="off" id={ `_${ index }-${ inx }` } type="text" onChange={(e) => this.setAnswerText(e, index, inx) } />

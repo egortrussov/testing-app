@@ -30,15 +30,15 @@ const TestCard = ({ test, type, user }) => {
     if (type === 'result')
         return (
             <Link to={ linkToTest } key={ test._id } >
-                <div class="test-card">
-                    <h3 class="test-card__title">
+                <div className="test-card">
+                    <h3 className="test-card__title">
                         { test.title }
                     </h3>
                     <PointsCard points={ test.points } maxPoints={ test.maxPoints } />
                     <Link className="result-link" to={ `/app/testResult/${ user._id }/${ test._id }` }>
                         View result
                     </Link>
-                    <h4 class="test-card__date">
+                    <h4 className="test-card__date">
                         { formatDate(test.date) }
                     </h4>
                 </div>
@@ -48,18 +48,18 @@ const TestCard = ({ test, type, user }) => {
     if (type === 'created') 
         return (
             <Link to={ linkToTest }>
-                <div class="test-card">
-                    <h3 class="test-card__title">
+                <div className="test-card">
+                    <h3 className="test-card__title">
                         { test.title }
                     </h3>
-                    <h4 class="test-card__subject">
+                    <h4 className="test-card__subject">
                         { test.subject }
                     </h4>
-                    <div class="test-card__btns">
-                        <div class="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>{ test.likes.length ? test.likes.length : 0 }</span> </div>
-                        <div class="btns-btn right"><FontAwesomeIcon className="icon" icon={ faUser } /> <span>{ test.results.length }</span> </div>
+                    <div className="test-card__btns">
+                        <div className="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>{ test.likes.length ? test.likes.length : 0 }</span> </div>
+                        <div className="btns-btn right"><FontAwesomeIcon className="icon" icon={ faUser } /> <span>{ test.results.length }</span> </div>
                     </div>
-                    <h4 class="test-card__date">
+                    <h4 className="test-card__date">
                         { formatDate(test.createdAt) }
                     </h4>
                 </div>
@@ -69,21 +69,21 @@ const TestCard = ({ test, type, user }) => {
     if (type === 'full') 
         return (
             <Link to={ linkToTest }>
-                <div class="test-card">
-                    <h3 class="test-card__title">
+                <div className="test-card">
+                    <h3 className="test-card__title">
                         { test.title }
                     </h3>
-                    <h4 class="test-card__subject">
+                    <h4 className="test-card__subject">
                         { test.subject }
                     </h4>
-                    <p class="test-card__description">
+                    <p className="test-card__description">
                         { test.description ? test.description : 'No description provided!' }
                     </p>
-                    <div class="test-card__btns">
-                        <div class="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>{ test.likes.length ? test.likes.length : 0 }</span> </div>
-                        <div class="btns-btn right"><FontAwesomeIcon className="icon" icon={ faUser } /> <span>{ test.results.length }</span> </div>
+                    <div className="test-card__btns">
+                        <div className="btns-btn left"><FontAwesomeIcon className="icon" icon={ faThumbsUp } /> <span>{ test.likes.length ? test.likes.length : 0 }</span> </div>
+                        <div className="btns-btn right"><FontAwesomeIcon className="icon" icon={ faUser } /> <span>{ test.results.length }</span> </div>
                     </div>
-                    <h4 class="test-card__date">
+                    <h4 className="test-card__date">
                         { formatDate(test.createdAt) }
                     </h4>
                 </div>

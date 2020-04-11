@@ -169,7 +169,6 @@ export default class PassTest extends Component {
                                     </h3>
                                     <div className="question-container__answers">
                                         { ques.answers.map((ans, inx) => {
-                                            const uid = `${ ques }-${ inx }`;
                                             let extraClassName = '';
                                             
                                             if (answers[index].toString() === (inx + 1).toString()) 
@@ -188,23 +187,6 @@ export default class PassTest extends Component {
                                     </div>
                                 </div>
                             )
-
-                                {/* <div className="question-card">
-                                    <h3 className="question-title">
-                                        { index + 1 }.  { ques.title }
-                                    </h3>
-                                    <div className="answers">
-                                        { ques.answers.map(ans => {
-                                            return (
-                                                <div className="answer">
-                                                    <input onChange={ this.handleSelect.bind(this, index, ans.answerId) } id={ ans._id } type="radio" name={ index } />
-                                                    <label htmlFor={ ans._id }>{ ans.text }</label>
-                                                </div>
-                                            )
-                                        }) }
-                                    </div>
-                                </div> */}
-                            
                         }) }
                     </div>
                     <input type="submit" className="btn btn-cta" value="Finish" />

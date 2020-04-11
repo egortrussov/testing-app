@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import Spinner from '../Spinner/Spinner'
 
@@ -9,7 +8,6 @@ import TestsContext from '../../context/TestsContext'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import BackLink from '../reusableComponents/backLink/BackLink'
 
 export default class TestResult extends Component {

@@ -5,11 +5,6 @@ import TestsContext from '../../context/TestsContext'
 import Spinner from '../Spinner/Spinner';
 import TestsContainer from '../reusableComponents/tests/TestsContainer'
 
-import { formatDate } from '../../middleware/dateFormat'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
-
 export default class CreateTest extends Component {
     state = {
         createdTests: [],

@@ -16,7 +16,7 @@ export default class Login extends Component {
         email: '',
         password: '',
         errors: [],
-        isLongerExpiratuon: false,
+        isLongerExpiration: false,
         isLoading: false
     }
 
@@ -46,14 +46,14 @@ export default class Login extends Component {
     setExpirationState() {
         this.setState({
             ...this.state,
-            isLongerExpiratuon: !this.state.isLongerExpiratuon
+            isLongerExpiration: !this.state.isLongerExpiration
         })
     } 
 
     handleSubmit(e) {
         e.preventDefault();
 
-        const { email, password, isLongerExpiratuon } = this.state;
+        const { email, password, isLongerExpiration } = this.state;
 
         let data = [
             { name: 'email', value: email },
@@ -73,7 +73,7 @@ export default class Login extends Component {
             const query = {
                 email,
                 password,
-                isLongerExpiratuon
+                isLongerExpiration
             }
             fetch(`${ this.context.proxy }/api/users/login`, {
                 method: 'POST',

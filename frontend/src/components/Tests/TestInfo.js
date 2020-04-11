@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
 
 import Spinner from '../Spinner/Spinner'
 
@@ -12,11 +11,11 @@ import { convertTime } from '../../middleware/convertTime'
 import './css/style.css'
 
 import TestsContext from '../../context/TestsContext'
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { getHeaders } from '../../middleware/authMiddleware';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { faThumbsUp as faThumbsUpS } from '@fortawesome/free-solid-svg-icons'
 import BackLink from '../reusableComponents/backLink/BackLink';
 
 export default class TestInfo extends Component {
@@ -208,7 +207,7 @@ export default class TestInfo extends Component {
                 <div className="btn-block">
                     <button onClick={ () => this.goToTest() } className="btn btn-cta">Pass test!</button>
                     <button className="btn like-btn" onClick={ this.setLike.bind(this) } icon={ faThumbsUp }> 
-                        <FontAwesomeIcon className="icon" icon={ faThumbsUp } />
+                        <FontAwesomeIcon className="icon" icon={ hasLiked ? faThumbsUpS : faThumbsUp } />
                         <span>{ test.likes.length }</span>
                     </button>
                 </div>

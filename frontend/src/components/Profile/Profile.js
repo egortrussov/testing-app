@@ -1,10 +1,6 @@
 import React, { Component, Suspense } from 'react'
 import Spinner from '../Spinner/Spinner'
 import { getHeaders } from '../../middleware/authMiddleware'
-import { formatDate } from '../../middleware/dateFormat'
-import { Link } from 'react-router-dom'
-
-import PointsCard from '../reusableComponents/PointsCard'
 
 import TestsContext from '../../context/TestsContext'
 
@@ -57,8 +53,6 @@ export default class Profile extends Component {
         const { user, isLoading, avgResult } = this.state;
 
         console.log(user)
-
-        let tempTests = [];
 
         if (isLoading || !user) return (
             <Spinner />

@@ -21,10 +21,7 @@ export default class Tests extends Component {
     static contextType = TestsContext;    
 
     render() {
-        const { isLoading, tests, isRedirectToLogin, isMoreTests } = this.state;
-
-        let tempTests = [];
-        console.log(isMoreTests)
+        const { isLoading, isRedirectToLogin } = this.state;
 
         const linkToFetch = `${ this.context.proxy }/api/tests/allTests`;
 
