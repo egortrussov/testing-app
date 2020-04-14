@@ -34,12 +34,13 @@ export default class Profile extends Component {
                 res.passedTests.reverse();
 
                 let avgResult = 0;
-                res.passedTests.forEach(test => {
-                    avgResult += test.points / test.maxPoints;
-                    console.log(avgResult)
-                })
-                avgResult /= res.passedTests.length;
-                avgResult = Math.floor(avgResult * 100);
+                if (res.passedTests.length) {
+                    res.passedTests.forEach(test => {
+                        avgResult += test.points / test.maxPoints;
+                    })
+                    avgResult /= res.passedTests.length;
+                    avgResult = Math.floor(avgResult * 100);
+                }
 
                 this.setState({
                     user: res,

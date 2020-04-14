@@ -22,6 +22,11 @@ const UserSchema = new Schema({
         required: false,
         default: 0
     },
+    isTeacher: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     profileImageUrl: String
 })
 

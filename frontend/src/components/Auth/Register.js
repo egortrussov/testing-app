@@ -9,12 +9,16 @@ import { getPasswordStrenth } from '../../middleware/passwordStrenth'
 import TestsContext from '../../context/TestsContext'
 import Input from '../reusableComponents/inputField/Input'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 export default class Register extends Component {
     state = {
         email: '',
         password: '',
         confirmPassword: '',
         name: '',
+        isTeacher: false,
         errors: [],
         isLoading: false
     }
@@ -31,6 +35,13 @@ export default class Register extends Component {
         this.setState({
             isLoading: state
         }, () => console.log(this.state))
+    }
+
+    setTeacherState() {
+        this.setState({
+            ...this.state,
+            isTeacher: !this.state.isTeacher
+        })
     }
 
     registerUser(e) {
@@ -116,6 +127,15 @@ export default class Register extends Component {
                         <label htmlFor="">Confirm password: </label>
                         <Input type="password" name="confirmPassword" onChange={ (e) => this.setCredential(e) } />
                         <span className="error-input">{ errors['confirmPassword'] }</span>
+                    </div>
+                    <div className="checkbox-group pretty p-icon p-smooth p-thick p-curve">
+                        <input type="checkbox" onChange={ this.setTeacherState.bind(this) } />
+                        <div className="state p-success">
+                            <i className="icon">
+                            <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                            </i>
+                            <label>Register as teacher</label>
+                        </div>
                     </div>
                     <input onClick={ () => this.setLoading(true) } type="submit" className="btn btn-cta" value="Create account" />
                     { isLoading && <Spinner size="sm" /> }

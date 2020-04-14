@@ -62,6 +62,8 @@ router.post('/addUser', (req, res) => {
         passedTests: []
     });
 
+    console.log(newUser.isTeacher);
+
     User
         .findOne({ email: req.body.email })
         .then(foundUser => {
