@@ -66,6 +66,11 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
         justify-content: space-between;
         padding: 2rem 0;
         width: 300px;
+        transition: all .2s;
+
+        &.hidden {
+            width: 70px;
+        }
 
         .nav-item {
             @include tablet-xsm {
@@ -77,6 +82,10 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
                     .text {
                         display: none !important;
                     }
+
+                    img {
+                        margin-left: 0;
+                    }
                 }
 
                 display: flex;
@@ -84,11 +93,21 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 
                 img, .text {
                     display: block;
-                }
+                }                
 
                 img {
-                    width: 30px;
+                    width: 30px !important;
+                    min-width: 30px !important;
                     margin-right: .6rem;
+                    margin-left: .3rem;
+                }
+
+                .text {
+
+                    &.hidden {
+                        transition: all .2s;
+                        opacity: 0;
+                    }
                 }
 
                 color: #fff;
@@ -112,11 +131,18 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
                 color: #fff;
                 padding: 10px;
                 font-weight: 700;
-                padding-left: 2.5rem;
+                padding-left: 3.2rem;
 
                 .text {
                     @include tablet-xsm {
                         display: none;
+                    }
+                    
+                    white-space: nowrap;
+
+                    &.hidden {
+                        transition: all .2s;
+                        opacity: 0;
                     }
                 }
                 
@@ -128,7 +154,8 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    left: .5rem;
+                    left: 1rem;
+                    font-size: 1.4rem;
                 }
 
                 &:hover {
@@ -237,4 +264,10 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     display: block;
 }
 
-
+@keyframes remove {
+    0% {
+        opacity: 1;
+    } 100% {
+        opacity: 0 !important;
+    } 
+}

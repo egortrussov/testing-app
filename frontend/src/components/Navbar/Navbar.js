@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import ls from 'local-storage'
 
+import { init } from './navbarScript'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faAlignLeft, faPenAlt, faSignInAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,8 +13,14 @@ import TestsContext from '../../context/TestsContext'
 
 class Navbar extends Component {
     state = {
-        isLoggedIn: false
+        isLoggedIn: false,
+        isHidden: false
     }
+
+    componentDidMount() {
+        init();
+    }
+    
 
     static contextType = TestsContext;
 
@@ -22,6 +30,8 @@ class Navbar extends Component {
     }
 
     render() {
+        const { isHiiden } = this.state;
+
         const token = ls.get('token');
         console.log(token);
         
@@ -33,6 +43,7 @@ class Navbar extends Component {
                     <Link to="/">
                         <h2 className="logo"><img src={ Logo } alt=""/> <span className="text">EasyTest</span></h2>
                     </Link>
+                    <button id="toggle-view">Toggle</button>
                 </div>
                 { 
                     isLoggedIn && (

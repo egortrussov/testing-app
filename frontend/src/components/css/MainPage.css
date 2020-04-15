@@ -104,6 +104,8 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
           justify-content: space-between;
   padding: 2rem 0;
   width: 300px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
 @media (max-width: 600px) {
@@ -115,6 +117,10 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     width: 100%;
     height: auto;
   }
+}
+
+.app-container nav.hidden {
+  width: 70px;
 }
 
 @media (max-width: 600px) {
@@ -142,6 +148,9 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   .app-container nav .nav-item .logo .text {
     display: none !important;
   }
+  .app-container nav .nav-item .logo img {
+    margin-left: 0;
+  }
 }
 
 .app-container nav .nav-item .logo img, .app-container nav .nav-item .logo .text {
@@ -149,8 +158,16 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 }
 
 .app-container nav .nav-item .logo img {
-  width: 30px;
+  width: 30px !important;
+  min-width: 30px !important;
   margin-right: .6rem;
+  margin-left: .3rem;
+}
+
+.app-container nav .nav-item .logo .text.hidden {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  opacity: 0;
 }
 
 .app-container nav .nav-item .nav-link {
@@ -162,7 +179,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   color: #fff;
   padding: 10px;
   font-weight: 700;
-  padding-left: 2.5rem;
+  padding-left: 3.2rem;
 }
 
 @media (max-width: 600px) {
@@ -173,10 +190,20 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   }
 }
 
+.app-container nav .nav-item .nav-link .text {
+  white-space: nowrap;
+}
+
 @media (max-width: 600px) {
   .app-container nav .nav-item .nav-link .text {
     display: none;
   }
+}
+
+.app-container nav .nav-item .nav-link .text.hidden {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  opacity: 0;
 }
 
 .app-container nav .nav-item .nav-link .icon {
@@ -184,7 +211,8 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  left: .5rem;
+  left: 1rem;
+  font-size: 1.4rem;
 }
 
 @media (max-width: 600px) {
@@ -305,5 +333,23 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 .error-msg {
   color: var(--danger-color);
   display: block;
+}
+
+@-webkit-keyframes remove {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0 !important;
+  }
+}
+
+@keyframes remove {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0 !important;
+  }
 }
 /*# sourceMappingURL=MainPage.css.map */
