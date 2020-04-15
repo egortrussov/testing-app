@@ -5,7 +5,7 @@ import ls from 'local-storage'
 import { init } from './navbarScript'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faAlignLeft, faPenAlt, faSignInAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faAlignLeft, faPenAlt, faSignInAlt, faSignOutAlt, faUserPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 import Logo from './img/logo.svg'
 
@@ -39,11 +39,13 @@ class Navbar extends Component {
 
         return (
             <nav>
+                <div className="toggle-view" id="toggle-view">
+                    <FontAwesomeIcon className="icon" icon={ faChevronLeft } />
+                </div>
                 <div className="nav-item nav-top">
                     <Link to="/">
                         <h2 className="logo"><img src={ Logo } alt=""/> <span className="text">EasyTest</span></h2>
                     </Link>
-                    <button id="toggle-view">Toggle</button>
                 </div>
                 { 
                     isLoggedIn && (

@@ -106,6 +106,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   width: 300px;
   -webkit-transition: all .2s;
   transition: all .2s;
+  position: relative;
 }
 
 @media (max-width: 600px) {
@@ -117,6 +118,48 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     width: 100%;
     height: auto;
   }
+}
+
+.app-container nav .toggle-view {
+  position: absolute;
+  left: auto;
+  right: -30px;
+  top: 22px;
+  z-index: 2;
+  height: 50px;
+  width: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-color: var(--bg-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .app-container nav .toggle-view {
+    display: none !important;
+  }
+}
+
+.app-container nav .toggle-view .icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: .5rem;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.app-container nav .toggle-view.hidden .icon {
+  -webkit-transform: rotate(540deg);
+          transform: rotate(540deg);
 }
 
 .app-container nav.hidden {
@@ -148,6 +191,9 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   .app-container nav .nav-item .logo .text {
     display: none !important;
   }
+}
+
+@media (max-width: 600px) {
   .app-container nav .nav-item .logo img {
     margin-left: 0;
   }
@@ -258,6 +304,7 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
   padding: 40px;
+  padding-top: 35px;
   overflow-y: auto;
   height: 100%;
   -webkit-transition: all .2s;
