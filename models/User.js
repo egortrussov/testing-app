@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     }],
     passedTests: [{
         points: Number,
+        time: Number,
         maxPoints: Number,
         testId: String,
         title: String,

@@ -61,6 +61,15 @@ export default class PassTest extends Component {
                         });
                         
                     }, 1000)
+                } else {
+                    let time = 0;
+                    setInterval(() => {
+                        time++;
+                        this.setState({
+                            ...this.state,
+                            time
+                        })
+                    }, 1000)
                 }
 
                 
@@ -90,7 +99,11 @@ export default class PassTest extends Component {
         e.preventDefault();
         let points = 0;
         let results = [];
-        const { answers, test, isSubmitted } = this.state;
+        let { answers, test, isSubmitted, time } = this.state;
+
+        if (test.timeLimit) {
+            time = test.timeLimit - time;
+        }
 
         if (isSubmitted) 
             return;
@@ -115,6 +128,7 @@ export default class PassTest extends Component {
         const query = {
             "userId": this.context.userId,
             "points": points,
+            "time": time,
             "answers": results,
             "title": test.title,
             "maxPoints": test.questions.length,
@@ -148,8 +162,10 @@ export default class PassTest extends Component {
             <>
                 <div className="info-block">
                     <div>
-                        { test.timeLimit && (
+                        { test.timeLimit ? (
                             <span>Time left: { convertTimeShort(time) }</span>
+                        ) : (
+                            <span>Time passed: { convertTimeShort(time) }</span>
                         ) } 
                     </div>
                     <div>

@@ -262,6 +262,7 @@ router.post('/saveResult/:testId', (req, res) => {
                 date: req.body.date,
                 maxPoints: req.body.maxPoints,
                 title: req.body.title,
+                time: req.body.time,
                 answers: req.body.answersLetters
             });
 

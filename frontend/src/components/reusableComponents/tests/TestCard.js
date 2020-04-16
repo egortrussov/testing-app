@@ -7,6 +7,7 @@ import PointsCard from '../PointsCard'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { convertTime } from '../../../middleware/convertTime'
 
 const TestCard = ({ test, type, user }) => {
 
@@ -25,7 +26,7 @@ const TestCard = ({ test, type, user }) => {
         test.description = newDescription;
     }
     
-    
+    console.log(test)
 
     if (type === 'result')
         return (
@@ -34,6 +35,9 @@ const TestCard = ({ test, type, user }) => {
                     <h3 className="test-card__title">
                         { test.title }
                     </h3>
+                    <h4 className="test-card__subject">
+                        { test.time && (<>Time: { convertTime(test.time) }</>) }
+                    </h4>
                     <PointsCard points={ test.points } maxPoints={ test.maxPoints } />
                     <Link className="result-link" to={ `/app/testResult/${ user._id }/${ test._id }` }>
                         View result
