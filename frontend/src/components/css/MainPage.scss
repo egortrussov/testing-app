@@ -40,6 +40,29 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 	background-color: var(--bg-color);
 }
 
+
+.results::-webkit-scrollbar-track {
+    background-color: transparent;
+    // background-color: var(--bg-color);
+    transition: all .2s;
+    height: 3px !important;
+}
+
+.results::-webkit-scrollbar {
+    // background-color: var(--bg-color) !important;
+	width: 3px !important;
+    height: 8px !important;
+    transition: all .2s;
+}
+
+.results::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    background-color: var(--bg-color) !important;
+    transition: all .2s;
+    height: 3px !important;
+}
+
+
 .app-container {
     @include tablet-xsm {
         flex-direction: column;        

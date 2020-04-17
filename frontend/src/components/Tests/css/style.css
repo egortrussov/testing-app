@@ -78,19 +78,31 @@ html {
 
 .results {
   margin-top: 1.3rem;
+  max-width: 100%;
+  text-align: left;
+  overflow-x: scroll;
 }
 
 .results table {
   width: 100%;
-  text-align: left;
+}
+
+.results table .resultTr {
+  border-radius: 1rem;
 }
 
 .results table .resultTr:hover {
-  background-color: rgba(var(--primary-color), 0.1);
+  background-color: rgba(74, 219, 113, 0.1);
 }
 
 .results table .points {
   width: 150px !important;
+  min-width: 150px !important;
+}
+
+.results table .points.time {
+  width: 200px !important;
+  min-width: 200px !important;
 }
 
 .results table td, .results table th {
@@ -111,6 +123,14 @@ html {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+
+.results table td.points {
+  padding-left: 1rem;
+}
+
+.results table .user {
+  min-width: 400px !important;
 }
 
 .results table th {
@@ -139,6 +159,7 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: .7rem;
 }
 
 .btn-block button {

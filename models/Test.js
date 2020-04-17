@@ -20,6 +20,7 @@ const TestSchema = new Schema({
         userId: String,
         points: String,
         answers: [ Boolean ],
+        time: Number,
         username: {
             type: String,
             default: ''

@@ -275,7 +275,8 @@ router.post('/saveResult/:testId', (req, res) => {
             test.results.push({
                 userId: req.body.userId,
                 points: req.body.points,
-                answers: req.body.answers
+                answers: req.body.answers,
+                time: req.body.time
             });
             test.save();
             res.status(200).json(test);

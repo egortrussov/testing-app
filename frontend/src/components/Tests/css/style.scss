@@ -48,19 +48,31 @@
 
 .results {
     margin-top: 1.3rem;
-
+    max-width: 100%;
+    text-align: left;
+    overflow-x: scroll;
     
     
     table {
         width: 100%;
-        text-align: left;
+        
+
+        .resultTr {
+            border-radius: 1rem;
+        }
 
         .resultTr:hover {
-            background-color: rgba(var(--primary-color), .1);
+            background-color: rgba(#4ADB71, .1);
         }
 
         .points {
             width: 150px !important;
+            min-width: 150px !important;
+
+            &.time {
+                width: 200px !important;
+                min-width: 200px !important;
+            }
         }
         
         td, th {
@@ -81,6 +93,14 @@
                 top: 50%;
                 transform: translateY(-50%);
             }
+        }
+
+        td.points {
+            padding-left: 1rem;
+        }
+
+        .user {
+            min-width: 400px !important;
         }
 
         th {
@@ -108,6 +128,7 @@
 
 .btn-block {
     display: flex;
+    margin-top: .7rem;
 
     button {
         margin: 0;

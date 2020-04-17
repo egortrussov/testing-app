@@ -69,6 +69,28 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   background-color: var(--bg-color);
 }
 
+.results::-webkit-scrollbar-track {
+  background-color: transparent;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  height: 3px !important;
+}
+
+.results::-webkit-scrollbar {
+  width: 3px !important;
+  height: 8px !important;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.results::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  background-color: var(--bg-color) !important;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  height: 3px !important;
+}
+
 .app-container {
   color: var(--main-text-color);
   background-color: var(--bg-color);

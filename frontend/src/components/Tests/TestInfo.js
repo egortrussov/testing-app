@@ -218,7 +218,8 @@ export default class TestInfo extends Component {
                         <col className="username" />
                         <col className="points" />
                         <tr>
-                            <th>User</th>
+                            <th className="user">User</th>
+                            <th className="points">Time</th>
                             <th className="points">Points</th>
                         </tr>
                         { testResults === null ? () => {
@@ -228,7 +229,14 @@ export default class TestInfo extends Component {
                         } : testResults.map(res => {                            
                             return (
                                 <tr className='resultTr' key={ res.userId + res.points }>
-                                    <td>{ res.username }</td>
+                                    <td className="user">{ res.username }</td>
+                                    <td className="points time">
+                                        { res.time ? ( 
+                                            <span>{ convertTime(res.time) }</span>
+                                        ) : (
+                                            <span>---</span>
+                                        ) }
+                                    </td>
                                     <td className="points">
                                         <PointsCard points={ res.points } maxPoints={ res.answers.length } />
                                     </td>
