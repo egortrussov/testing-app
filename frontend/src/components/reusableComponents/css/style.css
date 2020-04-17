@@ -25,4 +25,24 @@
 .points-card.bad {
   background-color: #fc393e;
 }
+
+.status-icon {
+  font-size: 1.2rem;
+}
+
+.status-icon.excellent {
+  color: #0de278;
+}
+
+.status-icon.good {
+  color: #13d685;
+}
+
+.status-icon.satisfactory {
+  color: #ff8829;
+}
+
+.status-icon.bad {
+  color: #fc393e;
+}
 /*# sourceMappingURL=style.css.map */

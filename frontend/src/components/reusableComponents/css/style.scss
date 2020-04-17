@@ -27,3 +27,20 @@ $bad: #fc393e;
         background-color: $bad;
     }
 }
+
+.status-icon {
+    font-size: 1.2rem;
+    
+    &.excellent {
+        color: $excellent;
+    }
+    &.good {
+        color: $good;
+    }
+    &.satisfactory {
+        color: $satisfactory;
+    }
+    &.bad {
+        color: $bad;
+    }
+}

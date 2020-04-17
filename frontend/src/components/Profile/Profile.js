@@ -4,6 +4,8 @@ import { getHeaders } from '../../middleware/authMiddleware'
 
 import TestsContext from '../../context/TestsContext'
 
+import StatusIcon from '../reusableComponents/StatusIcon'
+
 import './css/style.css'
 
 const TestsContainer = React.lazy(() => import('../reusableComponents/tests/TestsContainer'))
@@ -72,7 +74,7 @@ export default class Profile extends Component {
                     </div>
                     <div className="profile-info">
                         <div className="profile-info__block">
-                            <span className="info-text">Name: { user.name }</span>
+                            <span className="info-text">Name: <StatusIcon percent={ avgResult } /> { user.name }</span>
                         </div>
                         <div className="profile-info__block">
                             <span className="info-text">Tests passed: { user.passedTests.length }</span>
