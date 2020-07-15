@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 import { faThumbsUp as faThumbsUpS } from '@fortawesome/free-solid-svg-icons'
 import BackLink from '../reusableComponents/backLink/BackLink';
+import ResultsChart from './ResultsChart';
 
 export default class TestInfo extends Component {
     state = {
@@ -214,6 +215,7 @@ export default class TestInfo extends Component {
                 
                 <div className="results">
                     <h3>Results: </h3>
+                    <ResultsChart />
                     <table>
                         <col className="username" />
                         <col className="points" />
