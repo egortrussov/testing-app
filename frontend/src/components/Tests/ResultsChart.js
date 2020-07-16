@@ -8,12 +8,15 @@ export default class ResultsChart extends Component {
 
 
     render() {
-        const { results } = this.props;
+        const { results, userId } = this.props;
 
         let labels = [];
         let labelsMap = new Map();
+        let userPoints = -1;
 
         results.forEach(result => {
+            if (result.userId === userId) 
+                userPoints = Math.max(userPoints, result.points);
             if (!labelsMap.get(result.points)) {
                 labelsMap.set(result.points, 1);
                 labels.push(result.points);
@@ -25,18 +28,39 @@ export default class ResultsChart extends Component {
 
         labels.sort();
 
+        let barColor = 'rgba(0, 0, 0, .05)';
+        let borderColor = 'rgba(0, 0, 0, .3)';
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            barColor = 'rgba(255, 255, 255, .05)';
+            borderColor = 'rgba(255, 255, 255, 1)';
+        } 
+
         let pointsData = [];
+        let barColors = [];
+        console.log(userPoints)
         labels.forEach(label => {
-            pointsData.push(labelsMap.get(label));
+            let points = labelsMap.get(label);
+            pointsData.push(points);
+            console.log(label)
+            if (+label === userPoints) {
+                barColors.push('rgba(42, 150, 71, .2)'); 
+                console.log('object')
+            }
+            else 
+            barColors.push(barColor);
         })
 
         const options = {
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        callback: function(value) {if (value % 1 === 0) {return value;}}
                     }
                 }]
+            },
+            legend: {
+                display: false
             }
         };
 
@@ -49,8 +73,8 @@ export default class ResultsChart extends Component {
                     {
                         data: pointsData,
                         fill: false,
-                        backgroundColor: 'rgba(255, 255, 255, .05)',
-                        borderColor: 'rgb(255, 255, 255)',
+                        backgroundColor: barColors,
+                        borderColor: borderColor,
                         maxBarThickness: 60,
                         borderWidth: 1,
                     },
@@ -59,7 +83,7 @@ export default class ResultsChart extends Component {
         }        
 
         return (
-            <div>
+            <div className="chart-container">
                 <Bar data={ data } options={ options } />
             </div>
         )

@@ -80,7 +80,11 @@ html {
   margin-top: 1.3rem;
   max-width: 100%;
   text-align: left;
-  overflow-x: scroll;
+}
+
+.results .chart-container {
+  max-width: 900px;
+  margin-top: 2rem;
 }
 
 .results table {
