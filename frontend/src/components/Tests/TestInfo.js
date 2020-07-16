@@ -215,7 +215,7 @@ export default class TestInfo extends Component {
                 
                 <div className="results">
                     <h3>Results: </h3>
-                    <ResultsChart />
+                    <ResultsChart results={ test.results } />
                     <table>
                         <col className="username" />
                         <col className="points" />

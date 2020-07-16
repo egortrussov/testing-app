@@ -4,43 +4,54 @@ import React, { Component } from 'react'
 import { Bar } from 'react-chartjs-2'
 
 export default class ResultsChart extends Component {
+
+
+
     render() {
+        const { results } = this.props;
+
+        let labels = [];
+        let labelsMap = new Map();
+
+        results.forEach(result => {
+            if (!labelsMap.get(result.points)) {
+                labelsMap.set(result.points, 1);
+                labels.push(result.points);
+            } else {
+                let el = labelsMap.get(result.points);
+                labelsMap.set(result.points, el + 1);
+            }
+        })
+
+        labels.sort();
+
+        let pointsData = [];
+        labels.forEach(label => {
+            pointsData.push(labelsMap.get(label));
+        })
+
+        const options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
         const data = (canvas) => {
             const ctx = canvas.getContext("2d")
             const gradient = ctx.createLinearGradient(0,0,100,0);
             return {
-                labels: [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                    'July',
-                ],
+                labels,
                 datasets: [
                     {
-                        label: 'My First Dataset',
-                        data: [65, 59, 80, 81, 56, 55, 40],
+                        data: pointsData,
                         fill: false,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(255, 205, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(201, 203, 207, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(255, 159, 64)',
-                            'rgb(255, 205, 86)',
-                            'rgb(75, 192, 192)',
-                            'rgb(54, 162, 235)',
-                            'rgb(153, 102, 255)',
-                            'rgb(201, 203, 207)',
-                        ],
+                        backgroundColor: 'rgba(255, 255, 255, .05)',
+                        borderColor: 'rgb(255, 255, 255)',
+                        maxBarThickness: 60,
                         borderWidth: 1,
                     },
                 ],
@@ -49,7 +60,7 @@ export default class ResultsChart extends Component {
 
         return (
             <div>
-                <Bar data={ data } />
+                <Bar data={ data } options={ options } />
             </div>
         )
     }
