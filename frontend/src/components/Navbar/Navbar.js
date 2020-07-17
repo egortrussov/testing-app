@@ -43,9 +43,9 @@ class Navbar extends Component {
                     <FontAwesomeIcon className="icon" icon={ faChevronLeft } />
                 </div>
                 <div className="nav-item nav-top">
-                    <Link to="/">
+                    <a href="/">
                         <h2 className="logo"><img src={ Logo } alt=""/> <span className="text">EasyTest</span></h2>
-                    </Link>
+                    </a>
                 </div>
                 { 
                     isLoggedIn && (

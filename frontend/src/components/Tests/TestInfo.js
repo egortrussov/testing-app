@@ -215,7 +215,14 @@ export default class TestInfo extends Component {
                 
                 <div className="results">
                     <h3>Results: </h3>
-                    <ResultsChart results={ test.results } userId={ this.context.user._id } />
+                    {
+                        test.results.length ? (
+                            <ResultsChart results={ test.results } userId={ this.context.user._id } />
+                        ) : (
+                            <h2>No one has passed the test yet!</h2>
+                        )
+                    }
+                    
                     {/* <table>
                         <col className="username" />
                         <col className="points" />

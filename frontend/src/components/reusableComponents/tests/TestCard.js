@@ -25,8 +25,6 @@ const TestCard = ({ test, type, user }) => {
         }
         test.description = newDescription;
     }
-    
-    console.log(test)
 
     if (type === 'result')
         return (
