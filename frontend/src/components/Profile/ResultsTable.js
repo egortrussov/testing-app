@@ -54,7 +54,8 @@ export default class ResultsTable extends Component {
                     console.log(avgPoints)
                     currTest = {
                         ...currTest,
-                        avgPoints
+                        avgPoints,
+                        subject: res.subject
                     };
                     
                     tests[i] = currTest;
@@ -110,7 +111,7 @@ export default class ResultsTable extends Component {
     
 
     render() {
-        const { tests, left, right } = this.state;
+        const { tests, left, right, isMoreTests } = this.state;
 
         if (!tests) return <Spinner size="md" />
 
@@ -119,7 +120,11 @@ export default class ResultsTable extends Component {
         return (
             <div>
                 <Table tests={ testsToShow } />
-                <button onClick={ () => this.loadTests() }>Load more</button>
+                {
+                    isMoreTests && (
+                        <button className="load-more" onClick={ () => this.loadTests() }>Load more</button>
+                    )
+                }
             </div>
         )
     }
