@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import TestsContext from '../../context/TestsContext'
 import { getHeaders } from '../../middleware/authMiddleware';
 import Spinner from '../Spinner/Spinner';
+import Table from './ResultsTable/Table';
 
 export default class ResultsTable extends Component {
 
@@ -59,18 +60,22 @@ export default class ResultsTable extends Component {
                     tests[i] = currTest;
                     console.log(currTest)
                 })
+                .then(() => {
+                    if (i + 1 === Math.min(tests.length, right)) {
+                        left = right;
+                        right += 5;
+                        if (left >= tests.length) 
+                            isMoreTests = false;
+                        this.setState({
+                            ...this.state,
+                            tests,
+                            left,
+                            right,
+                            isMoreTests
+                        }, () => console.log('okokokok'))
+                    }
+                })
         }
-        left = right;
-        right += 5;
-        if (left >= tests.length) 
-            isMoreTests = false;
-        this.setState({
-            ...this.state,
-            tests,
-            left,
-            right,
-            isMoreTests
-        })
     }
 
     componentDidMount() {
@@ -84,9 +89,10 @@ export default class ResultsTable extends Component {
                 currAttempts = 0;
             currAttempts++;
             testsMap.set(test.testId, currAttempts);
+            let totalAttempts = user.passedTests.filter(passedTest => passedTest.testId === test.testId).length;
             test = {
                 ...test,
-                attempt: currAttempts
+                attempt: totalAttempts + 1 - currAttempts
             }
             tests.push(test);
         })
@@ -104,20 +110,16 @@ export default class ResultsTable extends Component {
     
 
     render() {
-        const { tests } = this.state;
+        const { tests, left, right } = this.state;
 
         if (!tests) return <Spinner size="md" />
 
+        let testsToShow = tests.slice(0, left);
+
         return (
             <div>
-                {
-                    tests.map(test => {
-                        console.log(test.avgPoints)
-                        return (
-                            <h3>{ test.title }, { test.attempt }</h3>
-                        )
-                    })
-                }
+                <Table tests={ testsToShow } />
+                <button onClick={ () => this.loadTests() }>Load more</button>
             </div>
         )
     }
