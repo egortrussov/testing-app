@@ -219,6 +219,12 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 }
 
 @media (max-width: 600px) {
+  .app-container nav.hidden {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 600px) {
   .app-container nav .nav-item {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -266,6 +272,12 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   -webkit-transition: all .2s;
   transition: all .2s;
   opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .app-container nav .nav-item .logo .text.hidden {
+    opacity: 1;
+  }
 }
 
 .app-container nav .nav-item .nav-link {
@@ -363,12 +375,24 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   transition: all .2s;
 }
 
+@media (max-width: 770px) {
+  .app-container main {
+    padding-right: 10px;
+  }
+}
+
 @media (max-width: 600px) {
   .app-container main {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     border-bottom-left-radius: 0px;
     padding: 40px 20px;
+  }
+}
+
+@media (max-width: 470px) {
+  .app-container main {
+    padding: 30px 5px;
   }
 }
 
@@ -449,6 +473,12 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
   }
   100% {
     opacity: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .test-card {
+    margin: auto;
   }
 }
 /*# sourceMappingURL=MainPage.css.map */

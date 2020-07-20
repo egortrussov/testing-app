@@ -93,6 +93,15 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  cursor: pointer;
+}
+
+.results-table .row:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.results-table .row.head {
+  cursor: initial;
 }
 
 .results-table .row.head .cell {
@@ -138,6 +147,24 @@ html {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+}
+
+@media (max-width: 890px) {
+  .results-table .row .cell.subject {
+    display: none;
+  }
+}
+
+@media (max-width: 770px) {
+  .results-table .row .cell.attempt {
+    display: none;
+  }
+}
+
+@media (max-width: 470px) {
+  .results-table .row .cell.points.average {
+    display: none;
+  }
 }
 
 .load-more {

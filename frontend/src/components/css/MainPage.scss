@@ -160,6 +160,10 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
 
         &.hidden {
             width: 70px;
+
+            @include tablet-xsm {
+                width: 100% !important;
+            }
         }
 
         .nav-item {
@@ -199,6 +203,10 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
                     &.hidden {
                         transition: all .2s;
                         opacity: 0;
+
+                        @include tablet-xsm {
+                            opacity: 1
+                        }
                     }
                 }
 
@@ -280,11 +288,19 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     }
 
     main {
+        @include tablet-sm {
+            padding-right: 10px;
+        }
+
         @include tablet-xsm {
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
             border-bottom-left-radius: 0px;
             padding: 40px 20px;
+        }
+
+        @include tablet-xxsm {
+            padding: 30px 5px;
         }
 
         background-color: var(--main-bg-color);
@@ -363,4 +379,11 @@ main.on-scroll-bar::-webkit-scrollbar-thumb {
     } 100% {
         opacity: 0 !important;
     } 
+}
+
+@include tablet-xsm {
+
+    .test-card {
+        margin: auto;
+    }
 }
