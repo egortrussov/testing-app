@@ -59,6 +59,10 @@ export default class ResultsTable extends Component {
                     };
                     
                     tests[i] = currTest;
+                    this.setState({
+                        ...this.state,
+                        tests
+                    })
                     console.log(currTest)
                 })
                 .then(() => {
@@ -113,7 +117,7 @@ export default class ResultsTable extends Component {
     render() {
         const { tests, left, right, isMoreTests } = this.state;
 
-        if (!tests) return <Spinner size="md" />
+        if (!tests.length) return <Spinner size="md" />
 
         let testsToShow = tests.slice(0, left);
 

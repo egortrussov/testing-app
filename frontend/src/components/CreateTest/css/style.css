@@ -539,4 +539,8 @@ html {
 .custom-select {
   margin-top: 1rem;
 }
+
+textarea {
+  white-space: pre-line;
+}
 /*# sourceMappingURL=style.css.map */
