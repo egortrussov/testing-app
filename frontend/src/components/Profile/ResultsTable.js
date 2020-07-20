@@ -93,7 +93,7 @@ export default class ResultsTable extends Component {
             let totalAttempts = user.passedTests.filter(passedTest => passedTest.testId === test.testId).length;
             test = {
                 ...test,
-                attempt: totalAttempts + 1 - currAttempts
+                attempt: totalAttempts + 1 - currAttempts,
             }
             tests.push(test);
         })

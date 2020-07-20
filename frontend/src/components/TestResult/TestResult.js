@@ -41,6 +41,7 @@ export default class TestResult extends Component {
         const { isLoading, test, answers } = this.state;
         if (test) console.log(test.questions[0]);
         console.log(answers);
+        console.log(this.props)
         
         
 
@@ -50,7 +51,7 @@ export default class TestResult extends Component {
 
         return (
             <div>
-                <BackLink />
+                <BackLink link="/app" />
                 <h1 className="heading">
                     Test result for "{ test.title }"
                 </h1>

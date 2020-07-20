@@ -143,7 +143,8 @@ html {
 .load-more {
   margin-left: .6rem;
   padding: .4rem 1.8rem;
-  border: 1px solid var(--bg-color-accent);
+  border-radius: 7px;
+  border: 1px solid var(--bg-color-accent) !important;
   background-color: transparent;
   color: var(--main-text-color);
   margin-top: .5rem;

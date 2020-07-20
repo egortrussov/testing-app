@@ -2,7 +2,35 @@ html {
   --primary-color: #4ADB71;
   --bg-color: #4ADB71;
   --dark-color: #42C465;
-  --dark-color-lighten: #4dd170;
+  --dark-color-lighten: rgb(77, 209, 112);
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --dark-main-bg-color: #eee;
+  --dark-main-bg-color-shade: #e7e7e7;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --dark-color-lighten: #313131;
+    --main-bg-color: #444;
+    --dark-main-bg-color: rgb(61, 61, 61);
+    --dark-main-bg-color-shade: rgb(59, 59, 59);
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-color-lighten: rgb(77, 209, 112);
   --dark-primary-color: #42C465;
   --main-bg-color: #fff;
   --dark-main-bg-color: #eee;
@@ -15,13 +43,13 @@ html {
 @media (prefers-color-scheme: dark) {
   html {
     --bg-color: #333;
-    --primary-color: #2a9647;
-    --dark-primary-color: #2a9647;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
     --dark-color: #2b2b2b;
     --dark-color-lighten: #313131;
     --main-bg-color: #444;
-    --dark-main-bg-color: #3d3d3d;
-    --dark-main-bg-color-shade: #3b3b3b;
+    --dark-main-bg-color: rgb(61, 61, 61);
+    --dark-main-bg-color-shade: rgb(59, 59, 59);
     --main-text-color: #fff;
     --danger-color: #ff4a50;
     --bg-color-accent: #616161;
