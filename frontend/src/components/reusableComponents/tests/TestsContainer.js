@@ -25,7 +25,7 @@ export default class TestsComtainer extends Component {
     loadMore() {
         const { urlToFetch, authContext } = this.props;
         const { left, right, tests } = this.state;
-        console.log(urlToFetch)
+        console.log(tests.length, '-----+++++++')
 
         fetch(urlToFetch, {
             method: 'POST',
@@ -62,8 +62,18 @@ export default class TestsComtainer extends Component {
             });
     }
 
-    componentDidMount() {
-        console.log(TestsContext)
+    componentWillMount() {
+        if (this.props.type === 'full') {
+            if (this.context.allTests) {
+                console.log(this.context.allTests.length, '+-+-')
+                this.setState({
+                    ...this.state,
+                    tests: this.context.allTests,
+                    left: this.context.allTests.length,
+                    right: this.context.allTests.length + 3
+                })
+            }
+        }
     }
     
     
@@ -84,12 +94,12 @@ export default class TestsComtainer extends Component {
         )
 
         let items = [];
-        console.log(TestsContext)
+        // console.log(TestsContext)
         
-        if (type === 'full' && this.context.allTests) {
-            tests = this.context.allTests;
-            hasPreloadedTests = true;
-        }
+        // if (type === 'full' && this.context.allTests) {
+        //     tests = this.context.allTests;
+        //     hasPreloadedTests = true;
+        // }
 
         tests.map((test, inx) => {
             return items.push (
@@ -101,8 +111,8 @@ export default class TestsComtainer extends Component {
 
         return (
             <>
-                {
-                    !hasPreloadedTests ? (
+                {/* {
+                    !hasPreloadedTests ? ( */}
                         <InfiniteScroll
                             pageStart={ "0" }
                             loadMore={ this.loadMore.bind(this) }
@@ -115,10 +125,12 @@ export default class TestsComtainer extends Component {
                             
                         </InfiniteScroll>
 
-                    ) : (
-                        items
+                    {/* ) : (
+                        <div className="tests-container">
+                            { items }
+                        </div>
                     )
-                }
+                } */}
             </>
         )
     }
