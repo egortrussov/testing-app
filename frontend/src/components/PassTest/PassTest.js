@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 
 import Spinner from '../Spinner/Spinner'
 
@@ -18,7 +18,7 @@ export default class PassTest extends Component {
         time: null
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     componentDidMount() {
         const testId = this.props.match.params.testId;

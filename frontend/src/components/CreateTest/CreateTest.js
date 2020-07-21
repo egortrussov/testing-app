@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 import Spinner from '../Spinner/Spinner';
 import TestsContainer from '../reusableComponents/tests/TestsContainer'
 
@@ -11,7 +11,7 @@ export default class CreateTest extends Component {
         isLoading: false
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     componentDidMount() {
         if (!this.context.userId) 

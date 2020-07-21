@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react'
 import Spinner from '../Spinner/Spinner'
 import { getHeaders } from '../../middleware/authMiddleware'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 
 import StatusIcon from '../reusableComponents/StatusIcon'
 import ResultsTable from './ResultsTable'
@@ -20,7 +20,7 @@ export default class Profile extends Component {
         nextLinkVal: null
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     componentDidMount() {
         fetch(`${ this.context.proxy }/api/users/user`, {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TestsContext from '../../../context/TestsContext';
+import AuthContext from '../../../context/AuthContext';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ export default class Table extends Component {
         isRedirectToResult: false
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     redirectToResult(test) {
         this.setState({

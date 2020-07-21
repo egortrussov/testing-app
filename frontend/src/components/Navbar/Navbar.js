@@ -9,7 +9,7 @@ import { faHome, faAlignLeft, faPenAlt, faSignInAlt, faSignOutAlt, faUserPlus, f
 
 import Logo from './img/logo.svg'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 
 class Navbar extends Component {
     state = {
@@ -22,7 +22,7 @@ class Navbar extends Component {
     }
     
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     logout() {
         this.context.logout();

@@ -4,7 +4,7 @@ import Spinner from '../Spinner/Spinner'
 
 import './css/style.css'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
@@ -17,7 +17,7 @@ export default class TestResult extends Component {
         answers: null
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     componentDidMount() {
         const userId = this.props.match.params.userId;

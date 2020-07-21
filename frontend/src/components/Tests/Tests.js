@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react'
 import { Redirect } from 'react-router-dom'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 import Spinner from '../Spinner/Spinner'
 
 import './css/style.css'
@@ -18,7 +18,7 @@ export default class Tests extends Component {
         isMoreTests: true
     }
 
-    static contextType = TestsContext;    
+    static contextType = AuthContext;       
 
     render() {
         const { isLoading, isRedirectToLogin } = this.state;
@@ -39,6 +39,7 @@ export default class Tests extends Component {
                 <Suspense fallback={ <Spinner /> }>
                     <TestsContainer 
                         urlToFetch={ linkToFetch }
+                        authContext={ this.context }
                         type={ "full" } />
                 </Suspense>
                 

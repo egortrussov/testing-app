@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 import { getHeaders } from '../../middleware/authMiddleware';
 import Spinner from '../Spinner/Spinner';
 import Table from './ResultsTable/Table';
@@ -17,7 +17,7 @@ export default class ResultsTable extends Component {
         isMoreTests: true
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     constructor(props) {
         super(props);

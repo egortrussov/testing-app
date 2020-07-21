@@ -6,7 +6,7 @@ import Spinner from '../Spinner/Spinner'
 
 import { validate } from '../../middleware/validator'
 import { getPasswordStrenth } from '../../middleware/passwordStrenth'
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 import Input from '../reusableComponents/inputField/Input'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,7 +23,7 @@ export default class Register extends Component {
         isLoading: false
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     setCredential(e) {
         this.setState({

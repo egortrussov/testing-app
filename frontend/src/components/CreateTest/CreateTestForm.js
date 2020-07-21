@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Spinner from '../Spinner/Spinner'
 import Input from '../reusableComponents/inputField/Input'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 
 import './css/style.css'
 
@@ -39,7 +39,7 @@ export default class CreateTestForm extends Component {
         timeLimit: null
     }
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     componentDidMount() {
                 

@@ -6,7 +6,7 @@ import Input from '../reusableComponents/inputField/Input'
 import Spinner from '../Spinner/Spinner'
 
 import { validate } from '../../middleware/validator'
-import AuthContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'

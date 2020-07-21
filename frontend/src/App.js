@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
 import ls from 'local-storage'
 
+import AuthContext from './context/AuthContext'
 import TestsContext from './context/TestsContext'
 
 import LandingPage from './landingPage/LandingPage';
@@ -67,11 +68,15 @@ class App extends Component {
         return (
             <BrowserRouter basename={ process.env.PUBLIC_URL }>
                 <React.Fragment>
-                    <TestsContext.Provider value={{ token, userId, user, setToken: this.setToken, logout: this.logout, proxy  }}>
-                        <Switch>
-                            <Route exact path="/" component={ LandingPage } />
-                            <Route path="/app" component={ MainPage } />
-                        </Switch>
+                    <TestsContext.Provider
+                        value={ { allTests: null } }
+                    >
+                        <AuthContext.Provider value={{ token, userId, user, setToken: this.setToken, logout: this.logout, proxy  }}>
+                            <Switch>
+                                <Route exact path="/" component={ LandingPage } />
+                                <Route path="/app" component={ MainPage } />
+                            </Switch>
+                        </AuthContext.Provider>
                     </TestsContext.Provider>
                 </React.Fragment>
             </BrowserRouter>

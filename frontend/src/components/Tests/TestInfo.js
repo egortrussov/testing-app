@@ -10,7 +10,7 @@ import { convertTime } from '../../middleware/convertTime'
 
 import './css/style.css'
 
-import TestsContext from '../../context/TestsContext'
+import AuthContext from '../../context/AuthContext'
 import { getHeaders } from '../../middleware/authMiddleware';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -30,7 +30,7 @@ export default class TestInfo extends Component {
         hasLiked: false
     };
 
-    static contextType = TestsContext;
+    static contextType = AuthContext;
 
     componentDidMount() {
         const testId = this.props.match.params.testId;
