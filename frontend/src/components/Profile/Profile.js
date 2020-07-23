@@ -86,7 +86,7 @@ export default class Profile extends Component {
                     </div>
                 </div>
                 { user.passedTests.length > 0 ? ( <h2>Your recent tests: </h2> ) : ( <h2>You haven't passed any tests yet!</h2> ) }
-                <ResultsTable user={ user } />
+                <ResultsTable authContext={ this.context } user={ user } />
                 {/* { <Suspense fallback={ <Spinner /> }>
                     <TestsContainer type="result" urlToFetch={ urlToFetch } user={ user } />
                 </Suspense> } */}
