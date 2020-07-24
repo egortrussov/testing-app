@@ -10,6 +10,7 @@ import './css/style.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import ConfirmModal from '../reusableComponents/ConfirmModal/ConfirmModal'
 
 export default class CreateTestForm extends Component {
     state = {
@@ -434,6 +435,13 @@ export default class CreateTestForm extends Component {
 
         return (
             <div>
+
+                <ConfirmModal 
+                    message="test"
+                    positiveChoice="Yes"
+                    negativeChoice="No"
+                />
+
                 <h1 className="heading">
                     Create test 
                 </h1>
