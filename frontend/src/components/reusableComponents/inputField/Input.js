@@ -2,7 +2,7 @@ import React from 'react'
 
 import './css/style.css'
 
-const Input = ({ name, onChange, type, isMini }) => {
+const Input = ({ name, onChange, type, isMini, value }) => {
     const handleChange = (e) => {
         console.log(e);
         onChange(e);
@@ -12,7 +12,7 @@ const Input = ({ name, onChange, type, isMini }) => {
 
     return (
         <div className={ "input-group " + extraClassName}>
-            <input autoComplete={ isMini ? "off" : "on" } className={ extraClassName } type={ type } name={ name } onChange={ (e) => handleChange(e) } />
+            <input value={ value } autoComplete={ isMini ? "off" : "on" } className={ extraClassName } type={ type } name={ name } onChange={ (e) => handleChange(e) } />
             <label htmlFor={ name }></label>
         </div>
     )

@@ -432,6 +432,12 @@ export default class CreateTestForm extends Component {
                     hasSavedTest: false
                 })
             })
+        } else {
+            ls.set('savedTestToCreate', null);
+            this.setState({
+                ...this.state,
+                hasSavedTest: false
+            })
         }
     }
 
@@ -481,7 +487,7 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading,  errors, isLimitedAttempts, isLimitedTime, maxAttempts, hasSavedTest } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading,  errors, isLimitedAttempts, isLimitedTime, maxAttempts, hasSavedTest, title, description, subject, accessKey } = this.state;
         
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -505,21 +511,27 @@ export default class CreateTestForm extends Component {
                 <div className="test-basic-info">
                     <div className="info-group">
                         <label htmlFor="title">Test name: </label>
-                        <Input type="text" onChange={ (e) => this.setTestTitle(e) } isMini={ true } name="title" value={ this.state.title } />
+                        <Input type="text" onChange={ (e) => this.setTestTitle(e) } isMini={ true } name="title" value={ title } />
                         <span className="error-input">{ errors['title'] }</span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="subject">Subject: </label>
-                        <Input type="text" onChange={ (e) => this.setTestSubject(e) } isMini={ true } name="title" />
+                        <Input type="text" onChange={ (e) => this.setTestSubject(e) } isMini={ true } name="title" value={ subject } />
                         <span className="error-input">{ errors['subject'] }</span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="description">Description: </label>
-                        <textarea className="" onChange={ (e) => this.setTestDescription(e) } name="description" id="" cols="30" rows="10"></textarea>
+                        <textarea className="" onChange={ (e) => this.setTestDescription(e) } name="description" id="" cols="30" rows="10" value={ description }></textarea>
                     </div>
                     <div className="info-group-checkbox">
                         <div className="pretty p-icon p-smooth p-thick p-curve">
-                            <input type="checkbox" onChange={ this.setProtectedState.bind(this) } />
+                            {
+                                isProtected ? (
+                                    <input type="checkbox" checked onChange={ this.setProtectedState.bind(this) } />
+                                ) : (
+                                    <input type="checkbox" onChange={ this.setProtectedState.bind(this) } />
+                                )
+                            }
                             <div className="state p-success">
                                 <i className="icon">
                                 <FontAwesomeIcon className="check-icon" icon={ faCheck } />
@@ -531,12 +543,18 @@ export default class CreateTestForm extends Component {
                     { isProtected && (
                         <div className="info-group">
                             <label htmlFor="key">Secret key: </label>
-                            <Input onChange={ (e) => this.setAccessKey(e) } isMini={ true } name="accessKey" type="text" />
+                            <Input onChange={ (e) => this.setAccessKey(e) } isMini={ true } name="accessKey" type="text" value={ accessKey } />
                         </div>
                     ) }
                     <div className="info-group-checkbox">
                         <div className="pretty p-icon p-smooth p-thick p-curve">
-                            <input type="checkbox" onChange={ this.setAttemptsState.bind(this) } />
+                            {
+                                isLimitedAttempts ? (
+                                    <input type="checkbox" checked onChange={ this.setAttemptsState.bind(this) } />
+                                ) : (
+                                    <input type="checkbox" onChange={ this.setAttemptsState.bind(this) } />
+                                )
+                            }
                             <div className="state p-success">
                                 <i className="icon">
                                 <FontAwesomeIcon className="check-icon" icon={ faCheck } />
@@ -558,7 +576,13 @@ export default class CreateTestForm extends Component {
                     ) }
                     <div className="info-group-checkbox">
                         <div className="pretty p-icon p-smooth p-thick p-curve">
-                            <input type="checkbox" onChange={ this.setTimeLimitState.bind(this) } />
+                            {
+                                isLimitedTime ? (
+                                    <input type="checkbox" checked onChange={ this.setTimeLimitState.bind(this) } />
+                                ) : (
+                                    <input type="checkbox" onChange={ this.setTimeLimitState.bind(this) } />
+                                )
+                            }
                             <div className="state p-success">
                                 <i className="icon">
                                 <FontAwesomeIcon className="check-icon" icon={ faCheck } />
@@ -603,7 +627,7 @@ export default class CreateTestForm extends Component {
                                     <div className="delete-question-btn">
                                         <span>&times;</span>
                                     </div>
-                                    <span>{ index + 1 }.</span>  <Input type="text" isMini={ true } onChange={ (e) => this.setQuestionTitle(e, index) } name="questionTitle" />
+                                    <span>{ index + 1 }.</span>  <Input type="text" isMini={ true } onChange={ (e) => this.setQuestionTitle(e, index) } name="questionTitle" value={ ques.title } />
                                 </h3>
                                 <div className="question-container__answers">
                                     { ques.answers.map((ans, inx) => {
@@ -619,7 +643,7 @@ export default class CreateTestForm extends Component {
                                             <div key={ `${ inx }-${ index }` } className={ "answer-block " + extraClassName }>
                                                 <div className="answer-block__letter" onClick={ () => this.setCorrectAnswerId(index, ans.answerId) }><span>{ letters[inx] }</span></div>
                                                 <div className="answer-block__text">
-                                                    <input autoComplete="off" id={ `_${ index }-${ inx }` } type="text" onChange={(e) => this.setAnswerText(e, index, inx) } />
+                                                    <input autoComplete="off" id={ `_${ index }-${ inx }` } type="text" onChange={(e) => this.setAnswerText(e, index, inx) } value={ ans.text } />
                                                     <button className="btn-delete" onClick={ () => this.deleteAnswer(index, inx) }>
                                                         <span>&times;</span>
                                                     </button>
