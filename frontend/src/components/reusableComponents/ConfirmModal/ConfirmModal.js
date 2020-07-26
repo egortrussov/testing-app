@@ -7,7 +7,9 @@ export default class ConfirmModal extends Component {
                 <div className="modal-overlay"></div>
                 <div className="modal-card">
                     <div className="card-top">
-                        <div className="icon"></div>
+                        <div className="icon">
+                            <img src='/img/questionmark.svg' alt=""/>
+                        </div>
                         <div className="text">
                             { this.props.message }
                         </div>
@@ -16,8 +18,8 @@ export default class ConfirmModal extends Component {
                         { this.props.message }
                     </div> */}
                     <div className="card-buttons">
-                        <button className="cta">{ this.props.positiveChoice }</button>
-                        <button className="">{ this.props.negativeChoice }</button>
+                        <button onClick={ () => this.props.setModalChoice(true) } className="cta">{ this.props.positiveChoice }</button>
+                        <button onClick={ () => this.props.setModalChoice(false) } className="">{ this.props.negativeChoice }</button>
                     </div>
                 </div>
             </div>

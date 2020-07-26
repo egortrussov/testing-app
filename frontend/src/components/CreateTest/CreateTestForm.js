@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ls from 'local-storage'
 
 import Spinner from '../Spinner/Spinner'
 import Input from '../reusableComponents/inputField/Input'
@@ -37,7 +38,9 @@ export default class CreateTestForm extends Component {
         maxAttempts: null,
         isLimitedAttempts: false,
         isLimitedTime: false,
-        timeLimit: null
+        timeLimit: null,
+        answerToLoadTest: undefined,
+        hasSavedTest: false
     }
 
     static contextType = AuthContext;
@@ -48,6 +51,15 @@ export default class CreateTestForm extends Component {
         /* Look for any elements with the class "custom-select": */
         x = document.getElementsByClassName('custom-select');
         console.log(x);
+
+        let savedTest = ls.get('savedTestToCreate');
+
+        if (savedTest) {
+            this.setState({
+                ...this.state,
+                hasSavedTest: true
+            })
+        }
 
         let timeValues = [5 * 60, 10 * 60, 20 * 60, 30 * 60, 1 * 60 * 60, 1.5 * 60 * 60];
 
@@ -147,7 +159,6 @@ export default class CreateTestForm extends Component {
         }
 
         document.addEventListener('click', closeAllSelect);
-
     }
     
 
@@ -162,11 +173,14 @@ export default class CreateTestForm extends Component {
             answerId: (len + 1).toString()
         })
         console.log(questions[quesId].answers);
-        
+
         this.setState({
             ...this.state,
             questions
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
+
     }
 
     handleAddQuestion() {
@@ -186,6 +200,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             questions
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -195,6 +211,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             questions
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         });
     }
 
@@ -207,6 +225,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             questions
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -214,6 +234,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             title: e.target.value
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -221,6 +243,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             description: e.target.value
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -228,7 +252,9 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             subject: e.target.value
-        }, () => console.log(this.state.subject))
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
+        })
     }
 
     setProtectedState(e) {
@@ -236,6 +262,8 @@ export default class CreateTestForm extends Component {
             ...this.state,
             isProtected: !this.state.isProtected,
             accessKey: ''
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -244,6 +272,8 @@ export default class CreateTestForm extends Component {
             ...this.state,
             isLimitedAttempts: !this.state.isLimitedAttempts,
             maxAttempts: 1
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -252,6 +282,8 @@ export default class CreateTestForm extends Component {
             ...this.state,
             isLimitedTime: !this.state.isLimitedTime,
             timeLimit: null
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -259,6 +291,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             accessKey: e.target.value
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -266,8 +300,9 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             maxAttempts: parseInt(e.target.value)
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
-        console.log(this.state);
         
     }
 
@@ -282,6 +317,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             maxAttempts
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -293,6 +330,8 @@ export default class CreateTestForm extends Component {
         this.setState({
             ...this.state,
             questions
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 
@@ -378,9 +417,22 @@ export default class CreateTestForm extends Component {
                         })
                     }
                 } else {
+                    ls.set('savedTestToCreate', null)
                     window.location.href = '/app/allTests'
                 }
             })
+    }
+
+    setModalChoice(choice) {
+        if (choice) {
+            this.setState(ls.get('savedTestToCreate'), () => {
+                console.log(this.state)
+                this.setState({
+                    ...this.state,
+                    hasSavedTest: false
+                })
+            })
+        }
     }
 
     deleteAnswer(quesId, ansId) {
@@ -429,18 +481,23 @@ export default class CreateTestForm extends Component {
     }
 
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading,  errors, isLimitedAttempts, isLimitedTime, maxAttempts } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading,  errors, isLimitedAttempts, isLimitedTime, maxAttempts, hasSavedTest } = this.state;
         
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
         return (
             <div>
 
-                <ConfirmModal 
-                    message="test"
-                    positiveChoice="Yes"
-                    negativeChoice="No"
-                />
+                {
+                    hasSavedTest && (
+                        <ConfirmModal 
+                            message="Load autosaved test?"
+                            positiveChoice="Sure"
+                            negativeChoice="No, delete it"
+                            setModalChoice={ (choice) => this.setModalChoice(choice) }
+                        />
+                    )
+                }
 
                 <h1 className="heading">
                     Create test 
@@ -448,7 +505,7 @@ export default class CreateTestForm extends Component {
                 <div className="test-basic-info">
                     <div className="info-group">
                         <label htmlFor="title">Test name: </label>
-                        <Input type="text" onChange={ (e) => this.setTestTitle(e) } isMini={ true } name="title" />
+                        <Input type="text" onChange={ (e) => this.setTestTitle(e) } isMini={ true } name="title" value={ this.state.title } />
                         <span className="error-input">{ errors['title'] }</span>
                     </div>
                     <div className="info-group">

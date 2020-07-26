@@ -77,6 +77,13 @@
 .modal-wrapper .modal-card .card-top .icon {
   height: 120px;
   width: 120px;
+  margin: auto;
+  margin-bottom: 1.2rem;
+}
+
+.modal-wrapper .modal-card .card-top .icon img {
+  width: 100%;
+  height: 100%;
 }
 
 .modal-wrapper .modal-card .card-top .text {
