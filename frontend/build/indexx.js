@@ -1,4 +1,4 @@
-let mainEl = document.querySelector('main')
+let mainEl = document.querySelector('main');
 
 setInterval(() => {
     if (is_scrolling()) {
