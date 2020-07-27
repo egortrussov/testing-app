@@ -1,3 +1,5 @@
+@import '../../css/config';
+
 $excellent: #0de278;
 $good: #13d685;
 $satisfactory: #ff8829;
@@ -55,6 +57,10 @@ $bad: #fc393e;
     background-color: rgba(#000, .5);
 
     .modal-card {
+        @include tablet-xxsm {
+            
+        }
+
         position: absolute;
         top: 50%;
         left: 50%;
@@ -63,13 +69,18 @@ $bad: #fc393e;
         padding: 2rem;
         border-radius: 1.5rem;
         width: 90%;
-        max-width: 450px;
+        max-width: 460px;
 
         .card-top {
             text-align: center;
             margin-bottom: 1rem;
 
             .icon {
+                @include tablet-xxsm {
+                    height: 90px;
+                    width: 90px;
+                }
+        
                 height: 120px;
                 width: 120px;
                 margin: auto;
@@ -88,14 +99,23 @@ $bad: #fc393e;
         }
 
         .card-buttons {
+            @include tablet-xxsm {
+                flex-direction: column;
+            }
+    
             display: flex;
             width: 100%;
             align-items: center;
             justify-content: center;
 
             button {
+                @include tablet-xxsm {
+                    width: 100%;
+                    max-width: 320px;
+                }
+        
                 width: auto;
-                max-width: 150px;
+                // max-width: 150px;
                 min-width: 110px;
                 margin: .2rem;
                 padding: .6rem 2rem;

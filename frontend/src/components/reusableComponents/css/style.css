@@ -1,3 +1,31 @@
+html {
+  --primary-color: #4ADB71;
+  --bg-color: #4ADB71;
+  --dark-color: #42C465;
+  --dark-color-lighten: rgb(77, 209, 112);
+  --dark-primary-color: #42C465;
+  --main-bg-color: #fff;
+  --dark-main-bg-color: #eee;
+  --dark-main-bg-color-shade: #e7e7e7;
+  --main-text-color: #000;
+  --danger-color: #fc393e;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg-color: #333;
+    --primary-color: rgb(42, 150, 71);
+    --dark-primary-color: rgb(42, 150, 71);
+    --dark-color: #2b2b2b;
+    --dark-color-lighten: #313131;
+    --main-bg-color: #444;
+    --dark-main-bg-color: rgb(61, 61, 61);
+    --dark-main-bg-color-shade: rgb(59, 59, 59);
+    --main-text-color: #fff;
+    --danger-color: #ff4a50;
+  }
+}
+
 .points-card {
   display: inline-block;
   padding: .2rem .5rem;
@@ -66,7 +94,7 @@
   padding: 2rem;
   border-radius: 1.5rem;
   width: 90%;
-  max-width: 450px;
+  max-width: 460px;
 }
 
 .modal-wrapper .modal-card .card-top {
@@ -79,6 +107,13 @@
   width: 120px;
   margin: auto;
   margin-bottom: 1.2rem;
+}
+
+@media (max-width: 470px) {
+  .modal-wrapper .modal-card .card-top .icon {
+    height: 90px;
+    width: 90px;
+  }
 }
 
 .modal-wrapper .modal-card .card-top .icon img {
@@ -104,9 +139,17 @@
           justify-content: center;
 }
 
+@media (max-width: 470px) {
+  .modal-wrapper .modal-card .card-buttons {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .modal-wrapper .modal-card .card-buttons button {
   width: auto;
-  max-width: 150px;
   min-width: 110px;
   margin: .2rem;
   padding: .6rem 2rem;
@@ -116,6 +159,13 @@
   color: var(--main-text-color);
   font-size: 1rem;
   font-weight: 700;
+}
+
+@media (max-width: 470px) {
+  .modal-wrapper .modal-card .card-buttons button {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 .modal-wrapper .modal-card .card-buttons button.cta {
