@@ -86,6 +86,9 @@ html {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .results-table .row {
