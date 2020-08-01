@@ -297,10 +297,12 @@ main {
             border-top-right-radius: 30px;
             border-bottom-left-radius: 0px;
             padding: 40px 20px;
+            padding-bottom: 80px !important;
         }
 
         @include tablet-xxsm {
             padding: 30px 5px;
+            padding-bottom: 80px !important;
         }
 
         background-color: var(--main-bg-color);

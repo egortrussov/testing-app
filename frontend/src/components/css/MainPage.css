@@ -388,12 +388,14 @@ main {
     border-top-right-radius: 30px;
     border-bottom-left-radius: 0px;
     padding: 40px 20px;
+    padding-bottom: 80px !important;
   }
 }
 
 @media (max-width: 470px) {
   .app-container main {
     padding: 30px 5px;
+    padding-bottom: 80px !important;
   }
 }
 

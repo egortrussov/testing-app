@@ -192,6 +192,7 @@ export default class CreateTestForm extends Component {
         const { questions } = this.state;
         if (questions.length === 20) return;
         questions.push({
+            questionType: 'singleChoice',
             title: '',
             answers: [{
                 text: '',
@@ -496,9 +497,13 @@ export default class CreateTestForm extends Component {
 
         questions[questionInx].questionType = questionTypes[option.value];
 
+        console.log(option, questions[questionInx].questionType)
+
         this.setState({
             ...this.state,
             questions
+        }, () => {
+            ls.set('savedTestToCreate', this.state);
         })
     }
 

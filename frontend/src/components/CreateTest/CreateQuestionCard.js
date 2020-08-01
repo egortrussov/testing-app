@@ -7,10 +7,15 @@ export default class CreateQuestionCard extends Component {
     render() {
         const { index, question, questionTypesToDisplay, changeQuestionType, letters, addAnswer, deleteAnswer, setAnswerText, setCorrectAnswerId, setQuestionTitle } = this.props;
 
+        let choiceInx = 0;
+        if (question.questionType === 'multipleChoice') 
+            choiceInx = 1;
+        console.log(choiceInx)
+
         return (
             <div key={ index } className="question-container"> 
 
-                <Dropdown options={ questionTypesToDisplay } onChange={ (option) => changeQuestionType(index, option) } value={ questionTypesToDisplay[0]} placeholder="Select question type" />
+                <Dropdown options={ questionTypesToDisplay } onChange={ (option) => changeQuestionType(index, option) } value={ questionTypesToDisplay[choiceInx]} placeholder="Select question type" />
 
                 
                 <h3 className="question-container__title">
@@ -22,12 +27,9 @@ export default class CreateQuestionCard extends Component {
                 <div className="question-container__answers">
                     { question.answers.map((ans, inx) => {
                         let extraClassName = '';
-
-                        console.log(question.correctAnswerId.toString() ===(inx + 1).toString())
                         
                         if (question.correctAnswerId.toString() === (inx + 1).toString()) 
                             extraClassName = 'selected';
-                        console.log(extraClassName)
 
                         return (
                             <div key={ `${ inx }-${ index }` } className={ "answer-block " + extraClassName }>
