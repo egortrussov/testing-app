@@ -14,11 +14,13 @@ import 'react-dropdown/style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import ConfirmModal from '../reusableComponents/ConfirmModal/ConfirmModal'
-// import Dropdown from '../reusableComponents/Dropdown/Dropdown'
+import CreateQuestionCard from './CreateQuestionCard'
 
 export default class CreateTestForm extends Component {
     state = {
+        questionTypes: ['singleChoice', 'multipleChoice'],
         questions: [{
+            questionType: 'singleChoice',
             title: '',
             answers: [{
                 text: '',
@@ -489,113 +491,189 @@ export default class CreateTestForm extends Component {
         })
     }
 
+    changeQuestionType(questionInx, option) {
+        let { questions, questionTypes } = this.state;
+
+        questions[questionInx].questionType = questionTypes[option.value];
+
+        this.setState({
+            ...this.state,
+            questions
+        })
+    }
+
     render() {
-        const { questions, isProtected, timeErrorMsg, isLoading,  errors, isLimitedAttempts, isLimitedTime, maxAttempts, hasSavedTest, title, description, subject, accessKey } = this.state;
+        const { questions, isProtected, timeErrorMsg, isLoading,  errors, isLimitedAttempts, isLimitedTime, maxAttempts, hasSavedTest, title, description, subject, accessKey, questionTypes } = this.state;
         
         const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+        const questionTypesToDisplay = [
+            { value: 0, label: 'Single choice' }, 
+            { value: 1, label: 'Multiple choice' }
+        ];
 
         return (
             <div>
+                {hasSavedTest && (
+                    <ConfirmModal
+                        message="Load autosaved test?"
+                        positiveChoice="Sure"
+                        negativeChoice="No, delete it"
+                        setModalChoice={(choice) => this.setModalChoice(choice)}
+                    />
+                )}
 
-                {
-                    hasSavedTest && (
-                        <ConfirmModal 
-                            message="Load autosaved test?"
-                            positiveChoice="Sure"
-                            negativeChoice="No, delete it"
-                            setModalChoice={ (choice) => this.setModalChoice(choice) }
-                        />
-                    )
-                }
-
-                <h1 className="heading">
-                    Create test 
-                </h1>
+                <h1 className="heading">Create test</h1>
                 <div className="test-basic-info">
                     <div className="info-group">
                         <label htmlFor="title">Test name: </label>
-                        <Input type="text" onChange={ (e) => this.setTestTitle(e) } isMini={ true } name="title" value={ title } />
-                        <span className="error-input">{ errors['title'] }</span>
+                        <Input
+                            type="text"
+                            onChange={(e) => this.setTestTitle(e)}
+                            isMini={true}
+                            name="title"
+                            value={title}
+                        />
+                        <span className="error-input">{errors['title']}</span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="subject">Subject: </label>
-                        <Input type="text" onChange={ (e) => this.setTestSubject(e) } isMini={ true } name="title" value={ subject } />
-                        <span className="error-input">{ errors['subject'] }</span>
+                        <Input
+                            type="text"
+                            onChange={(e) => this.setTestSubject(e)}
+                            isMini={true}
+                            name="title"
+                            value={subject}
+                        />
+                        <span className="error-input">{errors['subject']}</span>
                     </div>
                     <div className="info-group">
                         <label htmlFor="description">Description: </label>
-                        <textarea className="" onChange={ (e) => this.setTestDescription(e) } name="description" id="" cols="30" rows="10" value={ description }></textarea>
+                        <textarea
+                            className=""
+                            onChange={(e) => this.setTestDescription(e)}
+                            name="description"
+                            id=""
+                            cols="30"
+                            rows="10"
+                            value={description}></textarea>
                     </div>
                     <div className="info-group-checkbox">
                         <div className="pretty p-icon p-smooth p-thick p-curve">
-                            {
-                                isProtected ? (
-                                    <input type="checkbox" checked onChange={ this.setProtectedState.bind(this) } />
-                                ) : (
-                                    <input type="checkbox" onChange={ this.setProtectedState.bind(this) } />
-                                )
-                            }
+                            {isProtected ? (
+                                <input
+                                    type="checkbox"
+                                    checked
+                                    onChange={this.setProtectedState.bind(this)}
+                                />
+                            ) : (
+                                <input
+                                    type="checkbox"
+                                    onChange={this.setProtectedState.bind(this)}
+                                />
+                            )}
                             <div className="state p-success">
                                 <i className="icon">
-                                <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                                    <FontAwesomeIcon
+                                        className="check-icon"
+                                        icon={faCheck}
+                                    />
                                 </i>
                                 <label>Protected</label>
                             </div>
                         </div>
                     </div>
-                    { isProtected && (
+                    {isProtected && (
                         <div className="info-group">
                             <label htmlFor="key">Secret key: </label>
-                            <Input onChange={ (e) => this.setAccessKey(e) } isMini={ true } name="accessKey" type="text" value={ accessKey } />
+                            <Input
+                                onChange={(e) => this.setAccessKey(e)}
+                                isMini={true}
+                                name="accessKey"
+                                type="text"
+                                value={accessKey}
+                            />
                         </div>
-                    ) }
+                    )}
                     <div className="info-group-checkbox">
                         <div className="pretty p-icon p-smooth p-thick p-curve">
-                            {
-                                isLimitedAttempts ? (
-                                    <input type="checkbox" checked onChange={ this.setAttemptsState.bind(this) } />
-                                ) : (
-                                    <input type="checkbox" onChange={ this.setAttemptsState.bind(this) } />
-                                )
-                            }
+                            {isLimitedAttempts ? (
+                                <input
+                                    type="checkbox"
+                                    checked
+                                    onChange={this.setAttemptsState.bind(this)}
+                                />
+                            ) : (
+                                <input
+                                    type="checkbox"
+                                    onChange={this.setAttemptsState.bind(this)}
+                                />
+                            )}
                             <div className="state p-success">
                                 <i className="icon">
-                                <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                                    <FontAwesomeIcon
+                                        className="check-icon"
+                                        icon={faCheck}
+                                    />
                                 </i>
                                 <label>Limited attempts</label>
                             </div>
                         </div>
                     </div>
-                    { isLimitedAttempts && (
+                    {isLimitedAttempts && (
                         <div className="info-group">
                             <label htmlFor="key">Maximum attempts: </label>
                             <div className="btn-group">
-                                <button className="increment-btn" onClick={ () => this.changeAttemptsNumber(-1) }> <span>-</span> </button>
-                                <span className="attempts-num">{ maxAttempts }</span>
-                                <button className="increment-btn" onClick={ () => this.changeAttemptsNumber(1) }> <span>+</span> </button>
+                                <button
+                                    className="increment-btn"
+                                    onClick={() =>
+                                        this.changeAttemptsNumber(-1)
+                                    }>
+                                    {' '}
+                                    <span>-</span>{' '}
+                                </button>
+                                <span className="attempts-num">
+                                    {maxAttempts}
+                                </span>
+                                <button
+                                    className="increment-btn"
+                                    onClick={() =>
+                                        this.changeAttemptsNumber(1)
+                                    }>
+                                    {' '}
+                                    <span>+</span>{' '}
+                                </button>
                             </div>
-                            
                         </div>
-                    ) }
+                    )}
                     <div className="info-group-checkbox">
                         <div className="pretty p-icon p-smooth p-thick p-curve">
-                            {
-                                isLimitedTime ? (
-                                    <input type="checkbox" checked onChange={ this.setTimeLimitState.bind(this) } />
-                                ) : (
-                                    <input type="checkbox" onChange={ this.setTimeLimitState.bind(this) } />
-                                )
-                            }
+                            {isLimitedTime ? (
+                                <input
+                                    type="checkbox"
+                                    checked
+                                    onChange={this.setTimeLimitState.bind(this)}
+                                />
+                            ) : (
+                                <input
+                                    type="checkbox"
+                                    onChange={this.setTimeLimitState.bind(this)}
+                                />
+                            )}
                             <div className="state p-success">
                                 <i className="icon">
-                                <FontAwesomeIcon className="check-icon" icon={ faCheck } />
+                                    <FontAwesomeIcon
+                                        className="check-icon"
+                                        icon={faCheck}
+                                    />
                                 </i>
                                 <label>Limited time</label>
                             </div>
                         </div>
                     </div>
-                    { isLimitedTime ? (
-                        <div className="custom-select" style={{ width: 300 + 'px' }}>
+                    {isLimitedTime ? (
+                        <div
+                            className="custom-select"
+                            style={{ width: 300 + 'px' }}>
                             <select>
                                 <option value="0">Select time limit:</option>
                                 <option value="1">5 minutes</option>
@@ -607,7 +685,9 @@ export default class CreateTestForm extends Component {
                             </select>
                         </div>
                     ) : (
-                        <div className="custom-select" style={{ width: 300 + 'px', visibility: 'hidden' }}>
+                        <div
+                            className="custom-select"
+                            style={{ width: 300 + 'px', visibility: 'hidden' }}>
                             <select>
                                 <option value="0">Select time limit:</option>
                                 <option value="1">5 minutes</option>
@@ -618,75 +698,51 @@ export default class CreateTestForm extends Component {
                                 <option value="6">1.5 hours</option>
                             </select>
                         </div>
-                    ) }
-                    
+                    )}
                 </div>
                 <div className="questions">
-                    { questions.map((ques, index) => {
-                        return (
-                            <div key={ index } className="question-container">
-
-                                <Dropdown options={ ['1', '2'] } onChange={this._onSelect} value={ '1' } placeholder="Select an option" />
-
-                                
-                                <h3 className="question-container__title">
-                                    <div className="delete-question-btn">
-                                        <span>&times;</span>
-                                    </div>
-                                    <span>{ index + 1 }.</span>  <Input type="text" isMini={ true } onChange={ (e) => this.setQuestionTitle(e, index) } name="questionTitle" value={ ques.title } />
-                                </h3>
-                                <div className="question-container__answers">
-                                    { ques.answers.map((ans, inx) => {
-                                        let extraClassName = '';
-
-                                        console.log(ques.correctAnswerId.toString() ===(inx + 1).toString())
-                                        
-                                        if (ques.correctAnswerId.toString() === (inx + 1).toString()) 
-                                            extraClassName = 'selected';
-                                        console.log(extraClassName)
-
-                                        return (
-                                            <div key={ `${ inx }-${ index }` } className={ "answer-block " + extraClassName }>
-                                                <div className="answer-block__letter" onClick={ () => this.setCorrectAnswerId(index, ans.answerId) }><span>{ letters[inx] }</span></div>
-                                                <div className="answer-block__text">
-                                                    <input autoComplete="off" id={ `_${ index }-${ inx }` } type="text" onChange={(e) => this.setAnswerText(e, index, inx) } value={ ans.text } />
-                                                    <button className="btn-delete" onClick={ () => this.deleteAnswer(index, inx) }>
-                                                        <span>&times;</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        )
-                                    }) }
-                                    <button onClick={ this.handleAddAnswer.bind(this, index) } className="add-question"><span>+</span></button>
-                                </div>
-                            </div>
-                        )
-                    }) }
-                    <button onClick={ this.handleAddQuestion.bind(this) } className="new-question btn-secondary">
+                    { questions.map((ques, index) => (
+                        <CreateQuestionCard
+                            question={ ques }
+                            index={ index }
+                            questionTypesToDisplay={ questionTypesToDisplay }
+                            letters={ letters }
+                            changeQuestionType={ (questionInx, option) =>
+                                this.changeQuestionType(questionInx, option)
+                            }
+                            handleAddAnswer={ (index) => this.handleAddAnswer(index) }
+                            setAnswerText={ (e, questionInx, answerInx) => this.setAnswerText(e, questionInx, answerInx) }
+                            deleteAnswer={ (questionInx, answerInx) => this.deleteAnswer(questionInx, answerInx) }
+                            setCorrectAnswerId={ (questionInx, ansId) => this.setCorrectAnswerId(questionInx, ansId) }
+                            setQuestionTitle={ (e, index) => this.setQuestionTitle(e, index) }
+                            addAnswer={ (questionInx) => this.handleAddAnswer(questionInx) }
+                        />
+                    ))}
+                    <button
+                        onClick={this.handleAddQuestion.bind(this)}
+                        className="new-question btn-secondary">
                         New question
                     </button>
                 </div>
-                { timeErrorMsg && (
-                    <span className="error-msg">
-                        { timeErrorMsg }
-                    </span>
-                ) }
+                {timeErrorMsg && (
+                    <span className="error-msg">{timeErrorMsg}</span>
+                )}
 
-                { errors['questions'] && (
-                    <span className="error-msg">
-                        { errors['questions'] }
-                    </span>
-                ) }
-                { errors['answers'] && (
-                    <span className="error-msg">
-                        { errors['answers'] }
-                    </span>
-                ) }
+                {errors['questions'] && (
+                    <span className="error-msg">{errors['questions']}</span>
+                )}
+                {errors['answers'] && (
+                    <span className="error-msg">{errors['answers']}</span>
+                )}
 
-                <button onClick={ this.handleAddTest.bind(this) } className="btn btn-cta">Create test!</button>
-                
-                { isLoading && <Spinner size="sm" /> }
+                <button
+                    onClick={this.handleAddTest.bind(this)}
+                    className="btn btn-cta">
+                    Create test!
+                </button>
+
+                {isLoading && <Spinner size="sm" />}
             </div>
-        )
+        );
     }
 }
