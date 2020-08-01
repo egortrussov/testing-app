@@ -185,4 +185,20 @@ html {
 .load-more:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.Dropdown-control {
+  height: 40px;
+  border-color: transparent transparent var(--dark-primary-color) transparent;
+  background-color: var(--dark-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+.Dropdown-option {
+  background-color: var(--main-bg-color) !important;
+  color: var(--main-text-color) !important;
+}
+
+.Dropdown-Placeholder {
+  background-color: var(--dark-color) !important;
+}
 /*# sourceMappingURL=style.css.map */

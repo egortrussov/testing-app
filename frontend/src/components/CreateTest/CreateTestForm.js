@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ls from 'local-storage'
+import Dropdown from 'react-dropdown'
 
 import Spinner from '../Spinner/Spinner'
 import Input from '../reusableComponents/inputField/Input'
@@ -7,11 +8,13 @@ import Input from '../reusableComponents/inputField/Input'
 import AuthContext from '../../context/AuthContext'
 
 import './css/style.css'
+import 'react-dropdown/style.css';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import ConfirmModal from '../reusableComponents/ConfirmModal/ConfirmModal'
+// import Dropdown from '../reusableComponents/Dropdown/Dropdown'
 
 export default class CreateTestForm extends Component {
     state = {
@@ -622,6 +625,9 @@ export default class CreateTestForm extends Component {
                     { questions.map((ques, index) => {
                         return (
                             <div key={ index } className="question-container">
+
+                                <Dropdown options={ ['1', '2'] } onChange={this._onSelect} value={ '1' } placeholder="Select an option" />
+
                                 
                                 <h3 className="question-container__title">
                                     <div className="delete-question-btn">

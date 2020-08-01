@@ -147,3 +147,19 @@
         background-color: rgba(#000, .1);
     }
 }
+
+.Dropdown-control {
+    height: 40px;
+    border-color: transparent transparent var(--dark-primary-color) transparent;
+    background-color: var(--dark-color) !important;
+    color: var(--main-text-color) !important;
+}
+
+.Dropdown-option {
+    background-color: var(--main-bg-color) !important;
+    color: var(--main-text-color) !important;
+}
+
+.Dropdown-Placeholder {
+    background-color: var(--dark-color) !important;
+}
