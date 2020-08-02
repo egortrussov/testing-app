@@ -10,7 +10,7 @@ const TestSchema = new Schema({
     questions: [{
         questionType: {
             required: false,
-            default: 'singleChoice'
+            // default: 'singleChoice'
         },
         title: String,
         answers: [{

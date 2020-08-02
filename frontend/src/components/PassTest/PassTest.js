@@ -6,6 +6,7 @@ import Spinner from '../Spinner/Spinner'
 import './css/style.css'
 import { convertTimeShort } from '../../middleware/convertTime'
 import { getHeaders } from '../../middleware/authMiddleware'
+import QuestionCard from './QuestionCard'
 
 export default class PassTest extends Component {
     state = {
@@ -15,7 +16,8 @@ export default class PassTest extends Component {
         answeredQuestions: 0,
         isSubmitted: false,
         isTimeUp: false,
-        time: null
+        time: null,
+        currentQuestion: 0
     }
 
     static contextType = AuthContext;
@@ -95,8 +97,8 @@ export default class PassTest extends Component {
         
     }
 
-    finishTest(e) {
-        e.preventDefault();
+    finishTest() {
+        // e.preventDefault();
         let points = 0;
         let results = [];
         let { answers, test, isSubmitted, time } = this.state;
@@ -148,8 +150,23 @@ export default class PassTest extends Component {
             })
     }
 
+    changeQuestion(choice) {
+        let { currentQuestion, test } = this.state;
+
+        if ((!currentQuestion && choice === -1) || (currentQuestion === test.questions.length && choice === 1)) 
+            return;
+
+        currentQuestion += choice;
+
+        this.setState({
+            ...this.state,
+            currentQuestion
+        })
+        console.log(currentQuestion)
+    } 
+
     render() {
-        const { isLoading, test, answeredQuestions, time, answers } = this.state;
+        const { isLoading, test, answeredQuestions, time, answers, currentQuestion } = this.state;
         const { questions } = test;
 
         const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
@@ -172,7 +189,18 @@ export default class PassTest extends Component {
                         Answered questions: { answeredQuestions } / { questions.length }
                     </div>
                 </div>
-                <form className="test-form" onSubmit={ e => this.finishTest(e) }>
+                {
+                    <QuestionCard 
+                        answers={ answers } 
+                        question={ questions[currentQuestion] }
+                        handleSelect={ (index, ansId) => this.handleSelect(index, ansId) }
+                        index={ currentQuestion }
+                        changeQuestion={  (choice) => this.changeQuestion(choice) }
+                        questionsNum={ test.questions.length }
+                        finishTest={ () => this.finishTest() }
+                    />
+                }
+                {/* <form className="test-form" onSubmit={ e => this.finishTest(e) }>
                     <h1 className="heading">
                         Pass test '{ test.title }'
                     </h1>
@@ -206,7 +234,7 @@ export default class PassTest extends Component {
                         }) }
                     </div>
                     <input type="submit" className="btn btn-cta" value="Finish" />
-                </form>
+                </form> */}
             </>
         )
     }
