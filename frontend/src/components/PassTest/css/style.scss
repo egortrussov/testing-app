@@ -85,6 +85,19 @@ $radioActive: #42C465;
 
 }
 
+.pass.question-container {
+    
+    .question-container__top {
+        display: flex;
+        flex-flow: row wrap;
+
+        .question-btn {
+            width: 25px;
+            height: 20px;
+        }
+    }
+}
+
 .info-block {
     @include tablet-xsm {
         top: auto;

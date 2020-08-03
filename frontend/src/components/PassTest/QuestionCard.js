@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
+import QuestionNavbar from './QuestionNavbar';
 
 export default class QuestionCard extends Component {
     render() {
-        const { answers, question, index, handleSelect, changeQuestion, questionsNum, finishTest } = this.props;
+        const { answers, question, index, handleSelect, changeQuestion, questionsNum, finishTest, moveToQuestion } = this.props;
 
         const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
         return (
-            <div className="question-container">
+            <div className="question-container pass">
+                <div className="question-container__top">
+                    {
+                        <QuestionNavbar currentQuestion={ index } answers={ answers } moveToQuestion={ (index) => moveToQuestion(index) } questionsNum={ questionsNum } />
+                    }
+                </div>
                 <h3 class="question-container__title">
                     { index + 1 }.  { question.title }
                 </h3>

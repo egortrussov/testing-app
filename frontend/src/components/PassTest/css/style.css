@@ -123,6 +123,21 @@ html {
           transform: scale(0.4);
 }
 
+.pass.question-container .question-container__top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.pass.question-container .question-container__top .question-btn {
+  width: 25px;
+  height: 20px;
+}
+
 .info-block {
   position: fixed;
   width: auto !important;

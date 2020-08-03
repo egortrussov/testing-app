@@ -165,6 +165,17 @@ export default class PassTest extends Component {
         console.log(currentQuestion)
     } 
 
+    moveToQuestion(index) {
+        let { currentQuestion } = this.state;
+
+        currentQuestion = index;
+
+        this.setState({
+            ...this.state,
+            currentQuestion
+        })
+    }
+
     render() {
         const { isLoading, test, answeredQuestions, time, answers, currentQuestion } = this.state;
         const { questions } = test;
@@ -198,6 +209,7 @@ export default class PassTest extends Component {
                         changeQuestion={  (choice) => this.changeQuestion(choice) }
                         questionsNum={ test.questions.length }
                         finishTest={ () => this.finishTest() }
+                        moveToQuestion={ (index) => this.moveToQuestion(index) }
                     />
                 }
                 {/* <form className="test-form" onSubmit={ e => this.finishTest(e) }>
