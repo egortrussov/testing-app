@@ -64,7 +64,7 @@ html {
 }
 
 @mixin tablet-xsm {
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
         @content;
     }
 }

@@ -123,6 +123,18 @@ html {
           transform: scale(0.4);
 }
 
+.pass.question-container {
+  position: relative;
+  width: 100% !important;
+  max-width: 100%;
+  border: none;
+  border-radius: 2rem;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  margin-top: 3rem;
+  padding: 2rem;
+}
+
 .pass.question-container .question-container__top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -131,11 +143,76 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.pass.question-container .question-container__top::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 95%;
+  left: 50%;
+  top: 100%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: var(--bg-color-accent);
 }
 
 .pass.question-container .question-container__top .question-btn {
-  width: 25px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--bg-color-accent);
+  border-radius: 50%;
+  margin-right: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pass.question-container .question-container__top .question-btn.current {
+  border: 2px solid var(--primary-color);
+}
+
+.pass.question-container .question-container__top .question-btn.answered {
+  background-color: var(--primary-color);
+}
+
+.pass.question-container .question-container__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.pass.question-container .question-container__buttons .buttons-left button {
+  margin-right: .5rem;
+}
+
+.pass.question-container .question-container__buttons button {
+  padding: .4rem 1.7rem;
+  background: none;
+  color: var(--main-text-color);
+  border: 1.5px solid var(--primary-color);
+  border-radius: .5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.pass.question-container .question-container__buttons button.cta {
+  background-color: var(--primary-color);
 }
 
 .info-block {
@@ -158,7 +235,7 @@ html {
           box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .info-block {
     top: auto;
     bottom: 0 !important;

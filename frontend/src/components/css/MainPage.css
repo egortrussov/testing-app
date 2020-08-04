@@ -133,7 +133,7 @@ main {
   font-family: 'Nunito', sans-serif;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -161,7 +161,7 @@ main {
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -195,7 +195,7 @@ main {
   cursor: pointer;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .toggle-view {
     display: none !important;
   }
@@ -218,13 +218,13 @@ main {
   width: 70px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav.hidden {
     width: 100% !important;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -251,7 +251,7 @@ main {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item .logo img {
     margin-left: 0;
   }
@@ -274,7 +274,7 @@ main {
   opacity: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item .logo .text.hidden {
     opacity: 1;
   }
@@ -292,7 +292,7 @@ main {
   padding-left: 3.2rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item .nav-link {
     text-align: center;
     width: auto;
@@ -304,7 +304,7 @@ main {
   white-space: nowrap;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item .nav-link .text {
     display: none;
   }
@@ -325,7 +325,7 @@ main {
   font-size: 1.4rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item .nav-link .icon {
     left: 0;
     right: 0;
@@ -336,7 +336,7 @@ main {
   background-color: var(--dark-color-lighten) !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item .nav-link:hover {
     background: none !important;
   }
@@ -346,7 +346,7 @@ main {
   background-color: var(--dark-color) !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container nav .nav-item .nav-link.active {
     background: none !important;
   }
@@ -382,7 +382,7 @@ main {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .app-container main {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
@@ -479,7 +479,7 @@ main {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .test-card {
     margin: auto;
   }

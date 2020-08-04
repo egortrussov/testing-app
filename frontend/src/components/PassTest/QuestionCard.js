@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import QuestionNavbar from './QuestionNavbar';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+
 export default class QuestionCard extends Component {
     render() {
         const { answers, question, index, handleSelect, changeQuestion, questionsNum, finishTest, moveToQuestion } = this.props;
@@ -38,10 +41,12 @@ export default class QuestionCard extends Component {
                 <div className="question-container__buttons">
                     <div className="buttons-left">
                         {
-                            index ? <button onClick={ () => changeQuestion(-1) }>Previous question</button> : ''
+                            index ? <button className="cta" onClick={ () => changeQuestion(-1) }> 
+                                <FontAwesomeIcon icon={ faArrowLeft } />    
+                             </button> : ''
                         }
                         {
-                            index !== questionsNum - 1 ? <button onClick={ () => changeQuestion(1) }>Next question</button> : ''
+                            index !== questionsNum - 1 ? <button className="cta" onClick={ () => changeQuestion(1) }><FontAwesomeIcon icon={ faArrowRight } /></button> : ''
                         }
                         
                     </div>
