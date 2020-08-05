@@ -13,7 +13,7 @@ export default class QuestionCard extends Component {
 
         return (
             <div className="question-container pass">
-                <div className="question-container__title">
+                <div className="question-container__toptitle">
                     <div className="left">
                         { testTitle }
                     </div>
