@@ -7,6 +7,7 @@ import './css/style.css'
 import { convertTimeShort } from '../../middleware/convertTime'
 import { getHeaders } from '../../middleware/authMiddleware'
 import QuestionCard from './QuestionCard'
+import ConfirmModal from '../reusableComponents/ConfirmModal/ConfirmModal'
 
 export default class PassTest extends Component {
     state = {
@@ -17,7 +18,8 @@ export default class PassTest extends Component {
         isSubmitted: false,
         isTimeUp: false,
         time: null,
-        currentQuestion: 0
+        currentQuestion: 0,
+        showModal: false
     }
 
     static contextType = AuthContext;
@@ -176,8 +178,23 @@ export default class PassTest extends Component {
         })
     }
 
+    toggleModal(choice) {
+        const { showModal } = this.state;
+
+        // console.log(toggleModal)
+
+        if (!choice) {
+            this.setState({
+                ...this.state,
+                showModal: !showModal
+            })
+        } else {
+            this.finishTest();
+        }
+    }
+
     render() {
-        const { isLoading, test, answeredQuestions, time, answers, currentQuestion } = this.state;
+        const { isLoading, test, answeredQuestions, time, answers, currentQuestion, showModal } = this.state;
         const { questions } = test;
 
         const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
@@ -188,18 +205,16 @@ export default class PassTest extends Component {
 
         return (
             <>
-                <div className="info-block">
-                    <div>
-                        { test.timeLimit ? (
-                            <span>Time left: { convertTimeShort(time) }</span>
-                        ) : (
-                            <span>Time passed: { convertTimeShort(time) }</span>
-                        ) } 
-                    </div>
-                    <div>
-                        Answered questions: { answeredQuestions } / { questions.length }
-                    </div>
-                </div>
+                {
+                    showModal && (
+                        <ConfirmModal 
+                            message="Are you sure you want to finish the test?" 
+                            setModalChoice={ (choice) => this.toggleModal(choice) } 
+                            positiveChoice="Yes"
+                            negativeChoice="No"    
+                         />
+                    )
+                }
                 {
                     <QuestionCard 
                         answers={ answers } 
@@ -208,7 +223,7 @@ export default class PassTest extends Component {
                         index={ currentQuestion }
                         changeQuestion={  (choice) => this.changeQuestion(choice) }
                         questionsNum={ test.questions.length }
-                        finishTest={ () => this.finishTest() }
+                        finishTest={ () => this.toggleModal(false) }
                         moveToQuestion={ (index) => this.moveToQuestion(index) }
                         testTitle={ test.title } 
                         time={ time }
