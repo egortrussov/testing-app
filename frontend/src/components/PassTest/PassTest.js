@@ -210,43 +210,10 @@ export default class PassTest extends Component {
                         questionsNum={ test.questions.length }
                         finishTest={ () => this.finishTest() }
                         moveToQuestion={ (index) => this.moveToQuestion(index) }
+                        testTitle={ test.title } 
+                        time={ time }
                     />
                 }
-                {/* <form className="test-form" onSubmit={ e => this.finishTest(e) }>
-                    <h1 className="heading">
-                        Pass test '{ test.title }'
-                    </h1>
-                    <div className="test-questions">
-                        { questions.map((ques, index) => {
-                            return (
-                                <div className="question-container">
-                                    <h3 class="question-container__title">
-                                        { index + 1 }.  { ques.title }
-                                    </h3>
-                                    <div className="question-container__answers">
-                                        { ques.answers.map((ans, inx) => {
-                                            let extraClassName = '';
-                                            
-                                            if (answers[index].toString() === (inx + 1).toString()) 
-                                                extraClassName = 'selected';
-
-                                            return (
-                                                <div className={ "answer-block " + extraClassName } onClick={ this.handleSelect.bind(this, index, ans.answerId) }>
-                                                    <div className="answer-block__letter"><span>{ letters[inx] }</span></div>
-                                                    <div className="answer-block__text">
-                                                        <span>{ ans.text }</span>
-                                                    </div>
-                                                </div>
-                                            )
-                                        }) }
-                                        
-                                    </div>
-                                </div>
-                            )
-                        }) }
-                    </div>
-                    <input type="submit" className="btn btn-cta" value="Finish" />
-                </form> */}
             </>
         )
     }

@@ -3,15 +3,24 @@ import QuestionNavbar from './QuestionNavbar';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { convertTimeShort } from '../../middleware/convertTime';
 
 export default class QuestionCard extends Component {
     render() {
-        const { answers, question, index, handleSelect, changeQuestion, questionsNum, finishTest, moveToQuestion } = this.props;
+        const { testTitle, time, answers, question, index, handleSelect, changeQuestion, questionsNum, finishTest, moveToQuestion } = this.props;
 
         const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
         return (
             <div className="question-container pass">
+                <div className="question-container__title">
+                    <div className="left">
+                        { testTitle }
+                    </div>
+                    <div className="right">
+                        { convertTimeShort(time) }
+                    </div>
+                </div>
                 <div className="question-container__top">
                     {
                         <QuestionNavbar currentQuestion={ index } answers={ answers } moveToQuestion={ (index) => moveToQuestion(index) } questionsNum={ questionsNum } />
@@ -40,14 +49,10 @@ export default class QuestionCard extends Component {
                 </div>
                 <div className="question-container__buttons">
                     <div className="buttons-left">
-                        {
-                            index ? <button className="cta" onClick={ () => changeQuestion(-1) }> 
+                        <button className={ `cta ${ index === 0 ? 'disabled' : '' }` }  disabled={ index === 0 } onClick={ () => changeQuestion(-1) }> 
                                 <FontAwesomeIcon icon={ faArrowLeft } />    
-                             </button> : ''
-                        }
-                        {
-                            index !== questionsNum - 1 ? <button className="cta" onClick={ () => changeQuestion(1) }><FontAwesomeIcon icon={ faArrowRight } /></button> : ''
-                        }
+                             </button>
+                        <button className={ `cta ${ index === questionsNum - 1 ? 'disabled' : '' }` } disabled={ index === questionsNum - 1 } onClick={ () => changeQuestion(1) }><FontAwesomeIcon icon={ faArrowRight } /></button>
                         
                     </div>
                     <div className="buttons-right">
