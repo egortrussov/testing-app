@@ -13,23 +13,36 @@ export default class CreateQuestionCard extends Component {
         console.log(choiceInx)
 
         return (
-            <div key={ index } className="question-container"> 
+            <div key={ index } className="question-container pass"> 
 
-                <Dropdown options={ questionTypesToDisplay } onChange={ (option) => changeQuestionType(index, option) } value={ questionTypesToDisplay[choiceInx]} placeholder="Select question type" />
+                <div className="question-container__toptitle">
+                    <div className="left">
+                        <h3 className="question-container__title">
+                            <div className="delete-question-btn">
+                                <span>&times;</span>
+                            </div>
+                            <span>{ index + 1 }.</span>  <Input type="text" isMini={ true } onChange={ (e) => setQuestionTitle(e, index) } name="questionTitle" value={ question.title } />
+                        </h3>
+                    </div>
+                    <div className="right">
+                        <Dropdown className="dropdown" options={ questionTypesToDisplay } onChange={ (option) => changeQuestionType(index, option) } value={ questionTypesToDisplay[choiceInx]} placeholder="Select question type" />
+                    </div>
+                </div>
 
                 
-                <h3 className="question-container__title">
-                    <div className="delete-question-btn">
-                        <span>&times;</span>
-                    </div>
-                    <span>{ index + 1 }.</span>  <Input type="text" isMini={ true } onChange={ (e) => setQuestionTitle(e, index) } name="questionTitle" value={ question.title } />
-                </h3>
+
+                
                 <div className="question-container__answers">
                     { question.answers.map((ans, inx) => {
                         let extraClassName = '';
+
+                        question.correctAnswerId.forEach(ansId => {
+                            if (ansId.toString() === (inx + 1).toString()) 
+                                extraClassName = 'selected';
+                        })
                         
-                        if (question.correctAnswerId.toString() === (inx + 1).toString()) 
-                            extraClassName = 'selected';
+                        {/* if (question.correctAnswerId.toString() === (inx + 1).toString()) 
+                            extraClassName = 'selected'; */}
 
                         return (
                             <div key={ `${ inx }-${ index }` } className={ "answer-block " + extraClassName }>

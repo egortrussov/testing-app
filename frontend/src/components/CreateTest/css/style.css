@@ -216,8 +216,8 @@ html {
   left: -25px;
   top: 3px;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   font-size: 1.2rem;
   color: #fff;
   border: none;
@@ -248,6 +248,8 @@ html {
 
 .questions .question-card .answers {
   margin-top: .6rem;
+  position: relative;
+  z-index: 10;
 }
 
 .questions .question-card .ans-card {
@@ -260,6 +262,7 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 100;
 }
 
 .questions .question-card .ans-card .ans-letter {
@@ -466,8 +469,8 @@ html {
 }
 
 .question-container__title .delete-question-btn {
-  height: 35px;
-  width: 35px;
+  min-height: 35px;
+  min-width: 35px;
   background-color: var(--danger-color);
   border: none;
   display: -webkit-box;
@@ -494,8 +497,82 @@ html {
   display: inline-block;
 }
 
+.question-container__answers {
+  position: relative;
+  z-index: 0 !important;
+}
+
 .question-container {
   position: relative;
+}
+
+.question-container .question-container__toptitle {
+  text-align: left;
+  position: relative;
+  z-index: 10000000;
+}
+
+@media (max-width: 890px) {
+  .question-container .question-container__toptitle {
+    text-align: left !important;
+    -webkit-box-align: left !important;
+        -ms-flex-align: left !important;
+            align-items: left !important;
+    -webkit-box-pack: left !important;
+        -ms-flex-pack: left !important;
+            justify-content: left !important;
+    display: block;
+  }
+}
+
+@media (max-width: 890px) {
+  .question-container .question-container__toptitle .left {
+    -ms-flex-item-align: start !important;
+        align-self: flex-start !important;
+    width: 100%;
+  }
+}
+
+@media (max-width: 890px) {
+  .question-container .question-container__toptitle .left input {
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 890px) {
+  .question-container .question-container__toptitle .right {
+    margin-top: .8rem;
+    width: 100%;
+    -ms-flex-item-align: start !important;
+        align-self: flex-start !important;
+  }
+}
+
+.question-container .question-container__toptitle .dropdown {
+  width: 250px;
+  z-index: 100000 !important;
+  position: relative;
+}
+
+@media (max-width: 890px) {
+  .question-container .question-container__toptitle .dropdown {
+    width: 100%;
+  }
+}
+
+.question-container .question-container__toptitle .Dropdown-menu {
+  position: absolute;
+  z-index: 100000;
+}
+
+.question-container .question-container__toptitle .Dropdown-menu div {
+  z-index: 10000 !important;
+}
+
+.answer-block {
+  position: relative;
+  z-index: 100;
 }
 
 .answer-block__text .btn-delete {

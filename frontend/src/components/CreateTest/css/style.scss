@@ -183,8 +183,8 @@
             left: -25px;
             top: 3px;
             cursor: pointer;
-            width: 20px;
-            height: 20px;
+            min-width: 20px;
+            min-height: 20px;
             font-size: 1.2rem;
             color: #fff;
             border: none;
@@ -215,6 +215,8 @@
 
         .answers {
             margin-top: .6rem;
+            position: relative;
+            z-index: 10;
         }
 
         .ans-card {
@@ -223,6 +225,7 @@
             padding-left: 1.8rem;
             display: flex;
             align-items: center;
+            z-index: 100;
             
             .ans-letter {
                 margin-left: 1rem;
@@ -419,8 +422,8 @@
     align-items: center;
 
     .delete-question-btn {
-        height: 35px;
-        width: 35px;
+        min-height: 35px;
+        min-width: 35px;
         background-color: var(--danger-color);
         border: none;
         display: flex;
@@ -442,8 +445,74 @@
     }
 }
 
+.question-container__answers {
+    position: relative;
+    z-index: 0 !important;
+}
+
 .question-container {
     position: relative;
+
+    .question-container__toptitle {
+        @include tablet {
+            text-align: left !important;
+            align-items: left !important;
+            justify-content: left !important;
+            display: block;
+        }
+
+        text-align: left;
+        position: relative;
+        z-index: 10000000;
+
+        .left {
+            @include tablet {
+                align-self: flex-start !important;
+                width: 100%;
+            }
+
+            input {
+                @include tablet {
+                    min-width: 100% !important;
+                    max-width: 100% !important;
+                }
+            }
+        }
+
+        .right {
+            @include tablet {
+                margin-top: .8rem;
+                width: 100%;
+                align-self: flex-start !important;
+            }
+        }
+
+        .dropdown {
+            @include tablet {
+                width: 100%;
+            }
+
+            width: 250px;
+            z-index: 100000 !important;
+            position: relative;
+        }
+
+        .Dropdown-menu {
+            position: absolute;
+            z-index: 100000;
+            // background-color: #fff;
+
+            div {
+                // background-color: #fff !important;
+                z-index: 10000 !important;
+            }
+        }
+    }
+}
+
+.answer-block {
+    position: relative;
+    z-index: 100;
 }
 
 .answer-block__text {

@@ -29,7 +29,7 @@ export default class CreateTestForm extends Component {
                 text: '',
                 answerId: '2'
             }],
-            correctAnswerId: '1'
+            correctAnswerId: ['1']
         }],
         title: '',
         description: '',
@@ -201,7 +201,7 @@ export default class CreateTestForm extends Component {
                 text: '',
                 answerId: '2'
             }],
-            correctAnswerId: '1'
+            correctAnswerId: ['1']
         }) 
         this.setState({
             ...this.state,
@@ -330,8 +330,23 @@ export default class CreateTestForm extends Component {
 
     setCorrectAnswerId(quesIndex, ansId) {
         let { questions } = this.state;
-        questions[quesIndex].correctAnswerId = ansId;
-        console.log(ansId);
+        
+        let currQuestion = questions[quesIndex];
+
+        if (currQuestion.questionType === 'singleChoice') 
+            questions[quesIndex].correctAnswerId = [ansId];
+        else {
+            let index = -1;
+            currQuestion.correctAnswerId.forEach((ansId1, inx) => {
+                if (ansId1 === ansId) 
+                    index = inx;
+            })
+            console.log(ansId, currQuestion.correctAnswerId)
+            if (index === -1) 
+                questions[quesIndex].correctAnswerId.push(ansId);
+            else if (currQuestion.correctAnswerId.length > 1)
+                questions[quesIndex].correctAnswerId.splice(index, 1);
+        }
         
         this.setState({
             ...this.state,
