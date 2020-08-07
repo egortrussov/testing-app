@@ -189,7 +189,12 @@ main {
 
                 img, .text {
                     display: block;
-                }                
+                }       
+                
+                .cat-icon {
+                    width: 35px;
+                    height: 35px;
+                }
 
                 img {
                     width: 30px !important;

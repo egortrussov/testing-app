@@ -452,6 +452,19 @@
 
 .question-container {
     position: relative;
+    max-width: 900px !important;
+
+    .input-group.mini {
+        max-width: 100% !important;
+        width: 100% !important;
+    
+    }
+
+    input.mini {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+    }
 
     .question-container__toptitle {
         @include tablet {
@@ -465,11 +478,20 @@
         position: relative;
         z-index: 10000000;
 
+        .question-container__title {
+            width: 100% !important;
+            min-width: 100% !important;
+        }
+
         .left {
             @include tablet {
                 align-self: flex-start !important;
                 width: 100%;
             }
+
+            width: 100%;
+            max-width: 500px;
+            padding-right: 1rem;
 
             input {
                 @include tablet {
@@ -513,9 +535,11 @@
 .answer-block {
     position: relative;
     z-index: 100;
+    max-width: 600px;
 }
 
 .answer-block__text {
+    max-width: 600px;
 
     .btn-delete {
         height: 35px;

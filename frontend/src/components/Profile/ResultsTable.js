@@ -128,7 +128,8 @@ export default class ResultsTable extends Component {
 
         this.setState({
             ...this.state,
-            tests
+            tests,
+            isLoading: false
         }, () => {
             this.loadTests()
         })
@@ -138,19 +139,24 @@ export default class ResultsTable extends Component {
     
 
     render() {
-        const { tests, left, right, isMoreTests } = this.state;
+        const { tests, left, right, isMoreTests, isLoading } = this.state;
 
-        if (!tests.length) return <Spinner size="md" />
+        if (isLoading) return <Spinner size="md" />
 
         let testsToShow = tests.slice(0, left);
 
         return (
             <div>
-                <Table tests={ testsToShow } />
                 {
-                    isMoreTests && (
+                    testsToShow.length ? (
+                        <Table tests={ testsToShow } />
+
+                    ) : ''
+                }
+                {
+                    (testsToShow.length && isMoreTests) ? (
                         <button className="load-more" onClick={ () => this.loadTests() }>Load more</button>
-                    )
+                    ) : ''
                 }
             </div>
         )

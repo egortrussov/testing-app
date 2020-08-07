@@ -261,6 +261,11 @@ main {
   display: block;
 }
 
+.app-container nav .nav-item .logo .cat-icon {
+  width: 35px;
+  height: 35px;
+}
+
 .app-container nav .nav-item .logo img {
   width: 30px !important;
   min-width: 30px !important;

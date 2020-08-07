@@ -5,7 +5,7 @@ import ls from 'local-storage'
 import { init } from './navbarScript'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faAlignLeft, faPenAlt, faSignInAlt, faSignOutAlt, faUserPlus, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faAlignLeft, faPenAlt, faSignInAlt, faSignOutAlt, faUserPlus, faChevronLeft, faCat } from '@fortawesome/free-solid-svg-icons'
 
 import Logo from './img/logo.svg'
 
@@ -37,6 +37,8 @@ class Navbar extends Component {
         
         let isLoggedIn = token !== '';
 
+        let rnd = Math.floor(Math.random() * 100) % 3;
+
         return (
             <nav>
                 <div className="toggle-view" id="toggle-view">
@@ -44,7 +46,17 @@ class Navbar extends Component {
                 </div>
                 <div className="nav-item nav-top">
                     <a href="/">
-                        <h2 className="logo"><img src={ Logo } alt=""/> <span className="text">EasyTest</span></h2>
+                        {
+                            rnd === 0 ? (
+                                <>
+                                    <h2 className="logo"><FontAwesomeIcon className="cat-icon" icon={ faCat } /><span className="text">EasyTest</span></h2>
+                                </>
+                            ) : (
+                                <>
+                                    <h2 className="logo"><img src={ Logo } alt=""/> <span className="text">EasyTest</span></h2>
+                                </>
+                            )
+                        }
                     </a>
                 </div>
                 { 

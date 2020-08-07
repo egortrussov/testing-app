@@ -341,11 +341,11 @@ export default class CreateTestForm extends Component {
                 if (ansId1 === ansId) 
                     index = inx;
             })
-            console.log(ansId, currQuestion.correctAnswerId)
             if (index === -1) 
                 questions[quesIndex].correctAnswerId.push(ansId);
             else if (currQuestion.correctAnswerId.length > 1)
                 questions[quesIndex].correctAnswerId.splice(index, 1);
+            currQuestion.correctAnswerId.sort();
         }
         
         this.setState({

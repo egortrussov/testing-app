@@ -17,7 +17,7 @@ const TestSchema = new Schema({
             text: String,
             answerId: String
         }],
-        correctAnswerId: String
+        correctAnswerId: [String]
     }],
     subject: String,
     results: [{
