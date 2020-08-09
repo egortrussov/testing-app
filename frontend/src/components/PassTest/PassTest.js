@@ -143,7 +143,19 @@ export default class PassTest extends Component {
         
 
         test.questions.map((ques, index) => {
-            if (ques.correctAnswerId === answers[index]) {
+            console.log(ques.correctAnswerId, answers[index], ques.correctAnswerId == answers[index])
+            let isCorrect = true;
+            if (ques.correctAnswerId.length !== answers[index].length) 
+                isCorrect = false;
+            else {
+                for (let i = 0; i < ques.correctAnswerId.length; i++) 
+                    if (ques.correctAnswerId[i] !== answers[index][i]) {
+                        isCorrect = false;
+                        break;
+                    }
+            }
+            console.log(isCorrect)
+            if (isCorrect) {
                 points++;
                 results.push(true);
             } else {
