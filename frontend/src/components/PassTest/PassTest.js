@@ -37,7 +37,7 @@ export default class PassTest extends Component {
                 console.log(res);
                 let answers = [];
                 for (let i = 0; i < res.questions.length; i++) 
-                    answers[i] = 0;
+                    answers[i] = [];
                 this.setState({
                     isLoading: false,
                     answers,
@@ -81,7 +81,7 @@ export default class PassTest extends Component {
     }
 
     handleSelect(index, answerId) {
-        let { answers, answeredQuestions, isTimeUp } = this.state;
+        let { answers, answeredQuestions, isTimeUp, test } = this.state;
         
         if (isTimeUp) 
             return;
@@ -89,7 +89,29 @@ export default class PassTest extends Component {
             if (!answers[index]) {
                 answeredQuestions++;
             }
-            answers[index] = answerId;
+            let currentAnswer = answers[index];
+            let currentQuestion = test.questions[index];
+            console.log(currentQuestion)
+
+            if (currentQuestion.questionType === 'singleChoice') 
+                answers[index] = [answerId.toString()];
+            else {
+                let foundIndex = -1;
+                currentAnswer.forEach((ansId1, inx) => {
+                    if (ansId1 === answerId.toString()) 
+                        foundIndex = inx;
+                })
+                console.log(foundIndex, answerId)
+                if (foundIndex === -1) 
+                    currentAnswer.push(answerId.toString());
+                else if (currentAnswer.length > 1)
+                    currentAnswer.splice(foundIndex, 1);
+                currentAnswer.sort();
+                answers[index] = currentAnswer;
+            }
+
+            console.log(answers)
+
             this.setState({
                 ...this.state,
                 answers,

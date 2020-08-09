@@ -13,7 +13,7 @@ const UserSchema = new Schema({
         testId: String,
         title: String,
         date: Date,
-        answers: [Number]
+        answers: [[String]]
     }],
     name: String,
     email: String,

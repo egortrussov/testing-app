@@ -176,6 +176,13 @@ html {
 .pass.question-container .question-container__toptitle .right {
   font-size: 1rem;
   opacity: .9;
+  text-align: right;
+}
+
+@media (max-width: 650px) {
+  .pass.question-container .question-container__toptitle .right {
+    text-align: left;
+  }
 }
 
 .pass.question-container .question-container__top {

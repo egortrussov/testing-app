@@ -33,7 +33,7 @@ export default class QuestionCard extends Component {
                     { question.answers.map((ans, inx) => {
                         let extraClassName = '';
                         
-                        if (answers[index].toString() === (inx + 1).toString()) 
+                        if (answers[index].find((currAnswer) => currAnswer === (inx + 1).toString())) 
                             extraClassName = 'selected';
 
                         return (

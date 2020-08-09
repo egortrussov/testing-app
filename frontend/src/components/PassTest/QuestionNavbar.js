@@ -11,7 +11,7 @@ export default class QuestionNavbar extends Component {
 
             if (currentQuestion === i) 
                 extraClassName = 'current';
-            else if (answers[i]) 
+            else if (answers[i].length) 
                 extraClassName = 'answered'
 
             questionsButtons.push(

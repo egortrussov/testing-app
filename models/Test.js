@@ -8,10 +8,7 @@ const TestSchema = new Schema({
     description: String,
     isProtected: Boolean,
     questions: [{
-        questionType: {
-            required: false,
-            // default: 'singleChoice'
-        },
+        questionType: String,
         title: String,
         answers: [{
             text: String,
