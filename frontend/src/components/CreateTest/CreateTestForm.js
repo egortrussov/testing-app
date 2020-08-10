@@ -487,7 +487,41 @@ export default class CreateTestForm extends Component {
             questions[quesId].answers.splice(ansId, 1);
 
         } else {
-            let currAnswers = questions.correctAnswerId;
+            let question = questions[quesId];
+            let currAnswerIds = question.correctAnswerId;
+            let currAnswers = question.answers;
+            let inx = +ansId;
+            console.log(currAnswerIds)
+
+            if (ansId !== 0) 
+                currAnswerIds = currAnswerIds.filter(currAns => currAns !== (ansId + 1).toString());
+            
+            currAnswers.splice(+(ansId), 1)
+
+            for (let i = 0; i < currAnswerIds.length; i++) {
+                if (+currAnswerIds[i] - 1 > +ansId) {
+                    currAnswerIds[i] = (+currAnswerIds[i] - 1).toString();
+                    // break;
+                }
+            }
+            console.log(currAnswerIds)
+
+            while (inx < currAnswers.length) {
+                let currAns = currAnswers[inx];
+
+                
+                
+
+                currAns.answerId = (+currAns.answerId - 1).toString();
+                currAnswers[inx] = currAns;
+
+                inx++;
+            }
+
+            question.correctAnswerId = currAnswerIds;
+            question.answers = currAnswers;
+
+            questions[quesId] = question;
         }        
 
         this.setState({
