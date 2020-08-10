@@ -91,7 +91,6 @@ export default class PassTest extends Component {
             }
             let currentAnswer = answers[index];
             let currentQuestion = test.questions[index];
-            console.log(currentQuestion)
 
             if (currentQuestion.questionType === 'singleChoice') 
                 answers[index] = [answerId.toString()];
@@ -101,10 +100,9 @@ export default class PassTest extends Component {
                     if (ansId1 === answerId.toString()) 
                         foundIndex = inx;
                 })
-                console.log(foundIndex, answerId)
                 if (foundIndex === -1) 
                     currentAnswer.push(answerId.toString());
-                else if (currentAnswer.length > 1)
+                else 
                     currentAnswer.splice(foundIndex, 1);
                 currentAnswer.sort();
                 answers[index] = currentAnswer;

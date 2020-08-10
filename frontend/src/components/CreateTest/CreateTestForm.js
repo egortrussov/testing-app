@@ -165,7 +165,6 @@ export default class CreateTestForm extends Component {
 
         document.addEventListener('click', closeAllSelect);
     }
-    
 
     handleAddAnswer(quesId) {
         const { questions } = this.state;        
@@ -466,29 +465,30 @@ export default class CreateTestForm extends Component {
         let { questions } = this.state;
         if (questions[quesId].answers.length <= 2) return;
 
-        let inx = parseInt(ansId);
-        let corrAnswer = questions[quesId].correctAnswerId;
-        if (corrAnswer.toString() === (ansId + 1).toString()) {
-            if (ansId === 0) {
-                questions[quesId].correctAnswerId = '1';
-            } else {                
-                questions[quesId].correctAnswerId = (ansId).toString();
-            }
-        } 
-        for (let i = inx; i < questions[quesId].answers.length; i++) {
-            questions[quesId].answers[i].answerId = (parseInt(questions[quesId].answers[i].answerId) - 1).toString();
-            if (i !== inx)
-                document.getElementById(`_${ quesId }-${ i - 1 }`).value = questions[quesId].answers[i].text;
-        }  
-        console.log(+questions[quesId].correctAnswerId, questions[quesId].answers.length)
-        if (+questions[quesId].correctAnswerId >= questions[quesId].answers.length) 
-            questions[quesId].correctAnswerId =  (questions[quesId].answers.length - 1).toString();
-        console.log(questions[quesId]);
-         
-        questions[quesId].answers.splice(ansId, 1);
+        if (questions[quesId].questionType === 'singleChoice') {
 
-        console.log(questions[quesId].answers);
-        
+            let inx = parseInt(ansId);
+            let corrAnswer = questions[quesId].correctAnswerId[0];
+            if (corrAnswer.toString() === (ansId + 1).toString()) {
+                if (ansId === 0) {
+                    questions[quesId].correctAnswerId = ['1'];
+                } else {                
+                    questions[quesId].correctAnswerId = [(ansId).toString()];
+                }
+            } 
+            for (let i = inx; i < questions[quesId].answers.length; i++) {
+                questions[quesId].answers[i].answerId = (parseInt(questions[quesId].answers[i].answerId) - 1).toString();
+                if (i !== inx)
+                    document.getElementById(`_${ quesId }-${ i - 1 }`).value = questions[quesId].answers[i].text;
+            }  
+            if (+questions[quesId].correctAnswerId[0] >= questions[quesId].answers.length) 
+                questions[quesId].correctAnswerId[0] =  (questions[quesId].answers.length - 1).toString();
+            
+            questions[quesId].answers.splice(ansId, 1);
+
+        } else {
+            let currAnswers = questions.correctAnswerId;
+        }        
 
         this.setState({
             ...this.state,

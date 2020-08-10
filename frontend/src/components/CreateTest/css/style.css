@@ -575,6 +575,7 @@ html {
 .question-container .question-container__toptitle .dropdown {
   width: 250px;
   z-index: 100000 !important;
+  text-align: left;
   position: relative;
 }
 
