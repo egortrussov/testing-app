@@ -14,6 +14,7 @@ const TestCard = React.lazy(() => import('./TestCard'));
 export default class TestsComtainer extends Component {
     state = {
         tests: [],
+        createdTests: [],
         left: 0,
         right: 3,
         isMoreTests: true,
@@ -23,9 +24,13 @@ export default class TestsComtainer extends Component {
     static contextType = TestsContext;
 
     loadMore() {
-        const { urlToFetch, authContext } = this.props;
-        const { left, right, tests } = this.state;
-        console.log(tests.length, '-----+++++++')
+        const { urlToFetch, authContext, containerType, type } = this.props;
+        let { left, right, tests, isMoreTests, createdTests } = this.state;
+        console.log(isMoreTests, this.context.hasMoreTests, '-----+++++++')
+        if (!this.context.hasMoreTests && containerType === 'tests') {
+            return;
+        }
+        console.log(tests.length)
 
         fetch(urlToFetch, {
             method: 'POST',
@@ -50,14 +55,28 @@ export default class TestsComtainer extends Component {
                     })
                     return true;
                 }
-                res.tests.forEach(test => tests.push(test));
-                this.context.allTests = tests;
+                if (type === 'full')
+                    res.tests.forEach(test => tests.push(test));
+                else 
+                    tests = res.tests;
+                if (containerType === 'tests') {
+                    this.context.allTests = tests;
+                    this.context.hasMoreTests = res.isMoreTests;
+                }
+                if (type === 'created') {
+                    createdTests = tests;
+
+                }
+                let isMoreTests = res.isMoreTests;
+                if (type === 'created') 
+                    isMoreTests = false;
                 this.setState({
                     ...this.state,
                     tests,
                     left: left + 3,
                     right: right + 3,
-                    isMoreTests: res.isMoreTests
+                    isMoreTests,
+                    createdTests
                 }, () => console.log(this.state.tests))
             });
     }
@@ -70,9 +89,14 @@ export default class TestsComtainer extends Component {
                     ...this.state,
                     tests: this.context.allTests,
                     left: this.context.allTests.length,
-                    right: this.context.allTests.length + 3
+                    right: this.context.allTests.length + 3,
+                    isMoreTests: this.context.hasMoreTests
                 })
             }
+        }
+        console.log(this.state.tests.length, '==============')
+        if (this.props.type === 'created') {
+            
         }
     }
     
@@ -81,7 +105,7 @@ export default class TestsComtainer extends Component {
     render() {
         const { type, user } = this.props;
 
-        let { isLoading, tests, isRedirectToLogin, isMoreTests } = this.state;
+        let { isLoading, tests, isRedirectToLogin, isMoreTests, createdTests } = this.state;
 
         let hasPreloadedTests = false;
 
@@ -101,18 +125,29 @@ export default class TestsComtainer extends Component {
         //     hasPreloadedTests = true;
         // }
 
-        tests.map((test, inx) => {
-            return items.push (
-                <Suspense key={ inx } fallback={ <Spinner size="sm" /> } >
-                    <TestCard key={ `${ inx }-${ inx }` } type={ type } test={ test } user={ user || null } />
-                </Suspense> 
-            )
-        })
+        console.log(this.context.hasMoreTests) 
+
+        if (type === 'full')
+            tests.map((test, inx) => {
+                return items.push (
+                    <Suspense key={ inx } fallback={ <Spinner size="sm" /> } >
+                        <TestCard key={ `${ inx }-${ inx }` } type={ type } test={ test } user={ user || null } />
+                    </Suspense> 
+                )
+            })
+        else 
+            createdTests.map((test, inx) => {
+                return items.push (
+                    <Suspense key={ inx } fallback={ <Spinner size="sm" /> } >
+                        <TestCard key={ `${ inx }-${ inx }` } type={ type } test={ test } user={ user || null } />
+                    </Suspense> 
+                )
+            })
+
+        console.log(type, 'lppl')
 
         return (
             <>
-                {/* {
-                    !hasPreloadedTests ? ( */}
                         <InfiniteScroll
                             pageStart={ "0" }
                             loadMore={ this.loadMore.bind(this) }
@@ -124,13 +159,6 @@ export default class TestsComtainer extends Component {
                             </div>
                             
                         </InfiniteScroll>
-
-                    {/* ) : (
-                        <div className="tests-container">
-                            { items }
-                        </div>
-                    )
-                } */}
             </>
         )
     }

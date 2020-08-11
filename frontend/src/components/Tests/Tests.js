@@ -40,7 +40,9 @@ export default class Tests extends Component {
                     <TestsContainer 
                         urlToFetch={ linkToFetch }
                         authContext={ this.context }
-                        type={ "full" } />
+                        type={ "full" }
+                        containerType="tests"
+                    />
                 </Suspense>
                 
             </>

@@ -23,6 +23,29 @@ export default class Profile extends Component {
     static contextType = AuthContext;
 
     componentDidMount() {
+        let { user } = this.context;
+        
+        if (user) {
+            user.passedTests.reverse();
+
+            let avgResult = 0;
+            if (user.passedTests.length) {
+                user.passedTests.forEach(test => {
+                    avgResult += test.points / test.maxPoints;
+                })
+                avgResult /= user.passedTests.length;
+                avgResult = Math.floor(avgResult * 100);
+            }
+
+            this.setState({
+                user,
+                avgResult,
+                isLoading: false,
+            })
+            
+            return;
+        }
+
         fetch(`${ this.context.proxy }/api/users/user`, {
             headers: getHeaders()
         })

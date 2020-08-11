@@ -120,7 +120,8 @@ export default class ResultsTable extends Component {
                 ...this.state,
                 tests,
                 left: results.length,
-                right: results.length + 5
+                right: results.length + 5,
+                isLoading: false
             })
 
             return;

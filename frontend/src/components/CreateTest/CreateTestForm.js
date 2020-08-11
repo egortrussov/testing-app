@@ -509,9 +509,6 @@ export default class CreateTestForm extends Component {
             while (inx < currAnswers.length) {
                 let currAns = currAnswers[inx];
 
-                
-                
-
                 currAns.answerId = (+currAns.answerId - 1).toString();
                 currAnswers[inx] = currAns;
 
