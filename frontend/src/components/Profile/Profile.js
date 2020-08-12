@@ -25,7 +25,7 @@ export default class Profile extends Component {
     componentDidMount() {
         let { user } = this.context;
         
-        if (user) {
+        if (user != undefined && user != null && user && user !== 'undefined') {
             user.passedTests.reverse();
 
             let avgResult = 0;
