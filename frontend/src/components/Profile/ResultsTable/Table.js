@@ -56,7 +56,7 @@ export default class Table extends Component {
                     tests.map(test => {
                         return (
                             <div className="row" onClick={ () => this.redirectToResult(test, 'fullDate') }>
-                                <Link to={ `/app/testInfo/${ test.testId }` } className="cell title">{ test.title }</Link>
+                                <Link to={ `/app/testInfo/${ test.testId }` } className="cell title"><span>{ test.title }</span></Link>
                                 <div className="cell subject">{ dateFormat(test.date, 'dd.mm.yyyy, hh:mm') }</div>
                                 <div className="cell attempt">{ test.attempt }</div>
                                 <div className="cell points">{ test.points }/{ test.maxPoints } ({ Math.floor(test.points / test.maxPoints * 100) }%)</div>
