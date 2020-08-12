@@ -146,6 +146,8 @@ export default class ResultsTable extends Component {
 
         let testsToShow = tests.slice(0, left);
 
+        console.log(tests)
+
         return (
             <div>
                 {

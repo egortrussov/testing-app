@@ -69,7 +69,7 @@ class App extends Component {
             <BrowserRouter basename={ process.env.PUBLIC_URL }>
                 <React.Fragment>
                     <TestsContext.Provider
-                        value={ { allTests: null, hasMoreTests: true, results: null } }
+                        value={ { allTests: null, hasMoreTests: true, results: null, createdTests: null } }
                     >
                         <AuthContext.Provider value={{ token, userId, user, setToken: this.setToken, logout: this.logout, proxy  }}>
                             <Switch>

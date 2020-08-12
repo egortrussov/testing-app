@@ -18,19 +18,22 @@ export default class TestsComtainer extends Component {
         left: 0,
         right: 3,
         isMoreTests: true,
-        isRedirectToLogin: false
+        isRedirectToLogin: false,
+        shouldFetchTests: true
     }
 
     static contextType = TestsContext;
 
     loadMore() {
         const { urlToFetch, authContext, containerType, type } = this.props;
-        let { left, right, tests, isMoreTests, createdTests } = this.state;
+        let { left, right, tests, isMoreTests, createdTests, shouldFetchTests } = this.state;
         console.log(isMoreTests, this.context.hasMoreTests, '-----+++++++')
         if (!this.context.hasMoreTests && containerType === 'tests') {
             return;
         }
         console.log(tests.length)
+        if (!shouldFetchTests) 
+            return;
 
         fetch(urlToFetch, {
             method: 'POST',
@@ -65,7 +68,7 @@ export default class TestsComtainer extends Component {
                 }
                 if (type === 'created') {
                     createdTests = tests;
-
+                    this.context.createdTests = createdTests;
                 }
                 let isMoreTests = res.isMoreTests;
                 if (type === 'created') 
@@ -96,7 +99,13 @@ export default class TestsComtainer extends Component {
         }
         console.log(this.state.tests.length, '==============')
         if (this.props.type === 'created') {
-            
+            if (this.context.createdTests) {
+                this.setState({
+                    ...this.state,
+                    shouldFetchTests: false,
+                    createdTests: this.context.createdTests
+                })
+            }
         }
     }
     
@@ -105,7 +114,7 @@ export default class TestsComtainer extends Component {
     render() {
         const { type, user } = this.props;
 
-        let { isLoading, tests, isRedirectToLogin, isMoreTests, createdTests } = this.state;
+        let { isLoading, tests, isRedirectToLogin, isMoreTests, createdTests, shouldFetchTests } = this.state;
 
         let hasPreloadedTests = false;
 
@@ -151,7 +160,7 @@ export default class TestsComtainer extends Component {
                         <InfiniteScroll
                             pageStart={ "0" }
                             loadMore={ this.loadMore.bind(this) }
-                            hasMore={ isMoreTests }
+                            hasMore={ isMoreTests && shouldFetchTests }
                             loader={ <Spinner /> }
                             useWindow={ false } >
                             <div className="tests-container">

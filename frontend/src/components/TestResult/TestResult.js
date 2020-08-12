@@ -9,6 +9,7 @@ import AuthContext from '../../context/AuthContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import BackLink from '../reusableComponents/backLink/BackLink'
+import QuestionResultCard from './QuestionResultCard'
 
 export default class TestResult extends Component {
     state = {
@@ -91,7 +92,7 @@ export default class TestResult extends Component {
                     </table>
                 </div>
                 { answers.map((ans, inx) => {
-                    let isCorrect = ans.toString() === test.questions[inx].correctAnswerId;
+                    let isCorrect = ans === test.questions[inx].correctAnswerId;
                     console.log(test.questions);
                     
                     let extraClassName = '';
@@ -100,21 +101,13 @@ export default class TestResult extends Component {
                     console.log(question.answers[parseInt(question.correctAnswerId)]);
                     
                     return (
-                        <div className="question-ans">
-                            <h3>{ inx + 1 }. { question.title }</h3>
-                            { ans ===  0 ? (
-                                <span className={ "ans-text " + extraClassName}>
-                                    Your answer: -
-                                </span>
-                            ) : (
-                                <span className={ "ans-text " + extraClassName}>
-                                    Your answer: { ans }) { question.answers[ans - 1].text }
-                                </span>
-                            ) } 
-                            <span className="ans-text">
-                                Correct answer: { question.correctAnswerId }) { question.answers[parseInt(question.correctAnswerId) - 1].text }
-                            </span>                           
-                        </div>
+                        <QuestionResultCard
+                            question={ question }
+                            extraClassName={ extraClassName }
+                            ans={ ans }
+                            inx={ inx }
+                            answers={ answers }
+                        />
                     )
                 }) }
             </div>
