@@ -37,7 +37,7 @@ export default class QuestionResultCard extends Component {
                             Your answers: 
                             <div className="answers-container">
                                 {
-                                    answers.map(answer => (
+                                    answers[inx].map(answer => (
                                         <div className="answer">
                                             { question.answers[+answer - 1].answerId }) { question.answers[+answer - 1].text }
                                         </div>

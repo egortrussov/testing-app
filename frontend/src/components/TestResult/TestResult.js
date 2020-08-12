@@ -78,7 +78,18 @@ export default class TestResult extends Component {
                                 let extraClassName = '';
                                 console.log(toString(ans));
                                 
-                                let isCorrect = ans.toString() === test.questions[inx].correctAnswerId;
+                                let isCorrect = true;
+                                let question = test.questions[inx];
+
+                                if (ans.length !== question.correctAnswerId.length) 
+                                    isCorrect = false;
+                                else {
+                                    for (let i = 0; i < ans.length; i++) 
+                                        if (ans[i] !== question.correctAnswerId[i]) {
+                                            isCorrect = false;
+                                            break;
+                                        }
+                                }
                                 
                                 if (parseInt(ans) === parseInt(test.questions[inx].correctAnswerId)) 
                                     extraClassName = 'correct';
@@ -92,12 +103,23 @@ export default class TestResult extends Component {
                     </table>
                 </div>
                 { answers.map((ans, inx) => {
-                    let isCorrect = ans === test.questions[inx].correctAnswerId;
+                    let isCorrect = true;
+                    let question = test.questions[inx];
+
+                    if (ans.length !== question.correctAnswerId.length) 
+                        isCorrect = false;
+                    else {
+                        for (let i = 0; i < ans.length; i++) 
+                            if (ans[i] !== question.correctAnswerId[i]) {
+                                isCorrect = false;
+                                break;
+                            }
+                    }
+
                     console.log(test.questions);
                     
                     let extraClassName = '';
                     if (!isCorrect) extraClassName = 'wrong';
-                    let question = test.questions[inx];
                     console.log(question.answers[parseInt(question.correctAnswerId)]);
                     
                     return (
