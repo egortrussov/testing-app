@@ -266,20 +266,25 @@ router.post('/saveResult/:testId', (req, res) => {
                 answers: req.body.answersLetters
             });
 
-            user.save();          
-        })
-
-    Test
-        .findOne({ _id: req.params.testId })
-        .then(test => {
-            test.results.push({
-                userId: req.body.userId,
-                points: req.body.points,
-                answers: req.body.answers,
-                time: req.body.time
-            });
-            test.save();
-            res.status(200).json(test);
+            user
+                .save()
+                .then(savedUsed => {
+                    Test
+                        .findOne({ _id: req.params.testId })
+                        .then(test => {
+                            test.results.push({
+                                userId: req.body.userId,
+                                points: req.body.points,
+                                answers: req.body.answers,
+                                time: req.body.time
+                            });
+                            test.save();
+                            res.status(200).json({
+                                test,
+                                user: user
+                            });
+                        })
+                })          
         })
 })
 

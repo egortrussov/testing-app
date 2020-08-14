@@ -262,8 +262,9 @@ main {
 }
 
 .app-container nav .nav-item .logo .cat-icon {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
+  margin-right: .6rem;
 }
 
 .app-container nav .nav-item .logo img {

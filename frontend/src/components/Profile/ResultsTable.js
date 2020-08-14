@@ -53,6 +53,7 @@ export default class ResultsTable extends Component {
                     console.log(testResults)
                     let avgPoints = 0;
                     testResults.forEach(result => {
+                        console.log(result.points, avgPoints)
                         avgPoints += +result.points;
                     })
                     avgPoints = Math.floor(avgPoints / testResults.length);

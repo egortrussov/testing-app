@@ -99,7 +99,13 @@
                 transform: translateX(-50%);
             }
 
-            &.subject, &.attempt, &.points {
+            &.view {
+                width: 50px;
+                min-width: 50px;
+                color: var(--primary-color);
+            }
+
+            &.subject, &.attempt, &.points, &.view {
                 &::before {
                     content: '';
                     position: absolute;

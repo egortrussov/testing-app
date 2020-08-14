@@ -178,9 +178,12 @@ export default class PassTest extends Component {
             },
             body: JSON.stringify(query)
         })
-            .then(() => {
+            .then(res =>  res.json())
+            .then((res) => {
                 console.log('result saved!');
-                window.location.href = `/app/testInfo/${ test._id }`
+                this.context.user = res.user;
+                console.log(res)
+                // window.location.href = `/app/testInfo/${ test._id }`
             })
     }
 

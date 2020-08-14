@@ -5,6 +5,9 @@ import AuthContext from '../../../context/AuthContext';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-regular-svg-icons';
+
 export default class Table extends Component {
 
     state = {
@@ -51,6 +54,7 @@ export default class Table extends Component {
                     <div className="cell attempt">Attempt No.</div>
                     <div className="cell points">Points</div>
                     <div className="cell points average">Average</div>
+                    <div className="cell view"></div>
                 </div>
                 {
                     tests.map(test => {
@@ -61,6 +65,7 @@ export default class Table extends Component {
                                 <div className="cell attempt">{ test.attempt }</div>
                                 <div className="cell points">{ test.points }/{ test.maxPoints } ({ Math.floor(test.points / test.maxPoints * 100) }%)</div>
                                 <div className="cell points average">{ test.avgPoints }/{ test.maxPoints } ({ Math.floor(test.avgPoints / test.maxPoints * 100) }%)</div>
+                                <div className="cell view"> <FontAwesomeIcon className="icon" icon={ faEye } /> </div>
                             </div>
                         )
                     })

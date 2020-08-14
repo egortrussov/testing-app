@@ -140,7 +140,13 @@ html {
           transform: translateX(-50%);
 }
 
-.results-table .row .cell.subject::before, .results-table .row .cell.attempt::before, .results-table .row .cell.points::before {
+.results-table .row .cell.view {
+  width: 50px;
+  min-width: 50px;
+  color: var(--primary-color);
+}
+
+.results-table .row .cell.subject::before, .results-table .row .cell.attempt::before, .results-table .row .cell.points::before, .results-table .row .cell.view::before {
   content: '';
   position: absolute;
   height: calc(100% - 8px);

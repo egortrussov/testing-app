@@ -40,7 +40,7 @@ button, a {
   margin-bottom: .8rem;
 }
 
-.btn, input.btn {
+.btn, input.btn, a.btn {
   position: relative;
   padding: .6rem 1.8rem !important;
   -webkit-appearance: button;
@@ -54,16 +54,16 @@ button, a {
   border: none;
 }
 
-.btn:focus, input.btn:focus {
+.btn:focus, input.btn:focus, a.btn:focus {
   outline: none;
 }
 
-.btn.btn-primary, input.btn.btn-primary {
+.btn.btn-primary, input.btn.btn-primary, a.btn.btn-primary {
   background: none !important;
   border: 2px solid var(--primary-color);
 }
 
-.btn.sm, input.btn.sm {
+.btn.sm, input.btn.sm, a.btn.sm {
   padding: .4rem 1.2rem !important;
 }
 
