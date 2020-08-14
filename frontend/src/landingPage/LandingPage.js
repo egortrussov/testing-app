@@ -23,7 +23,7 @@ export default class LandingPage extends Component {
                 </div>
                 <div className="hero">
                     <div className="hero-left">
-                        <h1>Get your experience in online testing to a whole new level!</h1>
+                        <h1>Get your online testing experience to a whole new level of suffering!</h1>
                         <Link className="cta" to="/app/">Try it out!</Link>
                     </div>
                     <div className="hero-right">
@@ -31,7 +31,7 @@ export default class LandingPage extends Component {
                     </div>
                 </div>
                 <div className="copyright">
-                    &copy; 2020 Yegor Trussov
+                    EasyTestApp 1.2.0 <br/> &copy; 2020 Yegor Trussov
                 </div>
             </header>
         )
