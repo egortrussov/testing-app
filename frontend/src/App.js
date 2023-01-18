@@ -23,9 +23,9 @@ class App extends Component {
         let proxy = '';
         if (process.env.NODE_ENV === 'production') {
             if (window.location.href.startsWith('https'))
-                proxy = 'https://easytestapp.herokuapp.com';
+                proxy = 'https://easytestapp.onrender.com';
             else if (window.location.href.startsWith('http'))
-                proxy = 'http://easytestapp.herokuapp.com';
+                proxy = 'http://easytestapp.onrender.com';
             else 
                 proxy = 'easytestapp.herokuapp.com';
         } else 

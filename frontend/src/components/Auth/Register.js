@@ -34,7 +34,7 @@ export default class Register extends Component {
     setLoading(state) {
         this.setState({
             isLoading: state
-        }, () => console.log(this.state))
+        })
     }
 
     setTeacherState() {

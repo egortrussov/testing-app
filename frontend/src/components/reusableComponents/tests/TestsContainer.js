@@ -97,7 +97,6 @@ export default class TestsComtainer extends Component {
                 })
             }
         }
-        console.log(this.state.tests.length, '==============')
         if (this.props.type === 'created') {
             if (this.context.createdTests) {
                 this.setState({

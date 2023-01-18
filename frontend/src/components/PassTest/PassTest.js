@@ -34,7 +34,6 @@ export default class PassTest extends Component {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 let answers = [];
                 for (let i = 0; i < res.questions.length; i++) 
                     answers[i] = [];
@@ -108,8 +107,6 @@ export default class PassTest extends Component {
                 answers[index] = currentAnswer;
             }
 
-            console.log(answers)
-
             this.setState({
                 ...this.state,
                 answers,
@@ -136,12 +133,9 @@ export default class PassTest extends Component {
             ...this.state,
             isSubmitted: true
         })
-
-        console.log('finish!');
         
 
         test.questions.map((ques, index) => {
-            console.log(ques.correctAnswerId, answers[index], ques.correctAnswerId == answers[index])
             let isCorrect = true;
             if (ques.correctAnswerId.length !== answers[index].length) 
                 isCorrect = false;
@@ -152,7 +146,6 @@ export default class PassTest extends Component {
                         break;
                     }
             }
-            console.log(isCorrect)
             if (isCorrect) {
                 points++;
                 results.push(true);
@@ -180,9 +173,8 @@ export default class PassTest extends Component {
         })
             .then(res =>  res.json())
             .then((res) => {
-                console.log('result saved!');
+                ('result saved!');
                 this.context.user = res.user;
-                console.log(res)
                 // window.location.href = `/app/testInfo/${ test._id }`
             })
     }
@@ -199,7 +191,7 @@ export default class PassTest extends Component {
             ...this.state,
             currentQuestion
         })
-        console.log(currentQuestion)
+        (currentQuestion)
     } 
 
     moveToQuestion(index) {
@@ -216,7 +208,7 @@ export default class PassTest extends Component {
     toggleModal(choice) {
         const { showModal } = this.state;
 
-        // console.log(toggleModal)
+        // (toggleModal)
 
         if (!choice) {
             this.setState({

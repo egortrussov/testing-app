@@ -34,7 +34,8 @@ const DB_URL = env === 'development' ? DB_URL_DEVELOPMENT : DB_URL_PRODCTION;
 mongoose.connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}, () => {
+}, (e) => {
+    console.log(e)
     console.log('Connected to database');
 })
 

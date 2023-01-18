@@ -18,7 +18,6 @@ const toggleView = (shouldChangeLS) => {
 const init = () => {
     let btn = document.querySelector('#toggle-view');
     const state = ls.get('isNavbarHidden');
-    console.log(state)
     if (state) {
         toggleView(false);
     }

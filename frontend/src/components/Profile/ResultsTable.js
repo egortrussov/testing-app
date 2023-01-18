@@ -28,8 +28,6 @@ export default class ResultsTable extends Component {
         let { left, right, tests, isMoreTests } = this.state;
         let { authContext } = this.props;
 
-        console.log(left, right)
-
         for (let i = left; i < Math.min(tests.length, right); i++) {
             let currTest = tests[i];
             console.log(i)

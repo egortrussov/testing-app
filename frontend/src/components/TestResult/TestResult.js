@@ -116,11 +116,9 @@ export default class TestResult extends Component {
                             }
                     }
 
-                    console.log(test.questions);
                     
                     let extraClassName = '';
                     if (!isCorrect) extraClassName = 'wrong';
-                    console.log(question.answers[parseInt(question.correctAnswerId)]);
                     
                     return (
                         <QuestionResultCard

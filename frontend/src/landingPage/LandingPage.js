@@ -23,7 +23,7 @@ export default class LandingPage extends Component {
                 </div>
                 <div className="hero">
                     <div className="hero-left">
-                        <h1>Get your online testing experience to a whole new level of suffering!</h1>
+                        <h1>Get your online testing experience to a whole new level!</h1>
                         <Link className="cta" to="/app/">Try it out!</Link>
                     </div>
                     <div className="hero-right">

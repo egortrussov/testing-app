@@ -33,7 +33,6 @@ class Navbar extends Component {
         const { isHiiden } = this.state;
 
         const token = ls.get('token');
-        console.log(token);
         
         let isLoggedIn = token !== '';
 

@@ -55,7 +55,6 @@ export default class CreateTestForm extends Component {
         var x, i, selElmnt, a, b, c;
         /* Look for any elements with the class "custom-select": */
         x = document.getElementsByClassName('custom-select');
-        console.log(x);
 
         let savedTest = ls.get('savedTestToCreate');
 
@@ -69,7 +68,6 @@ export default class CreateTestForm extends Component {
         let timeValues = [5 * 60, 10 * 60, 20 * 60, 30 * 60, 1 * 60 * 60, 1.5 * 60 * 60];
 
         const setst = (j) => {
-            console.log("hhhh");
             
             this.setState({
                 ...this.state,
@@ -92,7 +90,6 @@ export default class CreateTestForm extends Component {
             create a new DIV that will act as an option item: */
                 c = document.createElement('DIV');
                 c.innerHTML = selElmnt.options[j].innerHTML;
-                console.log(selElmnt);
                 
                 c.addEventListener('click', function(e) {
                     /* When an item is clicked, update the original select box,
@@ -101,7 +98,6 @@ export default class CreateTestForm extends Component {
                     var y, i, k, s, h;
                     s = this.parentNode.parentNode.getElementsByTagName('select')[0];
                     h = this.parentNode.previousSibling;
-                    console.log(timeValues[j - 1]);
                     // this.setState({
                     //     ...this.state,
                     //     timeLimit: timeValues[j - 1]
@@ -169,14 +165,12 @@ export default class CreateTestForm extends Component {
     handleAddAnswer(quesId) {
         const { questions } = this.state;        
         let len = questions[quesId].answers.length;
-        console.log(len.toString());
         
         if (questions[quesId].answers.length === 6) return;
         questions[quesId].answers.push({
             text: '',
             answerId: (len + 1).toString()
         })
-        console.log(questions[quesId].answers);
 
         this.setState({
             ...this.state,
@@ -222,10 +216,8 @@ export default class CreateTestForm extends Component {
     }
 
     setAnswerText(e, index, inx) {
-        console.log(e.target.value);
         
         let { questions } = this.state;
-        console.log(questions[index].answers, inx);
         questions[index].answers[inx].text = e.target.value;
         this.setState({
             ...this.state,
@@ -363,8 +355,6 @@ export default class CreateTestForm extends Component {
 
         let newTest = this.state;
         
-        console.log(this.state);
-        
         let errors = [];
 
         if (!newTest.title) 
@@ -426,7 +416,6 @@ export default class CreateTestForm extends Component {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 
                 if (!res.success) {
                     if (res.isTimeErr) {
@@ -446,7 +435,6 @@ export default class CreateTestForm extends Component {
     setModalChoice(choice) {
         if (choice) {
             this.setState(ls.get('savedTestToCreate'), () => {
-                console.log(this.state)
                 this.setState({
                     ...this.state,
                     hasSavedTest: false
@@ -491,7 +479,6 @@ export default class CreateTestForm extends Component {
             let currAnswerIds = question.correctAnswerId;
             let currAnswers = question.answers;
             let inx = +ansId;
-            console.log(currAnswerIds)
 
             if (ansId !== 0) 
                 currAnswerIds = currAnswerIds.filter(currAns => currAns !== (ansId + 1).toString());
@@ -504,7 +491,6 @@ export default class CreateTestForm extends Component {
                     // break;
                 }
             }
-            console.log(currAnswerIds)
 
             while (inx < currAnswers.length) {
                 let currAns = currAnswers[inx];
@@ -542,8 +528,6 @@ export default class CreateTestForm extends Component {
         let { questions, questionTypes } = this.state;
 
         questions[questionInx].questionType = questionTypes[option.value];
-
-        console.log(option, questions[questionInx].questionType)
 
         this.setState({
             ...this.state,

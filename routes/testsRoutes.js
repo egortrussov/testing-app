@@ -15,12 +15,12 @@ router.get('/testResults/:testId', (req, res) => {
     Test
         .findOne({ _id: req.params.testId })
         .then(test => {
-            console.log(test);
+            (test);
             
             test.results.forEach(res => {
                 users.push(res.userId);
             })
-            console.log(users);
+            (users);
             
             
             User.find({ _id: { $in: users } })
@@ -90,7 +90,7 @@ router.post('/createdTests/:userId', (req, res) => {
             Test
                 .find({ _id: { $in: createdTests } })
                 .then(tests => {
-                    console.log(tests);
+                    (tests);
                     
                     res.status(200).json({ tests });
                 })
@@ -99,11 +99,11 @@ router.post('/createdTests/:userId', (req, res) => {
 
 router.get('/allTests', (req, res) => {
     const { isLimited } = req.body;
-    console.log(req.body)
+    (req.body)
 
     if (isLimited) {
         const { left, right } = req.body;
-        console.log(left, right)
+        (left, right)
         Test 
             .find()
             .then(tests => {
@@ -128,7 +128,7 @@ router.get('/allTests', (req, res) => {
 })
 
 router.get('/testInfo/:testId', (req, res) => {
-    console.log(req.params.testId);
+    (req.params.testId);
     
     Test.findOne({ _id: req.params.testId })
         .then(test => {
@@ -141,11 +141,11 @@ router.get('/testInfo/:testId', (req, res) => {
 // Get all tests with limits
 router.post('/allTests', auth, (req, res) => {
     const { isLimited } = req.body;
-    console.log(req.body)
+    (req.body)
 
     if (isLimited) {
         const { left, right } = req.body;
-        console.log(left, right)
+        (left, right)
         Test 
             .find()
             .sort({ createdAt: -1 })
@@ -173,11 +173,11 @@ router.post('/allTests', auth, (req, res) => {
 // Get passed tests with limit
 router.post('/passedTests/:userId', auth, (req, res) => {
     const { isLimited } = req.body;
-    console.log(req.body)
+    (req.body)
 
     if (isLimited) {
         const { left, right } = req.body;
-        console.log(left, right)
+        (left, right)
         User 
             .findOne({ _id: req.params.userId })
             .then(user => {
@@ -209,7 +209,7 @@ router.post('/createTest', (req, res) => {
         timeLimit: req.body.timeLimit,
         results: []
     });
-    console.log(req.body.timeLimit, 'hhh');
+    (req.body.timeLimit, 'hhh');
     
 
     let testId = null;
@@ -218,7 +218,7 @@ router.post('/createTest', (req, res) => {
         .findOne({ _id: req.body.creator })
         .then(creator => {
             const currentTime = new Date().getTime();
-            console.log(currentTime, creator.lastCreatedPost);
+            (currentTime, creator.lastCreatedPost);
             
             if (creator.lastCreatedPost && currentTime - creator.lastCreatedPost < 300000) {
                 res.status(403).json({ success: false, isTimeErr: true })
@@ -291,7 +291,7 @@ router.post('/saveResult/:testId', (req, res) => {
 router.post('/likeTest/:testId', (req, res) => {
     const { userId, isIncrease } = req.body;
     const testId = req.params.testId;
-    console.log(isIncrease)
+    (isIncrease)
     Test
         .findOne({ _id: testId })
         .then(test => {
