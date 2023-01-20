@@ -27,7 +27,7 @@ class App extends Component {
             else if (window.location.href.startsWith('http'))
                 proxy = 'http://easytestapp.onrender.com';
             else 
-                proxy = 'easytestapp.herokuapp.com';
+                proxy = 'easytestapp.onrender.com';
         } else 
             proxy = 'http://localhost:5000';
         console.log(proxy)

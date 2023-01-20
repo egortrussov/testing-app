@@ -1,4 +1,4 @@
-const express = require('express');
+    const express = require('express');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
@@ -209,7 +209,6 @@ router.post('/createTest', (req, res) => {
         timeLimit: req.body.timeLimit,
         results: []
     });
-    (req.body.timeLimit, 'hhh');
     
 
     let testId = null;
