@@ -1,5 +1,7 @@
 # A website for creating and passing tests 
 
+The website was deployed on <a>https://easytestapp.onrender.com</a>
+
 The backend was built using ExpressJS flamework and a cloud-based database MongoDB. 
 
 Passwords are hashed using secure algorithms from bcrypt.js module. User authentication functionality was implemented using JWT for creating access tokens. 

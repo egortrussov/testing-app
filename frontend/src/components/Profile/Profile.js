@@ -55,7 +55,6 @@ export default class Profile extends Component {
                     this.context.logout();
                     window.location.href = '/app/login';
                 }
-                console.log(res.passedTests);
                 
                 res.passedTests.reverse();
 
